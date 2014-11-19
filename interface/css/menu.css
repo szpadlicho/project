@@ -1,0 +1,12 @@
+#top-menu-ph{
+    width: calc(100%-(2*2px));
+    height:2em;
+    background-color: rgb(214,214,214);
+    border: 1px solid rgb(73,73,73);
+}
+#top-menu ul{
+    list-style-type:none;
+}
+#top-menu ul li{
+    display:inline;
+}
