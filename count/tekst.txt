@@ -1,0 +1,318 @@
+﻿Zaawansowane Techniki WWW dla Informatyki Stosowanej 	Część 2: Dynamiczne strony WWW
+
+Funkcje do obróbki łańcuchów znakowych w PHP
+
+Uwagi ogólne
+
+Dane tekstowe są nadal podstawowym typem wartości, z jakim stykamy się przy tworzeniu stron WWW. Z tego względu, język PHP oferuje do użycia dużą liczbę funkcji do operowania łańcuchami znakowymi. W większości przypadków funkcje takie tworzą łańcuchy znakowe na podstawie dostarczonych im parametrów, którymi są np. informacje o dacie czy czasie, bądź inne łańcuchy znaklowe. Z typowym użyciem takich funkcji mamy do czynienia np. gdy potrzeba oczyścić lub przeformatować dane, wpisane przez użytkownika do formularza. Inną potrzebą może być sprawdzenie poprawności wpisanych danych pod kątem bezpieczeństwa, zanim nastąpi otwarcie bazy danych z podanymi parametrami.
+
+W ramach tej części wykładu omówione zostaną wybrane i najważniejsze funkcje do operowania łańcuchami znakowymi, dostępne w PHP. Niektóre z tych funkcji były już omawiane we wcześniejszych częsciach tego kursu.
+
+Formatowanie ciągów znakowych
+
+Przycinanie ciągów (usuwanie pustej przestrzeni)
+
+Język PHP posiada trzy funkcje przeznaczone do usuwania pustych przestrzeni z ciągów znakowych. I tak, funkcja 'trim()' usuwa pustą przestrzeń z początku i końca łańcucha znaków oraz zwraca, jako wynik, pozostałą część łańcucha. Usuwa następujące znaki: '\n' (symbol nowego wiersza), '\r' (symbol powrotu karetki), '\t' (poziomy tabulator), '\x0B' (pionowy tabulator), '\0' (znak końca ciągu) i znak spacji. Poniższy przykład ilustruje typowe przypadki użycia ww. funkcji.
+
+$nazwisko = trim($_POST['nazwisko']);
+$adres    = trim($_POST['adres']);
+$mail     = trim($_POST['mail']);
+
+Funkcja trim() może zawierać drugi, opcjonalny argument, który ma postać listy znaków, które należy usunąć – zamiast ww. listy domyślnej. W takim przypadku mozliwe jest podane zakresu znaków, oddzielając znaki skrajne dwiema kropkami, np.: 'a..f'.
+
+Istnieją dwie modyfikacje omawianej funkcji trim(). I tak, funkcja ltrim() usuwa pustą przestrzeń jedynie z początku, tj. z lewej strony łańcucha znaków. Z kolei, funkcja rtrim() usuwa pustą przestrzeń jedynie z końca, tj. z prawej strony łańcucha znaków
+
+Podany przykład ilustruje działanie funkcji trim(). Poniżej podano zasadniczą część kodu ze skryptu PHP.
+
+<?php
+  $text = '     niewidoczne znaki      ';
+  printf("<pre>%s|koniec</pre>",$text);
+  $corrected = trim($text);
+  printf("<pre>%s|koniec</pre>", $corrected);
+?>
+
+Wprowadzenie formatowania XHTML
+
+Funkcja 'nl2br()' jako argument pobiera ciąg znaków i zamienia każdy znak końca linii na znacznik <br />. Funkcja ta jest użyteczna przy wyświetlaniu w przeglądarce długich łańcuchów znakowych.
+
+We wcześniejszych wersjach PHP funkcja wprowadza znacznik starszego standardu <br>.
+
+Należy pamiętać, że (X)HTML nie zwraca uwagi na pustą przestrzeń. Tak więc, jeżeli długi komentarz nie zostanie przefiltrowany przez funkcję nl2br(), zostanie wyświetlony w jednym wierszu, ew. z podziałami wymuszonymi wielkością okna przeglądarki.
+
+Ilustruje to następujacy przykład.
+
+Formatowany wydruk ciągu znakowego (przypomnienie)
+
+Przypominam, że podczas jednego z poprzednich wykładów, omówione zostały funkcje echo, print() i printf(). Dwie pierwsze konstrukcje wyświetlają ciąg znaków niejako „na surowo”. W odróżnieniu od polecenia echo, print() i printf() są funkcjami, zatem zawsze zwracają wartość (true lub false – w zależności od wyniku).
+
+Dopiero użycie funkcji 'printf()' z tzw. znacznikami konwersji (np. "%20s") wprowadza możliwość dokładnego określenia formatu wydruku, tj. szerokości wydruku, liczby miejsc po przecinku dla liczb zmiennoprzecinkowych, etc. Ilustruje to poniższy przykład drukowania tego samego zestawu znaków:
+
+echo "Adres klienta: ".$adres; 
+printf("Email klienta: %s",$email);
+
+Przypominam, że istnieje jeszcze funkcja sprintf(), która w odróżnieniu od funkcji printf() tylko zwraca sformatowany ciąg znaków, bez wyświetlania go w przeglądarce.
+
+Podobnie jak w jezyku C, informacje o sposobie formatowania tworzy się za pomocą specjalnej konstrukcji zwanej wyznacznikiem konwersji. W powyższym przykładzie, rolę takiego wyznacznika pełni zestaw znaków '%s', który tutaj dosłownie oznacza: „zamień na ciąg”.
+
+W ogólnym przypadku, format wyznacznika konwersji jest następujący:
+
+%['znak_dopełnienia'][-][szerokość][.dokładność]typ
+
+    Każdy wyznacznik konwersji zaczyna się od znaku procenta. Aby wydrukować ten znak, należy użyć konstrukcji '%%'.
+    Elementy w nawiasach kwadratowych są opcjonalne.
+    Znak dopełnienia będzie rozszerzał zmienną do podanej szerokości. Znakiem domyślnym jest spacja. Każdy znak dopełnienia – poza spacją i zerem – należy poprzedzić apostrofem.
+    Opcjonalny znak minusa określa sposób do lewej strony, zamiast domyślnego do prawej.
+    Parametr szerokość określa liczbę znaków, jaką należy zarezerwować dla zmiennej.
+    Parametr dokładność powinien rozpoczynać się od kropki i podawać żądaną liczbę miejsc po przecinku.
+
+Dla PHP 4.0.6 i nowszych wersji, można stosować numerowanie wyznaczników konwersji, tworząc konstrukcje typu '%1\$6.2f', '%2\$6.0f', itd. W podanym przykładzie np. zestaw znaków '2\$' należy rozumieć jako polecenie „wymień na drugi element z listy”, itd.
+
+Zmiana wielkości liter w łańcuchu
+
+Kilka funkcji języka PHP umożliwia zamianę wielkości liter w łańcuchu znakowym. Oto krótkie ilustratywne zestawienie tych funkcji.
+Funkcja 	Opis 	Przykład 	Wartość
+  	  	$temat 	Komentarze ze strony WWW
+strtoupper() 	Zamiana całego ciągu na wielkie litery 	strtoupper($temat) 	KOMENTARZE ZE STRONY WWW
+strtolower() 	Zamiana całego ciągu na małe litery 	strtolower($temat) 	komentarze ze strony www
+ucfirst() 	Zamiana pierwszego znaku ciągu na duży, jeżeli jest to litera – reszta bez zmian 	ucfirst($temat) 	Komentarze ze strony WWW
+ucwords() 	Zamiana pierwszych znaków w wyrazach na duże wersje, jeżeli są to litery 	ucwords($temat) 	Komentarze Ze Strony WWW
+
+Długość łańcucha znaków
+
+Przypominam, że długość ciągu znaków zwraca funkcja strlen().
+
+<?php
+  $text   = "Krótki łańcuch";
+  print("'$text' ma ".strlen($text)." znaków.");
+?>
+
+Do najprostszych metod sprawdzania poprawności adresu poczty elektronicznej należy weryfikacja długości podanego adresu. Najprostszy adres typu 'a@a.pl' posiada długość sześciu znaków.
+
+Opisana powyżej funkcja działa analogicznie do funkcji o tej samej nazwie z języka C. Należy jednak pamiętać o zasadniczo różnej definicji łańcuchów znakowych w tych językach.
+
+Formatowanie ciągów do przechowania w bazie danych
+
+Niektóre znaki, będące częścią łańcuchów znakowych, mogą sprawiać kłopoty przy dopisywaniu do baz danych. Znakami takimi są przede wszystkim cudzysłowy (pojedynczy i podwójny), lewy ukośnik oraz symbol NULL.
+
+W takim przypadku konieczne jest znalezienie sposobu na zaznaczenie tych znaków, czyli na ucieczkę od nich. Do ucieczki od tych znaków służy znak lewego ukośnika. Przy użyciu tego znaku, np. cudzysłów (") zostaje zapisany jako \", sam ukośnik (\) staje się podwójnym ukośnikiem \\, itd.
+
+Zasada ucieczki dotyczy wszystkich znaków specjalnych, a zatem znak \\ musi zostać zamieniony na \\\\.
+
+W PHP istnieją dwie specjalne funkcje, służące do ucieczki od znaków specjalnych. I tak, przed zapisem jakiegokolwiek łańcucha znakowego do bazy danych należy go przeformatować przy użyciu funkcji addSlashes(). Funkcja ta pobiera łańcuch znaków, jako argument i zwraca ten łańcuch, ale przeformatowany.
+
+<?
+  $comment = addslashes(trim($_POST['comment']));
+?>
+
+Zastosowanie funkcji 'addSlashes()' spowoduje, że jeżeli jest taka potrzeba, ciąg zostanie uzupełniony o stosowne ukośniki.
+
+Po odczytaniu łańcucha znaków z bazy danych, należy przwrócić oryginalną składnię znaków specjalnych. Do tego celu służy funkcja 'stripslashes()'.
+
+<?
+  $comment = stripslashes($comment);
+?>
+
+Konfiguracja PHP na serwerze może być tak ustawiona, że interpreter automatycznie umieszcza i usuwa ukośniki. Można się o tym przekonać wywołując funkcję get_magic_quotes_gpc(), która w takim przypadku zwróci wartośc true. Przy włączeniu tej dyrektywy, by uniknąc wyświetlania ukośników, dane użytkownika można wyświetlać po wywołaniu funkcji stripslashes().
+
+W języku PHP nie ma ogólnej reguły, jak pisać nazwy funkcji składające się z dwóch wyrazów. Czasami nazwa jest tworzona z użyciem znaku podkreślenia [np. ereg_replace()], czasami bez [(np. addslashes()].
+
+Łączenie i rozdzielanie łańcuchów
+
+Rozdzielanie i łączenie całego łańcucha
+
+Przypominam, że podczas poprzednich wykładów została omówiona funkcja 'explode()'. Funkcja ta pobiera ciąg znaków i rozbija go na części składowe, rozdzielone tzw. separatorem, zaś zwracany wynik ma postać tablicy.
+
+<?
+  $tablica_email = explode('@',$email);
+?>
+
+Po wykonaniu powyższej instrukcji, 'tablica_email[0]' zawiera nazwę użytkownika (nadawcy), zaś 'tablica_email[1]' zawiera nazwę domeny.
+
+Należy pamiętać, że argument tej funkcji, pełniący funkcję separatora, nie staje się częscią tworzonej tablicy znaków. Przypominam również, że funkcja ta posiada trzeci, opcjonalny argument, który ogranicza liczbę odzyskiwanych części z podanego ciągu znaków.
+
+Istnieją dwie funkcje odwrotne do explode(), oznaczane jako implode() i join() (aliasy). Każda z tych funkcji przekształca tablicę w łańcuch.
+
+<?
+  $nowy_email = implode('@',$tablica_email);
+?>
+
+Tym razem, elementy tablicy zostaną połączone w jeden ciąg znaków, przy czym między poszczególne elementy tablicy zostanie wstawiony znak '@'.
+
+Jeżeli np. nazwa domeny bedzie zaczynać się od wielkiej litery, cała przedstawiona procedura związana np. ze sprawdzaniem adresów poczty elektronicznej zawiedzie. Mozna i należy taki problem rozwiązać najpierw konwertując cała nazwę domeny do małych lub wielkich liter, co ilustruje poniższy przykład.
+
+<?
+  $tablica_email[1] = strtolower($tablica_email[1]);
+  if(tablica_email[1] == 'duzyklient.com')
+  {
+    $adresdo = 'wiktor@przyklad.com'
+  }
+  else
+  {
+    $adresdo = 'komentarze@przyklad.com'
+  };
+?>
+
+Rozdzielanie ciągów znakowych na pojedyncze elementy
+
+Jak to było wyżej powiedziane, funkcja explode() rozbija w jednej operacji ciąg znaków na wszystkie kawałki składowe. Alternatywnym rozwiązaniem jest możliwość pobierania z ciągu znaków pojedynczych kawałków, czyli podciągów zwanych żetonami, rozdzielonych określonym separatorem. Do tego celu służy ważna funkcja strtok(). Oto prototyp tej funkcji:
+
+string strtok(string $lancuch, string $separator);
+
+Separatorem może być pojedynczy znak, jak również ciąg znaków. Wtedy łańcuch jest łamany w miejscu wystąpienia każdego z podanych znaków. Można na przykład podać jako ogranicznik dwa znaki: '- ' i wtedy łańcuch będzie złamany we wszystkich miejscach, gdzie występuja pauza bądź spacja.
+
+Pierwsze wywołanie funkcji strtok() powinno zwierać dwa argumenty, tak jak to określono w prototypie tej funkcji. W efekcie tego wywołania, funkcja zwróci pierwszy żeton. Następne wywołania powinny zawierać już tylko separator, ponieważ funkcja strtok() pamięta, gdzie umieszczony jest wskaźnik bieżacego elementu ciągu znaków.
+
+Ponowne, pełne wywołanie funkcji (z dwoma argumentami) powoduje wyzerowanie wskaźnika bieżącego elementu. Przypominam, że podobne operacje można prowadzić dla tablicy [funkcja reset() powoduje przesunięcie wewnętrznego wskaźnika tablicy na jej pierwszy element] i dla pliku [funkcja rewind() powoduje przesunięcie wewnętrznego wskaźnika pliku na początek danego pliku].
+
+Oto przykład użycia tej funkcji.
+
+<?
+  $token = strtok($comment,' ');
+  echo $token.'< br />';
+  while($token != '')
+  {
+      $token = strtok(' ');
+      echo $token.'< br />';
+  };
+?>
+
+Powyższy kod wyświetla każdy żeton z komentarza klienta w osobnym wierszu i kontynuuje pętlę tak długo, dopóki są dostępne żetony.
+
+W PHP wersja 4 i nowsze, funkcja 'strtok()' pomija puste łańcuchy znaków. Należy też pamiętać, iż znaki ogranicznika nie pokazują się w otrzymanych tokenach. Funkcja strtok() wybiera tokeny pojedynczo. Można użyć funkcji explode(), która działa na podobnej zasadzie, ale przechowuje wszystkie tokeny w tablicy. Należy wobec tego pamiętać, że funkcja explode() jest bardziej dokładna.
+
+Wybieranie podciągów
+
+Kolejną użyteczną funkcją jest substr(), która służy do wybrania podciągu z argumentu, będącego łańcuchem znaków. Funkcja ta posiada następujący prototyp:
+
+string substr(string $lancuch, int $start[, int $length]);
+
+Funkcja ta zwraca podciąg skopiowany z podanego łańcucha znaków. Obowiązkowe jest podanie jednego argumentu całkowitego, który może być dodatni bądź ujemny. W pierwszym przypadku funkcja zwróci podciąg, rozpoczynający się na pozycji '$start' aż do końca łańcucha. Przy ujemnej wartości parametru '$start', funkcja zwróci ostatnie znaki w w łańcuchu, w liczbie będącej wartością bezwzględną tego parametru.
+
+Należy przypomnieć, że pierwszy element ciągu ma numer zero.
+
+Również parametr $length może być dodatni bądź ujemny. Jeżeli jest dodatni funkcja zwróci odopwiednią liczbę znaków, poczynając od pozycji określonej parameterem $start. Jeżeli jest ujemny, zwróci odopowiednią liczbę znaków, od pozycji określonej przez $start aż do pozycji określonej przez strlen($lancuch)-abs($length). Ilustruje to podany niżej przykład:
+
+echo substr($comment, 5, -15); // znaki od 5 na początku do 15 od końca.
+
+Porównywanie łańcuchów znakowych
+
+Funkcja $strcmp() porównuje dwa ciągi znaków. Porównania dokonuje się na podstawie wartości kodów ASCII. Jeżeli łańcuchy są identyczne, funkcja zwraca zero. W innym przypadku funkcja zwraca wartość dodatnią bądź ujemną, w zależności od tego, który argument jest mniejszy w uporządkowaniu leksykograficznym. Oto prototyp tej funkcji.
+
+int strcmp(string $string1, string $string2);
+
+Uwaga!
+Z punktu widzenia zwracanych wartości, funkcja 'strcmp()' działa podobnie do analogicznej funkcji w języku C.
+
+<?php
+  $first   = "abc";
+  $second  = "xyz";
+  if(strcmp($first,$second) == 0)
+  {
+      print("Łańcuchy są takie same");
+  }
+  else
+  {
+      print("Łańcuchy są różne");
+  }
+?>
+
+Uwaga!
+Funkcja 'strcmp()' nadaje się do porównania danych binarnych.
+
+Funkcja 'strcasecmp()' działa tak samo, jak 'strcmp()', ale nie rozróżnia wielkich i małych liter.
+
+<?php
+  $first   = "abc";
+  $second  = "aBc";
+  if(strcasecmp($first,$second) == 0)
+  {
+      print("Łańcuchy są takie same");
+  }
+  else
+  {
+      print("Łańcuchy są różne");
+  }
+?>
+
+Funkcje ciągów
+
+Często zachodzi potrzeba odnalezienia odpowiedniego wyrażenia w znanym łańcuchu znaków. Dotychczas poznane funkcje umożliwiają realizację tego zadania, ale w sposób pośredni. W PHP istnieją funkcję służące specjalnie do wykonywania tego typu zadań.
+
+Funkcja strstr()
+
+Funkcja strstr() służy do odnajdywania ciągu lub nawet pojedynczego znaku w dłuższym łańcuchu znakowym. Funkcja ta posiada dwa argumenty: pierwszy '$ciag' i drugi '$podciag', oba w postaci łańcuchów znakowych. Oto przykład użycia tej funkcji.
+
+<?php
+  $text   = "Jest to łańcuch, ale niezbyt długi.";
+  if(strstr($text,"ale") != '')
+  print("Łańcuch zawiera słowo 'ale'<br />");
+?>
+
+Badany jest pierwszy argument pod kątem zawierania w sobie ciągu znaków, którym jest argument drugi. W typowym zastosowaniu, funkcja zwraca fragment pierwszego argumentu $ciag od pierwszego wystąpienia argumentu $podciag aż do końca łańcucha. Jeżeli $podciag nie zostal znaleziony, zwracana jest wartość false.
+
+Funkcja strchr() jest aliasem funkcji strstr().
+
+Funkcja strrchr() zwraca fragment łańcucha $ciag, ale poczynając od ostatniego wystapienia argumentu $podciag.
+
+Funkcja stristr()
+
+Z kolei funkcja stristr() jest odmianą funkcji strstr(), która nie rozróżnia wielkich i małych liter.
+
+Funkcja strpos()
+
+Funkcja strpos() działa podobnie jak strstr(), ale zwraca numneryczną pozycję drtugiego argumentu (podciągu) w argumencie pierwszym. Zatem, funkcja ta posiada również dwa argumenty: pierwszy $ciag i drugi $podciag, oba w postaci łańcuchów znakowych. Oto przykład użycia tej funkcji.
+
+<?php
+  $text   = "Witaj, świecie!";
+  //szukanie spacji
+  if(strpos($text,' '))
+  print("Łańcuch zawiera spację.<br />\n");
+  //szukanie 'świecie'
+  print("Łańcuch zawiera podciąg \'świecie\' na pozycji nr "
+  .strpos($text,"świecie").<br />\n");
+?>
+
+Badany jest pierwszy argument pod kątem zawierania w sobie ciągu znaków, którym jest argument drugi. Funkcja zwraca pozycję numeryczną pierwszego wystąpienia argumentu $podciag w argumencie $ciag. Jeżeli $podciag nie zostal znaleziony, zwracana jest wartość false.
+
+Opcjonalnie, omawiana funkcja może posiadać trzeci argument, który określa pozycję, począwszy od której ciąg ma być przeszukany. Dla porządku podaję zatem prototyp tej funkcji:
+
+ int strpos(string $ciag, string $podciag, [int $offset]);
+
+Autorzy podręcznikow PHP zalecają sprawdzanie obecności jednego łańcucha znakowego w drugim przez użycie funkcji strpos(), jako metodę szybszą niż strstr()
+
+Funkcja 'strrpos()'
+
+Funkcja 'strpos()' posiada dwa argumenty: pierwszy '$ciag' i drugi '$podciag', oba w postaci łańcuchów znakowych. Badany jest pierwszy argument pod kątem zawierania w sobie ciągu znaków, którym jest argument drugi. Funkcja zwraca pozycję numeryczną ostatniego wystąpienia argumentu '$podciag' w argumencie '$ciag'. Jeżeli '$podciag' nie zostal znaleziony, zwracana jest wartość 'false'.
+
+Funkcja 'strrchr()' jest aliasem funkcji 'strrpos()'.
+
+Funkcja 'str_replace()'
+
+Funkcja 'str_replace()' posiada trzy argumenty: pierwszy '$podciag1', drugi '$podciag2' i trzeci '$ciag', wszystkie w postaci łańcuchów znakowych. Funkcja, dla danego łańcucha znaków '$ciag', próbuje znaleźć wszystkie wystąpienia podciągu '$podciag1' i zamienić je na '$podciag2'. Oto przykład użycia tej funkcji.
+
+<?php
+  $text = "Wyniki poszukiwania wyróżnionych słów kluczowych.";
+  $text = str_replace("słów kluczowych",
+                      "<b>słów kluczowych</b>", $text);
+  print($text."<br />");
+?>
+
+Począwszy od PHP 4, parametry funkcji 'str_replace()' mogą być tablicami. W najprostszym przypadku, gdy tylko argument '$ciag' jest tablicą, PHP podmienia łańcuchy w każdym elemencie tablicy.
+
+Funkcja 'substr_replace()'
+
+Funkcja 'substr_replace()' posiada trzy obowiązkowe parametry i jeden opcjonalny. Pierwszym argumentem jest łańcuch znaków '$ciag', argument drugi to również łańcuch znaków '$podciag', zaś argument trzeci jest liczbą całkowitą '$start'. Opcjonalny, czwarty parametr '$length' jest również wartością całkowitą, która określa ile znaków oryginalnego łańcucha zostanie zastąpione podanym podciągiem znaków. Oto przykład użycia tej funkcji.
+
+<?php
+  $text = "Mój pies nazywa się Burek.";
+  //zamiana Burka na Azora
+  $text = substr_replace($text, "Azor", 20, 5);
+  print($text."<br />");
+?>
+
+Funkcja 'substr_replace()' po prostu usuwa tekst o zadanej długości i wstawia jego zamiennik. Jeżeli argument '$length' nie zostanie podany, podmiana obejmie całą resztę argumentu '$ciag', tj. do końca łańcucha.
+
+Jeżeli argument '$start' ma wartość ujemną, liczenie rozpocznie się od ostatniego znaku łańcucha '$ciag'.
+
+Data ostatniej modyfikacji tej strony: środa, 11 grudnia, A.D. 2013
+Strona główna kursu
