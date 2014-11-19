@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>checkbox</title>
+        <meta charset="UTF-8"/>
+        
+        <meta name="keywords" content="" />
+        <meta name="description" content="" />
+        <meta name="author" content=""/>
+        <meta name="dcterms.created" content="fri 12 sep 2014 9:00:00" />
+        <meta name="dcterms.modified" content="thu 30 oct 2014 13:22:00" />
+        <META NAME="ROBOTS" CONTENT="index, follow">
+        <!-- The StyleSheets -->
+        <link type="text/css" rel="stylesheet" href="css/style.css" />
+        <!-- The JavaScript -->
+        <script src="https://code.jquery.com/jquery-1.5.2.min.js"></script>
+        <script type="text/javascript">
+            $(document).ready(function($) {
+                $( '.ch' ).click(function(){
+                   var kol = $(this).val();
+                   $( '.tx' ).attr('value', kol); 
+                });
+            });
+        </script>
+
+    </head>
+    <body>
+        <form method="POST">
+            <input class="tx" type="text" name="text" />
+            <br />
+            <input class="ch" type="checkbox" name="ch1" value="cz1" />cz1<br />
+            <input class="ch" type="checkbox" name="ch2" value="cz2" />cz2<br />
+            <input class="ch" type="checkbox" name="ch3" value="cz3" />cz3<br />
+            <input class="ch" type="checkbox" name="ch4" value="cz4" />cz4<br />
+        </form>
+    </body>
+</html>
