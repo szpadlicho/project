@@ -161,8 +161,8 @@
                 */
                 </script>
                 <div id="middle-ph">
-                <!--<img id="picture" src="../repo/data/src1.jpg" />-->
                     <div id="middle">
+                        <!--<img id="picture" src="../repo/data/src1.jpg" />-->
                         <img id="picture" src="../repo/data/Bikini.jpg" />
                         <!--<img id="picture" src="images/Bikini.jpg" />-->
                         <p id="draggable">
