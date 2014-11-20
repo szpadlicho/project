@@ -27,6 +27,8 @@ body {
 	#left:0px;
     #display:table-cell;
     #vertical-align:middle;
+    #border:1px solid white;
+    
 }
 footer{
     position:fixed;

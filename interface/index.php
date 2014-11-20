@@ -2,7 +2,7 @@
 <html lang="pl">
     <head>
         <meta charset="UTF-8">
-        <title></title>
+        <title>interface</title>
         <meta name="description" content="" />
         <meta name="keywords" content="" />
         <meta name="author" content="m" />
@@ -32,8 +32,8 @@
         $(document).load(both);
         $(window).resize(both);
         $(document).ready(function(){
+            $( '#top-menu ul li ul li' ).addClass( 'active' );
             $( '#top-menu ul li ul li' ).click(function(){
-                //$( '#top-menu ul li ul li' ).removeClass( 'active' );
                 if ( $( this ).hasClass( 'active' ) ) {
                     $( this ).removeClass( 'active' );
                 } else {
@@ -41,7 +41,8 @@
                 };
                 
             });
-            $( '[id^="tool-"]' ).hide(); // hide the other divs
+            //$( '[id^="tool-"]' ).hide(); // hide the other divs
+            $( '[id^="tool-"]' ).addClass( 't-show' );
             $( 'li[id^="button-"]' ).click(function(){
                 if ( $( '#tool-'+this.id.slice(7) ).hasClass( 't-show' ) ) {
                     $( '#tool-'+this.id.slice(7) ).removeClass( 't-show' );
@@ -50,7 +51,6 @@
                     $( '#tool-'+this.id.slice(7) ).removeClass( 't-hide' );
                     $( '#tool-'+this.id.slice(7) ).show('explode').addClass( 't-show' );;
                 }
-                //$( '#tool-'+this.id.slice(7) ).show('explode');
             });
         });
         </script>
@@ -60,25 +60,30 @@
             <header id="top-menu-ph">
                 <nav id="top-menu">
                     <ul>
-                        <li>Plik
+                        <li>File
                             <ul>
-                                <li id="button-1">Open</li>
-                                <li id="button-2">Close</li>
-                                <li id="button-3">Reset</li>
+                                <li id="button-01">Load file</li>
+                                <li id="button-02">Save file</li>
+                                <li id="button-03">Download</li>
                             </ul>
                         </li>
-                        <li>Widok
+                        <li>Windows
                             <ul>
-                                <li id="button-4">Rozmiar</li>
-                                <li id="button-5">Czcionka</li>
-                                <li id="button-6">Napis</li>
+                                <li id="button-04">four</li>
+                                <li id="button-05">five</li>
+                                <li id="button-06">six</li>
+                                <li id="button-07">seven</li>
+                                <li id="button-08">eight</li>
+                                <li id="button-09">nine</li>
+                                <li id="button-10">ten</li>
+                                <li id="button-11">eleven</li>
+                                <li id="button-12">twelve</li>
+                                <li id="button-13">thirteen</li>
                             </ul>
                         </li>
                         <li>Edycja
                             <ul>
-                                <li id="button-7">one</li>
-                                <li id="button-8">two</li>
-                                <li id="button-9">three</li>
+                                
                             </ul>
                         </li>
                         <li>Zapisz</li>
@@ -94,15 +99,24 @@
                     <div class="left-option"><span>Napis</span></div>
                 </div>
                 -->
-                <div id="tool-1" class="tools">a</div>
-                <div id="tool-2" class="tools">b</div>
-                <div id="tool-3" class="tools">c</div>
-                <div id="tool-4" class="tools">d</div>
-                <div id="tool-5" class="tools">e</div>
-                <div id="tool-6" class="tools">f</div>
-                <div id="tool-7" class="tools">g</div>
-                <div id="tool-8" class="tools">h</div>
-                <div id="tool-9" class="tools">i</div>
+                <div id="left-option-ph">
+                    <div id="tool-04" class="tools">a</div>
+                    <div id="tool-05" class="tools">b</div>
+                    <div id="tool-06" class="tools">c</div>
+                    <div id="tool-07" class="tools">d</div>
+                    <div id="tool-08" class="tools">e</div>
+                </div>
+                <div id="right-option-ph">
+                    <div id="tool-09" class="tools">f</div>
+                    <div id="tool-10" class="tools">g</div>
+                    <div id="tool-11" class="tools">h</div>
+                    <div id="tool-12" class="tools">i</div>
+                    <div id="tool-13" class="tools">j</div>
+                </div>
+                <div id="middle-ph">
+                <!--<img id="picture" src="../repo/data/src1.jpg" />-->
+                <img id="picture" src="../repo/data/Bikini.jpg" />
+                </div>
             </article>
         </section>
         <footer>
