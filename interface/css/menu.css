@@ -1,12 +1,52 @@
 #top-menu-ph{
     width: calc(100%-(2*2px));
-    height:2em;
     background-color: rgb(214,214,214);
-    border: 1px solid rgb(73,73,73);
+    border:1px solid rgb(73,73,73);
+    border-top:none;
+    padding:0.2em 1.5em;
+    color:black;
 }
-#top-menu ul{
+
+#top-menu > ul{
     list-style-type:none;
+    
 }
-#top-menu ul li{
-    display:inline;
+
+#top-menu > ul > li{
+    display:inline-block;
+    position:relative;
+    padding:0em 0.5em;
+    #border: 1px solid rgb(73,73,73);
+    text-align:center;
+    #margin:0;
+}
+#top-menu > ul > li:hover{
+    display:inline-block;
+    position:relative;
+    padding:0em 0.5em;
+    background-color: rgb(224,224,224);
+}
+#top-menu > ul > li > ul{
+    list-style-type:none;
+    visibility:hidden;
+    position:absolute;   
+    background-color: rgb(214,214,214);
+    #border: 1px solid rgb(73,73,73);
+    left:-0.5em;
+    text-align:center;
+}
+
+#top-menu > ul > li:hover > ul{
+    visibility:visible;
+    position:absolute;   
+}
+#top-menu > ul > li > ul > li{
+    padding:0em 0.5em;
+}
+#top-menu > ul > li > ul > li:hover{
+    padding:0em 0.5em;
+    background-color: rgb(224,224,224);
+}
+.active{
+    color:red;
 }

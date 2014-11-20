@@ -1,0 +1,25 @@
+/*
+#div{
+    border:1px solid white;
+    background-color:red;
+}
+#left-option-ph{
+    position:relative;
+    width:2em;
+    height:20em;
+}
+.left-option{
+    position:relative;
+    #position:absolute;
+    display:inline-block;
+
+}
+.left-option > span{
+    display:inline-block;
+    -webkit-transform: rotate(90deg);
+    -moz-transform: rotate(90deg);
+    -o-transform: rotate(90deg);
+    -ms-transform: rotate(90deg);
+    transform: rotate(90deg);
+}
+*/

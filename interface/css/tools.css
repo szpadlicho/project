@@ -1,0 +1,12 @@
+.tools{
+    width:10em;
+    height:2em;
+    background-color:lime;
+    border: 1px solid black;
+}
+.t-show{
+    #visibility:visible;
+}
+.t-hide{
+    #visibility:hidden;
+}
