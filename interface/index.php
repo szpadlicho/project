@@ -14,9 +14,12 @@
         <link title="deafult" type="text/css" rel="stylesheet" href="css/menu.css" />
         <link title="deafult" type="text/css" rel="stylesheet" href="css/option.css" />
         <link title="deafult" type="text/css" rel="stylesheet" href="css/tools.css" />
+        <link title="deafult" type="text/css" rel="stylesheet" href="css/draggable.css" />
         
         <script type="text/javascript" src="js/jquery-1.9.1.min.js"></script>
         <script type="text/javascript" src="js/scrypt.js"></script>
+        <!--<script src="//code.jquery.com/jquery-1.10.2.js"></script>-->
+        <script type="text/javascript" src="js/jquery-ui.min-1.11.2.js"></script>
 
         <script type="text/javascript">
         var both = function () {
@@ -113,9 +116,38 @@
                     <div id="tool-12" class="tools">i</div>
                     <div id="tool-13" class="tools">j</div>
                 </div>
+                <script type="text/javascript">
+                $(document).ready(function(){
+                    $('#draggable').draggable({
+                        containment: "parent", 
+                        drag: function(){
+                            var offset = $(this).offset();
+                            var xPos = offset.left;
+                            var yPos = offset.top;
+                            $('#posX').text('x: ' + xPos);
+                            $('#posY').text('y: ' + yPos);
+                        }
+                    });
+                });
+                $(function() {
+                    $( "#draggable2" ).draggable();
+                });
+                </script>
                 <div id="middle-ph">
                 <!--<img id="picture" src="../repo/data/src1.jpg" />-->
-                <img id="picture" src="../repo/data/Bikini.jpg" />
+                    <div id="middle">
+                        <img id="picture" src="../repo/data/Bikini.jpg" />
+                        <p id="draggable">
+                            Napis<br />
+                            <span id="posX"></span><br />
+                            <span id="posY"></span><br />
+                        </p>
+                    </div>
+                    <!--
+                    <div id="draggable" class="ui-widget-content">
+                    <p>Drag me around</p>
+                    </div>
+                    -->
                 </div>
             </article>
         </section>
