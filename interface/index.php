@@ -18,8 +18,8 @@
         
         <script type="text/javascript" src="js/jquery-1.9.1.min.js"></script>
         <script type="text/javascript" src="js/scrypt.js"></script>
-        <!--<script src="//code.jquery.com/jquery-1.10.2.js"></script>-->
         <script type="text/javascript" src="js/jquery-ui.min-1.11.2.js"></script>
+        <script type="text/javascript" src="js/jquery.cookie.js"></script>
 
         <script type="text/javascript">
         var both = function () {
@@ -126,8 +126,14 @@
                             var yPos = offset.top;
                             $('#posX').text('x: ' + xPos);
                             $('#posY').text('y: ' + yPos);
+                        },
+                        stop: function(event, ui) {
+                            $.cookie('draggableLeft', ui.position.left);
+                            $.cookie('draggableTop', ui.position.top);
+                            //alert($.cookie("elementIDCookie"));
                         }
                     });
+                    $('#draggable').css({left : parseInt($.cookie('draggableLeft')), top : parseInt($.cookie('draggableTop'))});
                 });
                 $(function() {
                     $( "#draggable2" ).draggable();
@@ -137,6 +143,7 @@
                 <!--<img id="picture" src="../repo/data/src1.jpg" />-->
                     <div id="middle">
                         <img id="picture" src="../repo/data/Bikini.jpg" />
+                        <!--<img id="picture" src="images/Bikini.jpg" />-->
                         <p id="draggable">
                             Napis<br />
                             <span id="posX"></span><br />
