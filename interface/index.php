@@ -122,10 +122,10 @@
                         containment: "parent", 
                         drag: function(){
                             var offset = $(this).offset();
-                            var xPos = offset.left;
-                            var yPos = offset.top;
-                            $('#posX').text('x: ' + xPos);
-                            $('#posY').text('y: ' + yPos);
+                            var xPos = offset.left.toFixed(0);// liczba.toFixed(2) - dwa miejsca po przecinku
+                            var yPos = offset.top.toFixed(0);
+                            $('#posX').text('Left: ' + xPos);
+                            $('#posY').text('Top: ' + yPos);
                         },
                         stop: function(event, ui) {
                             $.cookie('draggableLeft', ui.position.left);
@@ -167,8 +167,9 @@
                         <!--<img id="picture" src="images/Bikini.jpg" />-->
                         <p id="draggable">
                             Napis<br />
-                            <span id="posX"></span><br />
                             <span id="posY"></span><br />
+                            <span id="posX"></span><br />
+                            
                         </p>
                     </div>
                     <!--
