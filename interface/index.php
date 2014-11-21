@@ -49,10 +49,10 @@
             $( 'li[id^="button-"]' ).click(function(){
                 if ( $( '#tool-'+this.id.slice(7) ).hasClass( 't-show' ) ) {
                     $( '#tool-'+this.id.slice(7) ).removeClass( 't-show' );
-                    $( '#tool-'+this.id.slice(7) ).hide('explode').addClass( 't-hide' );
+                    $( '#tool-'+this.id.slice(7) ).hide( 'drop' ).addClass( 't-hide' ); // drop size scale slide
                 } else {
                     $( '#tool-'+this.id.slice(7) ).removeClass( 't-hide' );
-                    $( '#tool-'+this.id.slice(7) ).show('explode').addClass( 't-show' );;
+                    $( '#tool-'+this.id.slice(7) ).show( 'drop' ).addClass( 't-show' );;
                 }
             });
         });
