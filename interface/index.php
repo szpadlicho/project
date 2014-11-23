@@ -118,20 +118,6 @@
                 </div>
                 <script type="text/javascript">
                 $(document).ready(function(){
-                    $( '.drag' ).resizable({
-                        start: function(event, ui) {
-                            //alert('resizing started');
-                        },
-                        resize: function(event, ui) {
-                         
-                        },
-                        stop: function(event, ui) {
-                            //alert('resizing stopped');
-                            //$.cookie('draggableLeft'+id, ui.position.left);
-                            //$.cookie('draggableTop'+id, ui.position.top);
-                            //alert(ui.size.width+'|'+ui.size.height);
-                        }
-                    });
                 });
                 </script>
                 <div id="middle-ph">

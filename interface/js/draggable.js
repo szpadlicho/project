@@ -34,6 +34,22 @@ $(document).ready(function(){
         });
     };
     /**
+        * resize function init and save
+    **/
+    var resize = function(){
+        $( '.drag' ).each(function(index){
+            var id = $(this).attr('id').slice(-1);
+            $( '#draggable-'+id ).resizable({
+                containment: "parent", 
+                stop: function(event, ui) {
+                    $.cookie('resizableWidth'+id, ui.size.width);
+                    $.cookie('resizableHeight'+id, ui.size.height);
+                }
+            });
+            $( '#draggable-'+id ).css({width : parseInt($.cookie('resizableWidth'+id)), height : parseInt($.cookie('resizableHeight'+id))});
+        });
+    };
+    /**
         * initiate arrays and cookies
     **/
     var empArr = [];
@@ -49,6 +65,7 @@ $(document).ready(function(){
     var empArr = getCookie();
     $( '#middle' ).append(empArr);
     elements();
+    resize();
     /**
         * Button behavior
     **/
@@ -66,7 +83,8 @@ $(document).ready(function(){
         $( '#middle' ).append(elem);
         arr.push(elem);
         setCookie();
-        elements();
+        elements()
+        resize();
     });
     $( '#btnReset' ).click(function(){
         var cookies = $.cookie();
