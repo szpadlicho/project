@@ -109,7 +109,7 @@
                     </div>
                     <div id="tool-06" class="tools">
                         Size: <input id="fontSize" class="" type="text" /><br />
-                        <input id="" class="" type="text" /><br />
+                        Color: <input id="fontColor" class="" type="text" /><br />
                         <input id="" class="" type="text" /><br />
                         <input id="" class="" type="text" /><br />
                     </div>
@@ -128,6 +128,7 @@
                     /**
                         * Change, save and load text
                     **/
+                    //var myChildren = $('.curent').children(':nth-child(4)');
                     $(document).on('keyup', '#txt', function (event) {
                         if (event.keyCode == 13) { // change enter to <br>
                             $('.curent').children(':nth-child(4)').append('<br />');
@@ -167,6 +168,29 @@
                         var getId = $( this ).attr('id');
                         var values = $.cookie(getId+'font');
                         $('#'+getId).children(':nth-child(4)').css('font-size',values);
+                        //alert(getId+'|'+$.cookie(getId+'font'));
+                    });
+                });
+                $(document).ready(function(){
+                    /**
+                        * CSS change, save and load
+                    **/
+                    $(document).on('keyup', '#fontColor', function (event) {
+                        var size = $('#fontColor').val();
+                        $('.curent').children(':nth-child(4)').css('color',size);
+                        var saveId = $('.curent').attr('id');
+                        $.cookie(saveId+'color',$('.curent').children(':nth-child(4)').css('color'));
+                        //alert($.cookie(saveId+'font'));
+                    });
+                    $(document).on('mousedown', '.drag', function () {
+                        var size = $(this).children(':nth-child(4)').css('color');
+                        //var size = parseInt(size);
+                        $('#fontColor').val(size);
+                    });
+                    $( '.drag' ).each(function(){//'p[id^="draggable-"]'
+                        var getId = $( this ).attr('id');
+                        var values = $.cookie(getId+'color');
+                        $('#'+getId).children(':nth-child(4)').css('color',values);
                         //alert(getId+'|'+$.cookie(getId+'font'));
                     });
                 });
