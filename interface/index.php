@@ -110,8 +110,8 @@
                     <div id="tool-06" class="tools">
                         Size: <input id="fontSize" class="" type="text" /><br />
                         Color: <input id="fontColor" class="" type="text" /><br />
-                        <input id="" class="" type="text" /><br />
-                        <input id="" class="" type="text" /><br />
+                        Opacity: <input id="fontOpacity" class="" type="text" /><br />
+                        Deg: <input id="" class="" type="text" /><br />
                     </div>
                     <div id="tool-07" class="tools">d</div>
                     <div id="tool-08" class="tools">e</div>
@@ -191,6 +191,29 @@
                         var getId = $( this ).attr('id');
                         var values = $.cookie(getId+'color');
                         $('#'+getId).children(':nth-child(4)').css('color',values);
+                        //alert(getId+'|'+$.cookie(getId+'font'));
+                    });
+                });
+                $(document).ready(function(){
+                    /**
+                        * CSS change, save and load
+                    **/
+                    $(document).on('keyup', '#fontOpacity', function (event) {
+                        var size = $('#fontOpacity').val();
+                        $('.curent').children(':nth-child(4)').css('opacity',size);
+                        var saveId = $('.curent').attr('id');
+                        $.cookie(saveId+'Opacity',$('.curent').children(':nth-child(4)').css('opacity'));
+                        //alert($.cookie(saveId+'font'));
+                    });
+                    $(document).on('mousedown', '.drag', function () {
+                        var size = $(this).children(':nth-child(4)').css('opacity');
+                        //var size = parseInt(size);
+                        $('#fontOpacity').val(size);
+                    });
+                    $( '.drag' ).each(function(){//'p[id^="draggable-"]'
+                        var getId = $( this ).attr('id');
+                        var values = $.cookie(getId+'Opacity');
+                        $('#'+getId).children(':nth-child(4)').css('opacity',values);
                         //alert(getId+'|'+$.cookie(getId+'font'));
                     });
                 });
