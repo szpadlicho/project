@@ -107,7 +107,12 @@
                     <div id="tool-05" class="tools">
                         <textarea id="txt" class="btn" type="text" value="Some text" />Some text</textarea>
                     </div>
-                    <div id="tool-06" class="tools">c</div>
+                    <div id="tool-06" class="tools">
+                        Size: <input id="fontSize" class="" type="text" /><br />
+                        <input id="" class="" type="text" /><br />
+                        <input id="" class="" type="text" /><br />
+                        <input id="" class="" type="text" /><br />
+                    </div>
                     <div id="tool-07" class="tools">d</div>
                     <div id="tool-08" class="tools">e</div>
                 </div>
@@ -121,9 +126,13 @@
                 <script type="text/javascript">
                 $(document).ready(function(){
                     /**
-                        * Change and save text
+                        * Change, save and load text
                     **/
-                    $(document).on('keyup', '#txt', function () {
+                    $(document).on('keyup', '#txt', function (event) {
+                        if (event.keyCode == 13) { // change enter to <br>
+                            $('.curent').children(':nth-child(4)').append('<br />');
+                            return false;
+                        }
                         $('.curent').children(':nth-child(4)').text($(this).val());
                         var saveId = $('.curent').attr('id');
                         $.cookie(saveId,$(this).val());
@@ -136,6 +145,29 @@
                         var getId = $( this ).attr('id');
                         var values = $.cookie(getId);
                         $('#'+getId).children(':nth-child(4)').text(values);
+                    });
+                });
+                $(document).ready(function(){
+                    /**
+                        * CSS change, save and load
+                    **/
+                    $(document).on('keyup', '#fontSize', function (event) {
+                        var size = $('#fontSize').val();
+                        $('.curent').children(':nth-child(4)').css('font-size',size+'px');
+                        var saveId = $('.curent').attr('id');
+                        $.cookie(saveId+'font',$('.curent').children(':nth-child(4)').css('font-size'));
+                        //alert($.cookie(saveId+'font'));
+                    });
+                    $(document).on('mousedown', '.drag', function () {
+                        var size = $(this).children(':nth-child(4)').css('font-size');
+                        var size = parseInt(size);
+                        $('#fontSize').val(size);
+                    });
+                    $( '.drag' ).each(function(){//'p[id^="draggable-"]'
+                        var getId = $( this ).attr('id');
+                        var values = $.cookie(getId+'font');
+                        $('#'+getId).children(':nth-child(4)').css('font-size',values);
+                        //alert(getId+'|'+$.cookie(getId+'font'));
                     });
                 });
                 </script>
