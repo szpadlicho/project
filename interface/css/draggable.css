@@ -21,9 +21,11 @@
     right:0;
     background-color:rgb(190,37,10);
     border:1px solid rgb(145,28,7);
+    margin:0.1em;
 }
-#picture{
-    position:relative;
-    width:100%;
-    height:auto;
+.number{
+    position:absolute;
+    top:0;
+    left:0;
+    margin:0.1em;
 }

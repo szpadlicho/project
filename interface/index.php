@@ -104,7 +104,9 @@
                         <input id="btnAdd" class="btn" type="button" value="Add" /><br />
                         <input id="btnReset" class="btn" type="button" value="Reset" />
                     </div>
-                    <div id="tool-05" class="tools">b</div>
+                    <div id="tool-05" class="tools">
+                        <textarea id="txt" class="btn" type="text" value="Some text" />Some text</textarea>
+                    </div>
                     <div id="tool-06" class="tools">c</div>
                     <div id="tool-07" class="tools">d</div>
                     <div id="tool-08" class="tools">e</div>
@@ -118,6 +120,23 @@
                 </div>
                 <script type="text/javascript">
                 $(document).ready(function(){
+                    /**
+                        * Change and save text
+                    **/
+                    $(document).on('keyup', '#txt', function () {
+                        $('.curent').children(':nth-child(4)').text($(this).val());
+                        var saveId = $('.curent').attr('id');
+                        $.cookie(saveId,$(this).val());
+                    });
+                    $(document).on('mousedown', '.drag', function () {
+                        var value = $(this).children(':nth-child(4)').text();
+                        $('#txt').val(value);
+                    });
+                    $( '.drag' ).each(function(){//'p[id^="draggable-"]'
+                        var getId = $( this ).attr('id');
+                        var values = $.cookie(getId);
+                        $('#'+getId).children(':nth-child(4)').text(values);
+                    });
                 });
                 </script>
                 <div id="middle-ph">
