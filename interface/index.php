@@ -111,7 +111,7 @@
                         Size: <input id="fontSize" class="" type="text" /><br />
                         Color: <input id="fontColor" class="" type="text" /><br />
                         Opacity: <input id="fontOpacity" class="" type="text" /><br />
-                        Deg: <input id="" class="" type="text" /><br />
+                        Rotate: <input id="fontRotate" class="" type="text" /><br />
                     </div>
                     <div id="tool-07" class="tools">d</div>
                     <div id="tool-08" class="tools">e</div>
@@ -127,6 +127,7 @@
                 $(document).ready(function(){
                     /**
                         * Change, save and load text
+                        * Text
                     **/
                     //var myChildren = $('.curent').children(':nth-child(4)');
                     $(document).on('keyup', '#txt', function (event) {
@@ -151,6 +152,7 @@
                 $(document).ready(function(){
                     /**
                         * CSS change, save and load
+                        * Font-size
                     **/
                     $(document).on('keyup', '#fontSize', function (event) {
                         var size = $('#fontSize').val();
@@ -174,6 +176,7 @@
                 $(document).ready(function(){
                     /**
                         * CSS change, save and load
+                        * Color
                     **/
                     $(document).on('keyup', '#fontColor', function (event) {
                         var size = $('#fontColor').val();
@@ -197,6 +200,7 @@
                 $(document).ready(function(){
                     /**
                         * CSS change, save and load
+                        * Opacity
                     **/
                     $(document).on('keyup', '#fontOpacity', function (event) {
                         var size = $('#fontOpacity').val();
@@ -215,6 +219,30 @@
                         var values = $.cookie(getId+'Opacity');
                         $('#'+getId).children(':nth-child(4)').css('opacity',values);
                         //alert(getId+'|'+$.cookie(getId+'font'));
+                    });
+                });
+                $(document).ready(function(){
+                    /**
+                        * CSS change, save and load
+                        * Rotate transform: rotate(30deg);
+                    **/
+                    $(document).on('keyup', '#fontRotate', function (event) {
+                        var size = $('#fontRotate').val();
+                        $('.curent').css('transform','rotate('+size+'deg)');
+                        var saveId = $('.curent').attr('id');
+                        $.cookie(saveId+'Transform',$('.curent').css('transform'));
+                        //alert($.cookie(saveId+'font'));
+                    });
+                    $(document).on('mousedown', '.drag', function () {
+                        var size = $(this).css('transform');
+                        //var size = parseInt(size);
+                        $('#fontRotate').val(size);
+                    });
+                    $( '.drag' ).each(function(){//'p[id^="draggable-"]'
+                        var getId = $( this ).attr('id');
+                        var values = $.cookie(getId+'Transform');
+                        $('#'+getId).css('transform',values);
+                        //alert(getId+'|'+$.cookie(getId+'Transform'));
                     });
                 });
                 </script>
