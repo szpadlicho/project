@@ -22,13 +22,7 @@ body {
     font-family:titi;
 }
 #relative-holder{
-	position:relative;
-	#top:0px;
-	#left:0px;
-    #display:table-cell;
-    #vertical-align:middle;
-    #border:1px solid white;
-    
+	position:relative;    
 }
 footer{
     position:fixed;

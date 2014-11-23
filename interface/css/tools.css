@@ -23,7 +23,7 @@
     #height:100%;
 }
 #middle{
-    border: 1px solid lime;
+    #border: 1px solid lime;
     position:relative;
     display:inline-block;
     margin:0.5em;

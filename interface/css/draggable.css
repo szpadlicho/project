@@ -1,11 +1,29 @@
-#draggable{
-    background-color:black;
-    width:10em;
-    height:10em;
+.drag{
+    #background-color:black;
+    min-width:5em;
+    min-height:5em;
     z-index:128;
-    position:absolute;
-    cursor: move;
+    position:absolute !important;
+    #cursor: move;
     top:0;
     left:0;
+    padding:0.1em;
     #margin:0.5em;
+    color:black;
+    border: 1px solid black;
+}
+.curent{
+    border: 1px solid red;
+}
+.close{
+    position:absolute;
+    top:0;
+    right:0;
+    background-color:rgb(190,37,10);
+    border:1px solid rgb(145,28,7);
+}
+#picture{
+    position:relative;
+    width:100%;
+    height:auto;
 }

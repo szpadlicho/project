@@ -15,11 +15,14 @@
         <link title="deafult" type="text/css" rel="stylesheet" href="css/option.css" />
         <link title="deafult" type="text/css" rel="stylesheet" href="css/tools.css" />
         <link title="deafult" type="text/css" rel="stylesheet" href="css/draggable.css" />
+        <link title="deafult" type="text/css" rel="stylesheet" href="css/resizable.css" />
         
         <script type="text/javascript" src="js/jquery-1.9.1.min.js"></script>
         <script type="text/javascript" src="js/scrypt.js"></script>
         <script type="text/javascript" src="js/jquery-ui.min-1.11.2.js"></script>
         <script type="text/javascript" src="js/jquery.cookie.js"></script>
+        <script type="text/javascript" src="js/showContainer.js"></script>
+        <script type="text/javascript" src="js/draggable.js"></script>
 
         <script type="text/javascript">
         var both = function () {
@@ -34,28 +37,29 @@
         $(document).ready(both);
         $(document).load(both);
         $(window).resize(both);
-        $(document).ready(function(){
-            $( '#top-menu ul li ul li' ).addClass( 'active' );
-            $( '#top-menu ul li ul li' ).click(function(){
-                if ( $( this ).hasClass( 'active' ) ) {
-                    $( this ).removeClass( 'active' );
-                } else {
-                    $( this ).addClass( 'active' );
-                };
-                
-            });
-            //$( '[id^="tool-"]' ).hide(); // hide the other divs
-            $( '[id^="tool-"]' ).addClass( 't-show' );
-            $( 'li[id^="button-"]' ).click(function(){
-                if ( $( '#tool-'+this.id.slice(7) ).hasClass( 't-show' ) ) {
-                    $( '#tool-'+this.id.slice(7) ).removeClass( 't-show' );
-                    $( '#tool-'+this.id.slice(7) ).hide( 'drop' ).addClass( 't-hide' ); // drop size scale slide
-                } else {
-                    $( '#tool-'+this.id.slice(7) ).removeClass( 't-hide' );
-                    $( '#tool-'+this.id.slice(7) ).show( 'drop' ).addClass( 't-show' );;
+        </script>
+        <script type="text/javascript">
+        /*
+        $(function() {
+            $( "#set div" ).draggable({ 
+                stack: "#set div",
+                stop: function(event, ui) {
+                    var pos_x = ui.offset.left;
+                    var pos_y = ui.offset.top;
+                    var need = ui.helper.data("need");
+
+                    //Do the ajax call to the server
+                    $.ajax({
+                        type: "POST",
+                        url: "your_php_script.php",
+                        data: { x: pos_x, y: pos_y, need_id: need}
+                    }).done(function( msg ) {
+                        alert( "Data Saved: " + msg );
+                    }); 
                 }
             });
         });
+        */
         </script>
     </head>
     <body>
@@ -95,15 +99,11 @@
                 </nav>
             </header>
             <article>
-                <!--
                 <div id="left-option-ph">
-                    <div class="left-option"><span>Rozmiar</span></div>
-                    <div class="left-option"><span>Czcionka</span></div>
-                    <div class="left-option"><span>Napis</span></div>
-                </div>
-                -->
-                <div id="left-option-ph">
-                    <div id="tool-04" class="tools">a</div>
+                    <div id="tool-04" class="tools">
+                        <input id="btnAdd" class="btn" type="button" value="Add" /><br />
+                        <input id="btnReset" class="btn" type="button" value="Reset" />
+                    </div>
                     <div id="tool-05" class="tools">b</div>
                     <div id="tool-06" class="tools">c</div>
                     <div id="tool-07" class="tools">d</div>
@@ -118,65 +118,32 @@
                 </div>
                 <script type="text/javascript">
                 $(document).ready(function(){
-                    $('#draggable').draggable({
-                        containment: "parent", 
-                        drag: function(){
-                            var offset = $(this).offset();
-                            var xPos = offset.left.toFixed(0);// liczba.toFixed(2) - dwa miejsca po przecinku
-                            var yPos = offset.top.toFixed(0);
-                            $('#posX').text('Left: ' + xPos);
-                            $('#posY').text('Top: ' + yPos);
+                    $( '.drag' ).resizable({
+                        start: function(event, ui) {
+                            //alert('resizing started');
+                        },
+                        resize: function(event, ui) {
+                         
                         },
                         stop: function(event, ui) {
-                            $.cookie('draggableLeft', ui.position.left);
-                            $.cookie('draggableTop', ui.position.top);
-                            //alert($.cookie("elementIDCookie"));
-                        }
-                    });
-                    $('#draggable').css({left : parseInt($.cookie('draggableLeft')), top : parseInt($.cookie('draggableTop'))});
-                });
-                $(function() {
-                    $( "#draggable2" ).draggable();
-                });
-                /*
-                $(function() {
-                    $( "#set div" ).draggable({ 
-                        stack: "#set div",
-                        stop: function(event, ui) {
-                            var pos_x = ui.offset.left;
-                            var pos_y = ui.offset.top;
-                            var need = ui.helper.data("need");
-
-                            //Do the ajax call to the server
-                            $.ajax({
-                                type: "POST",
-                                url: "your_php_script.php",
-                                data: { x: pos_x, y: pos_y, need_id: need}
-                            }).done(function( msg ) {
-                                alert( "Data Saved: " + msg );
-                            }); 
+                            //alert('resizing stopped');
+                            //$.cookie('draggableLeft'+id, ui.position.left);
+                            //$.cookie('draggableTop'+id, ui.position.top);
+                            //alert(ui.size.width+'|'+ui.size.height);
                         }
                     });
                 });
-                */
                 </script>
                 <div id="middle-ph">
                     <div id="middle">
                         <!--<img id="picture" src="../repo/data/src1.jpg" />-->
                         <img id="picture" src="../repo/data/Bikini.jpg" />
-                        <!--<img id="picture" src="images/Bikini.jpg" />-->
-                        <p id="draggable">
+                        <!--<p id="draggable-0" class="drag">
                             Napis<br />
-                            <span id="posY"></span><br />
-                            <span id="posX"></span><br />
-                            
-                        </p>
+                            <span id="posY0"></span><br />
+                            <span id="posX0"></span><br />
+                        </p>-->
                     </div>
-                    <!--
-                    <div id="draggable" class="ui-widget-content">
-                    <p>Drag me around</p>
-                    </div>
-                    -->
                 </div>
             </article>
         </section>
