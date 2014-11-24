@@ -16,6 +16,7 @@
         <link title="deafult" type="text/css" rel="stylesheet" href="css/tools.css" />
         <link title="deafult" type="text/css" rel="stylesheet" href="css/draggable.css" />
         <link title="deafult" type="text/css" rel="stylesheet" href="css/resizable.css" />
+        <link title="deafult" type="text/css" rel="stylesheet" href="css/colpick.css" />
         
         <script type="text/javascript" src="js/jquery-1.9.1.min.js"></script>
         <script type="text/javascript" src="js/scrypt.js"></script>
@@ -23,6 +24,7 @@
         <script type="text/javascript" src="js/jquery.cookie.js"></script>
         <script type="text/javascript" src="js/showContainer.js"></script>
         <script type="text/javascript" src="js/draggable.js"></script>
+        <script type="text/javascript" src="js/colpick.js"></script>
 
         <script type="text/javascript">
         var both = function () {
@@ -107,13 +109,24 @@
                     <div id="tool-05" class="tools">
                         <textarea id="txt" class="btn" type="text" value="Some text" />Some text</textarea>
                     </div>
-                    <div id="tool-06" class="tools">
+                    <script type="text/javascript">
+                    $(document).ready(function(){
+                        $('#tool-06').colpick({
+                            flat:true,
+                            //layout:'rgb',
+                            layout:'rgbhex',
+                            colorScheme:'dark',
+                            submit:0
+                        });
+                    });
+                    </script>
+                    <div id="tool-06" class="tools"></div>
+                    <div id="tool-07" class="tools">
                         Size: <input id="fontSize" class="" type="text" /><br />
                         Color: <input id="fontColor" class="" type="text" /><br />
                         Opacity: <input id="fontOpacity" class="" type="text" /><br />
                         Rotate: <input id="fontRotate" class="" type="text" /><br />
                     </div>
-                    <div id="tool-07" class="tools">d</div>
                     <div id="tool-08" class="tools">e</div>
                 </div>
                 <div id="right-option-ph">
