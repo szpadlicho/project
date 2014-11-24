@@ -226,16 +226,33 @@
                         * CSS change, save and load
                         * Rotate transform: rotate(30deg);
                     **/
+                    function getRotationDegrees(obj) {
+                        var matrix = obj.css("-webkit-transform") ||
+                        obj.css("-moz-transform")    ||
+                        obj.css("-ms-transform")     ||
+                        obj.css("-o-transform")      ||
+                        obj.css("transform");
+                        if(matrix !== 'none') {
+                            var values = matrix.split('(')[1].split(')')[0].split(',');
+                            var a = values[0];
+                            var b = values[1];
+                            var angle = Math.round(Math.atan2(b, a) * (180/Math.PI));
+                        } else { var angle = 0; }
+
+                        if(angle < 0) angle +=360;
+                        return angle;
+                    }
                     $(document).on('keyup', '#fontRotate', function (event) {
                         var size = $('#fontRotate').val();
                         $('.curent').css('transform','rotate('+size+'deg)');
                         var saveId = $('.curent').attr('id');
                         $.cookie(saveId+'Transform',$('.curent').css('transform'));
-                        //alert($.cookie(saveId+'font'));
+                        //alert($.cookie(saveId+'Transform'));
                     });
                     $(document).on('mousedown', '.drag', function () {
                         var size = $(this).css('transform');
                         //var size = parseInt(size);
+                        var size = getRotationDegrees($(this));
                         $('#fontRotate').val(size);
                     });
                     $( '.drag' ).each(function(){//'p[id^="draggable-"]'
