@@ -16,10 +16,10 @@ $(document).ready(function(){
     $( 'li[id^="button-"]' ).click(function(){
         if ( $( '#tool-'+this.id.slice(7) ).hasClass( 't-show' ) ) {
             $( '#tool-'+this.id.slice(7) ).removeClass( 't-show' );
-            $( '#tool-'+this.id.slice(7) ).hide( 'drop' ).addClass( 't-hide' ); // drop size scale slide
+            $( '#tool-'+this.id.slice(7) ).hide( 'fold' ).addClass( 't-hide' ); // drop size scale slide
         } else {
             $( '#tool-'+this.id.slice(7) ).removeClass( 't-hide' );
-            $( '#tool-'+this.id.slice(7) ).show( 'drop' ).addClass( 't-show' );;
+            $( '#tool-'+this.id.slice(7) ).show( 'fold' ).addClass( 't-show' );;
         }
     });
 });

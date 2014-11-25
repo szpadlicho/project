@@ -72,22 +72,24 @@
                         <li>File
                             <ul>
                                 <li id="button-01">Load file</li>
-                                <li id="button-02">Save file</li>
-                                <li id="button-03">Download</li>
+                                <li id="button-02">Save</li>
+                                <li id="button-03">Download file</li>
                             </ul>
                         </li>
                         <li>Windows
                             <ul>
-                                <li id="button-04">four</li>
-                                <li id="button-05">five</li>
-                                <li id="button-06">six</li>
-                                <li id="button-07">seven</li>
+                                <li id="button-04">Create</li>
+                                <li id="button-05">Letters</li>
+                                <li id="button-06">Color</li>
+                                <li id="button-07">Rotate & Size</li>
                                 <li id="button-08">eight</li>
                                 <li id="button-09">nine</li>
                                 <li id="button-10">ten</li>
                                 <li id="button-11">eleven</li>
+                                <!--
                                 <li id="button-12">twelve</li>
                                 <li id="button-13">thirteen</li>
+                                -->
                             </ul>
                         </li>
                         <li>Edycja
@@ -161,14 +163,14 @@
                         Opacity: <input id="fontOpacity" class="" type="text" /><br />
                         Rotate: <input id="fontRotate" class="" type="text" /><br />
                     </div>
-                    <div id="tool-08" class="tools">e</div>
+                    <!--<div id="tool-08" class="tools">e</div>-->
                 </div>
                 <div id="right-option-ph">
-                    <div id="tool-09" class="tools">f</div>
-                    <div id="tool-10" class="tools">g</div>
-                    <div id="tool-11" class="tools">h</div>
-                    <div id="tool-12" class="tools">i</div>
-                    <div id="tool-13" class="tools">j</div>
+                    <div id="tool-08" class="tools">f</div>
+                    <div id="tool-09" class="tools">g</div>
+                    <div id="tool-10" class="tools">h</div>
+                    <div id="tool-11" class="tools">i</div>
+                    <!--<div id="tool-13" class="tools">j</div>-->
                 </div>
                 <script type="text/javascript">
                 $(document).ready(function(){
@@ -226,16 +228,16 @@
                         // * Color
                     // **/
                     // $(document).on('keyup', '#fontColor', function (event) {
-                        // var size = $('#fontColor').val();
-                        // $('.curent').children(':nth-child(4)').css('color',size);
+                        // var colorRGB = $('#fontColor').val();
+                        // $('.curent').children(':nth-child(4)').css('color',colorRGB);
                         // var saveId = $('.curent').attr('id');
                         // $.cookie(saveId+'color',$('.curent').children(':nth-child(4)').css('color'));
                         // //alert($.cookie(saveId+'font'));
                     // });
                     // $(document).on('mousedown', '.drag', function () {
-                        // var size = $(this).children(':nth-child(4)').css('color');
-                        // //var size = parseInt(size);
-                        // $('#fontColor').val(size);
+                        // var colorRGB = $(this).children(':nth-child(4)').css('color');
+                        // //var colorRGB = parseInt(colorRGB);
+                        // $('#fontColor').val(colorRGB);
                     // });
                     // $( '.drag' ).each(function(){//'p[id^="draggable-"]'
                         // var getId = $( this ).attr('id');
@@ -250,16 +252,16 @@
                         * Opacity
                     **/
                     $(document).on('keyup', '#fontOpacity', function (event) {
-                        var size = $('#fontOpacity').val();
-                        $('.curent').children(':nth-child(4)').css('opacity',size);
+                        var opac = $('#fontOpacity').val();
+                        $('.curent').children(':nth-child(4)').css('opacity',opac);
                         var saveId = $('.curent').attr('id');
                         $.cookie(saveId+'Opacity',$('.curent').children(':nth-child(4)').css('opacity'));
                         //alert($.cookie(saveId+'font'));
                     });
                     $(document).on('mousedown', '.drag', function () {
-                        var size = $(this).children(':nth-child(4)').css('opacity');
-                        //var size = parseInt(size);
-                        $('#fontOpacity').val(size);
+                        var opac = $(this).children(':nth-child(4)').css('opacity');
+                        //var opac = parseInt(opac);
+                        $('#fontOpacity').val(opac);
                     });
                     $( '.drag' ).each(function(){//'p[id^="draggable-"]'
                         var getId = $( this ).attr('id');
@@ -290,17 +292,17 @@
                         return angle;
                     }
                     $(document).on('keyup', '#fontRotate', function (event) {
-                        var size = $('#fontRotate').val();
-                        $('.curent').css('transform','rotate('+size+'deg)');
+                        var rot = $('#fontRotate').val();
+                        $('.curent').css('transform','rotate('+rot+'deg)');
                         var saveId = $('.curent').attr('id');
                         $.cookie(saveId+'Transform',$('.curent').css('transform'));
                         //alert($.cookie(saveId+'Transform'));
                     });
                     $(document).on('mousedown', '.drag', function () {
-                        var size = $(this).css('transform');
-                        //var size = parseInt(size);
-                        var size = getRotationDegrees($(this));
-                        $('#fontRotate').val(size);
+                        var rot = $(this).css('transform');
+                        //var rot = parseInt(rot);
+                        var rot = getRotationDegrees($(this));
+                        $('#fontRotate').val(rot);
                     });
                     $( '.drag' ).each(function(){//'p[id^="draggable-"]'
                         var getId = $( this ).attr('id');
