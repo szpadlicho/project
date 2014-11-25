@@ -15,7 +15,6 @@ colpick Color Picker / colpick.com
 	#-webkit-border-radius: 5px;
 	#-moz-border-radius: 5px;
 	#border-radius: 5px;
-	
 	/*Prevents selecting text when dragging the selectors*/
 	-webkit-user-select: none;
 	-moz-user-select: none;
@@ -34,6 +33,7 @@ colpick Color Picker / colpick.com
 	#outline: 1px solid #aaa;
 	cursor: crosshair;
     border: 1px solid #999;
+    #display:none;
 }
 .colpick_color_overlay1 {
 	position: absolute;
@@ -219,6 +219,6 @@ colpick Color Picker / colpick.com
 	border-top: 4px solid #959595;
 }
 /*rgbhex layout*/
-.colpick_rgbhex .colpick_hsb_h, .colpick_rgbhex .colpick_hsb_s, .colpick_rgbhex .colpick_hsb_b {
+.colpick_rgbhex .colpick_hsb_h, .colpick_rgbhex .colpick_hsb_s, .colpick_rgbhex .colpick_hsb_b, .colpick_submit{
 	display:none;
 }
