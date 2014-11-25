@@ -105,4 +105,22 @@ $(document).ready(function(){
         arr.splice(idi, 1,'');
         setCookie();
     });
+    /**
+    * resize setup 
+    * when page is load disable resizable function
+    * enable when click button menu
+    **/
+    var resizeCheck = function(what){
+        if (! $( what ).hasClass( 'active' ) ) {
+            $( '.drag' ).resizable( 'disable' );
+        };
+        if ( $( what ).hasClass( 'active' ) ) {
+            $( '.drag' ).resizable( 'enable' );
+        };
+    }
+    $( '#resize' ).removeClass( 'active' );
+    resizeCheck( '#resize' );
+    $( '#resize' ).click(function(){
+        resizeCheck(this);
+    });
 });
