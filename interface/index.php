@@ -118,7 +118,7 @@
                         $('#tool-06').colpick({
                             flat:true,
                             layout:'rgbhex',
-                            colorScheme:'dark',
+                            //colorScheme:'dark',
                             submit:0,
                             color: '000000',
                             onChange:function(hsb,hex,rgb,el,bySetColor) {
