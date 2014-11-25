@@ -111,12 +111,18 @@
                     </div>
                     <script type="text/javascript">
                     $(document).ready(function(){
+                        $(document).on('mousedown', '.drag', function () {
+                            var size = $(this).children(':nth-child(4)').css('color');
+                            //var size = parseInt(size);
+                            $('#fontColor').val(size);
+                        });
                         $('#tool-06').colpick({
                             flat:true,
                             //layout:'rgb',
                             layout:'rgbhex',
                             colorScheme:'dark',
                             submit:0,
+                            //color: size,
                             onChange:function(hsb,hex,rgb,el,bySetColor) {
                                 $('#tool-08').css('background-color','#'+hex);
                                 // Fill the text box just if the color was set using the picker, and not the colpickSetColor function.
