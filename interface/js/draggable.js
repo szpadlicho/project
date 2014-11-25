@@ -37,19 +37,17 @@ $(document).ready(function(){
     * resize function init and save
     **/
     var resize = function(){
-        //if ( $( '#resize' ).hasClass( 'active' ) ) {
-            $( '.drag' ).each(function(index){
-                var id = $(this).attr('id').slice(-1);
-                $( '#draggable-'+id ).resizable({
-                    containment: "parent", 
-                    stop: function(event, ui) {
-                        $.cookie('resizableWidth'+id, ui.size.width);
-                        $.cookie('resizableHeight'+id, ui.size.height);
-                    }
-                });
-                $( '#draggable-'+id ).css({width : parseInt($.cookie('resizableWidth'+id)), height : parseInt($.cookie('resizableHeight'+id))});
+        $( '.drag' ).each(function(index){
+            var id = $(this).attr('id').slice(-1);
+            $( '#draggable-'+id ).resizable({
+                containment: "parent", 
+                stop: function(event, ui) {
+                    $.cookie('resizableWidth'+id, ui.size.width);
+                    $.cookie('resizableHeight'+id, ui.size.height);
+                }
             });
-        //};
+            $( '#draggable-'+id ).css({width : parseInt($.cookie('resizableWidth'+id)), height : parseInt($.cookie('resizableHeight'+id))});
+        });
     };
     /**
     * initiate arrays and cookies
