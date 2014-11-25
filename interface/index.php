@@ -316,11 +316,6 @@
                     <div id="middle">
                         <!--<img id="picture" src="../repo/data/src1.jpg" />-->
                         <img id="picture" src="../repo/data/Bikini.jpg" />
-                        <!--<p id="draggable-0" class="drag">
-                            Napis<br />
-                            <span id="posY0"></span><br />
-                            <span id="posX0"></span><br />
-                        </p>-->
                     </div>
                 </div>
             </article>
