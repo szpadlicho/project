@@ -116,7 +116,17 @@
                             //layout:'rgb',
                             layout:'rgbhex',
                             colorScheme:'dark',
-                            submit:0
+                            submit:0,
+                            onChange:function(hsb,hex,rgb,el,bySetColor) {
+                                $('#tool-08').css('background-color','#'+hex);
+                                // Fill the text box just if the color was set using the picker, and not the colpickSetColor function.
+                                if(!bySetColor) $('#tool-08').text(rgb.r);//.rgb.g.rgb.b
+                                /**/
+                                //var size = $('#fontColor').val();
+                                $('.curent').children(':nth-child(4)').css('color','#'+hex);
+                                var saveId = $('.curent').attr('id');
+                                $.cookie(saveId+'color',$('.curent').children(':nth-child(4)').css('color'));
+                            }
                         });
                     });
                     </script>
