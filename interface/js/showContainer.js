@@ -3,6 +3,11 @@ $(document).ready(function(){
         * Show and hide container when top menu is checked or not
     **/
     $( '#top-menu ul li ul li' ).addClass( 'active' );
+    
+    $( '#resize' ).removeClass( 'active' );
+    // $( '#resize' ).click(function(){
+    // });
+        
     $( '#top-menu ul li ul li' ).click(function(){
         if ( $( this ).hasClass( 'active' ) ) {
             $( this ).removeClass( 'active' );

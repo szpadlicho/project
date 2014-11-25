@@ -1,8 +1,8 @@
 $(document).ready(function(){
     /**
-        * Dynamically add elements to site and save it in array
-        * Save array with element to cookie
-        * Remove chosen element from site and array
+    * Dynamically add elements to site and save it in array
+    * Save array with element to cookie
+    * Remove chosen element from site and array
     **/
     var setCookie = function(){
         var jsonStr = JSON.stringify(arr);//converting array into json string   
@@ -34,23 +34,25 @@ $(document).ready(function(){
         });
     };
     /**
-        * resize function init and save
+    * resize function init and save
     **/
     var resize = function(){
-        $( '.drag' ).each(function(index){
-            var id = $(this).attr('id').slice(-1);
-            $( '#draggable-'+id ).resizable({
-                containment: "parent", 
-                stop: function(event, ui) {
-                    $.cookie('resizableWidth'+id, ui.size.width);
-                    $.cookie('resizableHeight'+id, ui.size.height);
-                }
+        //if ( $( '#resize' ).hasClass( 'active' ) ) {
+            $( '.drag' ).each(function(index){
+                var id = $(this).attr('id').slice(-1);
+                $( '#draggable-'+id ).resizable({
+                    containment: "parent", 
+                    stop: function(event, ui) {
+                        $.cookie('resizableWidth'+id, ui.size.width);
+                        $.cookie('resizableHeight'+id, ui.size.height);
+                    }
+                });
+                $( '#draggable-'+id ).css({width : parseInt($.cookie('resizableWidth'+id)), height : parseInt($.cookie('resizableHeight'+id))});
             });
-            $( '#draggable-'+id ).css({width : parseInt($.cookie('resizableWidth'+id)), height : parseInt($.cookie('resizableHeight'+id))});
-        });
+        //};
     };
     /**
-        * initiate arrays and cookies
+    * initiate arrays and cookies
     **/
     var empArr = [];
     var arr = [];
@@ -67,7 +69,7 @@ $(document).ready(function(){
     elements();
     resize();
     /**
-        * Button behavior
+    * Button behavior
     **/
     $( '#btnAdd' ).click(function(){
         if ( $.cookie('lastID') != undefined ) {

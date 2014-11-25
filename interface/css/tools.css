@@ -44,3 +44,24 @@
     width:98%;
     height:96%;
 }
+#tool-07{
+    text-align:center;
+    background-color:black;
+}
+.tool-sub-ph-v{
+    display:inline-block;
+    #border:1px solid purple;
+    height:93%;
+    text-align:center;
+    margin:0em 0.7em;
+}
+.tool-sub-label-v{
+    height:10%;
+}
+.tool-sub-slider-v{
+    height:80%;
+}
+.tool-sub-text-v{
+    height:10%;
+    
+}

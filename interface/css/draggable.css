@@ -1,7 +1,7 @@
 .drag{
     #background-color:black;
     min-width:5em;
-    min-height:5em;
+    min-height:2em;
     z-index:128;
     position:absolute !important;
     #cursor: move;
@@ -11,6 +11,8 @@
     #margin:0.5em;
     color:black;
     border: 1px solid black;
+    right:auto;
+    bottom:auto;
 }
 .curent{
     border: 1px solid red;
