@@ -111,28 +111,46 @@
                     </div>
                     <script type="text/javascript">
                     $(document).ready(function(){
-                        $(document).on('mousedown', '.drag', function () {
-                            var size = $(this).children(':nth-child(4)').css('color');
-                            //var size = parseInt(size);
-                            $('#fontColor').val(size);
-                        });
+                        /**
+                            * CSS change, save and load
+                            * Color
+                        **/
                         $('#tool-06').colpick({
                             flat:true,
-                            //layout:'rgb',
                             layout:'rgbhex',
                             colorScheme:'dark',
                             submit:0,
-                            //color: size,
+                            color: '000000',
                             onChange:function(hsb,hex,rgb,el,bySetColor) {
-                                $('#tool-08').css('background-color','#'+hex);
-                                // Fill the text box just if the color was set using the picker, and not the colpickSetColor function.
-                                if(!bySetColor) $('#tool-08').text(rgb.r);//.rgb.g.rgb.b
-                                /**/
-                                //var size = $('#fontColor').val();
+                                //$('#tool-08').css('background-color','#'+hex);
+                                //$('#tool-09').text(rgb.r);//.rgb.g.rgb.b
+                                //$('#tool-10').text(rgb.g);//.rgb.g.rgb.b
+                                //$('#tool-11').text(rgb.b);//.rgb.g.rgb.b
                                 $('.curent').children(':nth-child(4)').css('color','#'+hex);
                                 var saveId = $('.curent').attr('id');
                                 $.cookie(saveId+'color',$('.curent').children(':nth-child(4)').css('color'));
                             }
+                        });
+                        $(document).on('mousedown', '.drag', function () {
+                            var colorRGB = $(this).children(':nth-child(4)').css('color');
+                            $('#fontColor').val(colorRGB);
+                            /**/
+                            function rgb2hex(rgb) { // Convert rgb to hex
+                                rgb = rgb.match(/^rgb\((\d+),\s*(\d+),\s*(\d+)\)$/);
+                                function hex(x) {
+                                    return ("0" + parseInt(x).toString(16)).slice(-2);
+                                }
+                                //return "#" + hex(rgb[1]) + hex(rgb[2]) + hex(rgb[3]);
+                                return hex(rgb[1]) + hex(rgb[2]) + hex(rgb[3]);
+                            }
+                            /**/
+                            var colorHEX = rgb2hex(colorRGB);
+                            $('#tool-06').colpickSetColor(colorHEX);
+                        });
+                        $( '.drag' ).each(function(){//'p[id^="draggable-"]'
+                            var getId = $( this ).attr('id');
+                            var values = $.cookie(getId+'color');
+                            $('#'+getId).children(':nth-child(4)').css('color',values);
                         });
                     });
                     </script>
@@ -202,30 +220,30 @@
                         //alert(getId+'|'+$.cookie(getId+'font'));
                     });
                 });
-                $(document).ready(function(){
-                    /**
-                        * CSS change, save and load
-                        * Color
-                    **/
-                    $(document).on('keyup', '#fontColor', function (event) {
-                        var size = $('#fontColor').val();
-                        $('.curent').children(':nth-child(4)').css('color',size);
-                        var saveId = $('.curent').attr('id');
-                        $.cookie(saveId+'color',$('.curent').children(':nth-child(4)').css('color'));
-                        //alert($.cookie(saveId+'font'));
-                    });
-                    $(document).on('mousedown', '.drag', function () {
-                        var size = $(this).children(':nth-child(4)').css('color');
-                        //var size = parseInt(size);
-                        $('#fontColor').val(size);
-                    });
-                    $( '.drag' ).each(function(){//'p[id^="draggable-"]'
-                        var getId = $( this ).attr('id');
-                        var values = $.cookie(getId+'color');
-                        $('#'+getId).children(':nth-child(4)').css('color',values);
-                        //alert(getId+'|'+$.cookie(getId+'font'));
-                    });
-                });
+                // $(document).ready(function(){
+                    // /**
+                        // * CSS change, save and load
+                        // * Color
+                    // **/
+                    // $(document).on('keyup', '#fontColor', function (event) {
+                        // var size = $('#fontColor').val();
+                        // $('.curent').children(':nth-child(4)').css('color',size);
+                        // var saveId = $('.curent').attr('id');
+                        // $.cookie(saveId+'color',$('.curent').children(':nth-child(4)').css('color'));
+                        // //alert($.cookie(saveId+'font'));
+                    // });
+                    // $(document).on('mousedown', '.drag', function () {
+                        // var size = $(this).children(':nth-child(4)').css('color');
+                        // //var size = parseInt(size);
+                        // $('#fontColor').val(size);
+                    // });
+                    // $( '.drag' ).each(function(){//'p[id^="draggable-"]'
+                        // var getId = $( this ).attr('id');
+                        // var values = $.cookie(getId+'color');
+                        // $('#'+getId).children(':nth-child(4)').css('color',values);
+                        // //alert(getId+'|'+$.cookie(getId+'font'));
+                    // });
+                // });
                 $(document).ready(function(){
                     /**
                         * CSS change, save and load
