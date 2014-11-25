@@ -36,13 +36,9 @@
     border: 1px solid black;
     margin:0.5em;
 }
-.t-show{
-    #visibility:visible;
-}
-.t-hide{
-    #visibility:hidden;
-}
 #txt{
+    position:relative;
+    top:-1px;
     width:98%;
     height:96%;
 }
