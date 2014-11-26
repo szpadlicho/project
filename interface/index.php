@@ -394,7 +394,8 @@
                                 var pTop = $(this).css('top');
                                 var pTop = parseInt(pTop);
                                 $( '#text-top-pixel' ).val(pTop);
-                                $( '#slider-top' ).slider({ value: pTop });
+                                //var wyn = pTop-660;
+                                $( '#slider-top' ).slider({ value: wyn });
                             });
                             /**
                             * Position Width
@@ -435,14 +436,14 @@
                         </div>
                         
                         <div id="" class="text-top all">
-                            <p>Height</p>
-                            <input id="text-top-pixel" class="text-position" type="text" /> px 
-                            <input id="text-top-procent" class="text-position" type="text" /> %
+                            <p>Height:</p>
+                            <input id="text-top-pixel" class="text-position" type="text" />&nbsp;px&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                            <input id="text-top-procent" class="text-position" type="text" />&nbsp;%
                         </div>
                         <div id="" class="text-bottom all">
-                            <p>Width</p>
-                            <input id="text-left-pixel" class="text-position" type="text" /> px 
-                            <input id="text-left-procent" class="text-position" type="text" /> %
+                            <p>Width:</p>
+                            <input id="text-left-pixel" class="text-position" type="text" />&nbsp;px&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                            <input id="text-left-procent" class="text-position" type="text" />&nbsp;%
                         </div>
                         <div id="" class="slider-bottom all">
                             <div id="slider-left" class="slider-left"></div>

@@ -72,13 +72,6 @@ ui-corner-all
     display:inline-block;
     height:70%;
 }
-.text-slider-v{
-    background:none;
-    border: 1px solid #999;
-    width:4em;
-    text-align:center;
-    color:white;
-}
 .slider-top {
     margin:1em 0.5em 1em 0.5em;
     display:inline-block;
