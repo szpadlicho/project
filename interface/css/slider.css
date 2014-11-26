@@ -79,3 +79,13 @@ ui-corner-all
     text-align:center;
     color:white;
 }
+.slider-position-v {
+    margin:1em 0.5em 1em 0.5em;
+    display:inline-block;
+    height:70%;
+}
+.slider-position-h {
+    margin:0.5em 1em 0.5em 1em;
+    display:inline-block;
+    width:70%;
+}

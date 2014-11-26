@@ -305,7 +305,7 @@
                             $( '#text-rotation' ).val( $( '#slider-rotation' ).slider( 'value' ) );
                             $(document).on('keyup', '#text-rotation', function (event) {
                                 $( '#slider-rotation' ).slider( 'value', this.value );
-                                $('.curent').css('transform','rotate('+ui.value+'deg)');
+                                $('.curent').css('transform','rotate('+this.value+'deg)');
                                 var saveId = $('.curent').attr('id');
                                 $.cookie(saveId+'Transform',$('.curent').css('transform'));
                             });
@@ -365,29 +365,116 @@
                 <div id="right-option-ph">
                     <script type="text/javascript">
                         $(function(){
-                            $("#slider-rotate").slider({
-                                orientation: "horizontal",
+                            /**
+                            *   Position Heigh
+                            **/
+                            $("#slider-position-heigh").slider({
+                                orientation: "vertical",
                                 range: "min",
                                 min: 0,
-                                max: 360,
+                                max: 100,
                                 value: 0,
                                 step: 1,
                                 slide: function( event, ui ) {
-                                    $('#text-rotate').val(ui.value);
+                                    $('#text-position-h-pixel').val(ui.value);
+                                    //
+                                    $('.curent').css('top',ui.value+'px');
+                                    //var pTop = $('.curent').css('top');
+                                    //var pTop = parseInt(pTop);
+                                    var saveId = $('.curent').attr('id');
+                                    $.cookie(saveId+'Top',ui.value);
                                 }
                             });
-                            $( "#text-rotate" ).val( $( "#slider-rotate" ).slider( "value" ) );
+                            $( "#text-position-h-pixel" ).val( $( "#slider-position-heigh" ).slider( "value" ) );
+                            $(document).on('keyup', '#text-position-h-pixel', function (event) {
+                                $( "#text-position-h-pixel" ).slider( "value", this.value );
+                                $('.curent').css('top',this.value+'px');
+                                var saveId = $('.curent').attr('id');
+                                $.cookie(saveId+'Top',this.value);
+                            });
+                            // $(document).on('mousedown', '.drag', function () {
+                                // var pTop = $(this).css('top');
+                                // $( '#text-position-h-pixel' ).val(pTop);
+                                // $( '#slider-position-heigh' ).slider({ value: pTop });
+                            // });
+                            // $( '.drag' ).each(function(){//'p[id^="draggable-"]'
+                                // var getId = $( this ).attr('id');
+                                // var values = $.cookie(getId+'Top');
+                                // $('#'+getId).css('top',values);
+                            // });
+                            //
+                            // $( '#slider-rotation' ).slider({
+                                // orientation: 'vertical',
+                                // range: 'min',
+                                // min: -360,
+                                // max: 360,
+                                // value: 0,
+                                // step: 1,
+                                // slide: function( event, ui ) {
+                                    // $( '#text-rotation' ).val( ui.value );
+                                    // //
+                                    // $('.curent').css('transform','rotate('+ui.value+'deg)');
+                                    // var saveId = $('.curent').attr('id');
+                                    // $.cookie(saveId+'Transform',$('.curent').css('transform'));
+                                // }
+                            // });
+                            // $( '#text-rotation' ).val( $( '#slider-rotation' ).slider( 'value' ) );
+                            // $(document).on('keyup', '#text-rotation', function (event) {
+                                // $( '#slider-rotation' ).slider( 'value', this.value );
+                                // $('.curent').css('transform','rotate('+this.value+'deg)');
+                                // var saveId = $('.curent').attr('id');
+                                // $.cookie(saveId+'Transform',$('.curent').css('transform'));
+                            // });
+                            // $(document).on('mousedown', '.drag', function () {
+                                // var rot = $(this).css('transform');
+                                // var rot = getRotationDegrees($(this));
+                                // $( '#text-rotation' ).val(rot);
+                                // $( '#slider-rotation' ).slider({ value: rot });
+                            // });
+                            // $( '.drag' ).each(function(){//'p[id^="draggable-"]'
+                                // var getId = $( this ).attr('id');
+                                // var values = $.cookie(getId+'Transform');
+                                // $('#'+getId).css('transform',values);
+                            // });
+                            //
+                            /**
+                            * Position Width
+                            **/
+                            $("#slider-position-width").slider({
+                                orientation: "horizontal",
+                                range: "min",
+                                min: 0,
+                                max: 100,
+                                value: 0,
+                                step: 1,
+                                slide: function( event, ui ) {
+                                    $('#text-position-w-pixel').val(ui.value);
+                                }
+                            });
+                            $( "#text-position-w-pixel" ).val( $( "#slider-position-width" ).slider( "value" ) );
                             $(document).on('keyup', '#text-rotate', function (event) {
-                                $( "#slider-rotate" ).slider( "value", this.value );
+                                $( "#text-position-w-pixel" ).slider( "value", this.value );
                             });
                         });
                     </script>
                     <div id="tool-08" class="tools">
-                        <p>
-                            <label for="text-rotate">Rotate:</label>
-                            <input id="text-rotate" class="text-slider" type="text" style="border:0; color:#f6931f; font-weight:bold;">
-                        </p>
-                        <div id="slider-rotate" class="slider-slider"></div>
+                        <div id="" class="slider-left all">
+                            <div id="slider-position-heigh" class="slider-position-v"></div>
+                        </div>
+                        
+                        <div id="" class="text-top all">
+                            <p>Height</p>
+                            <input id="text-position-h-pixel" class="text-position" type="text" /> px 
+                            <input id="text-position-h-procent" class="text-position" type="text" /> %
+                        </div>
+                        <div id="" class="text-bottom all">
+                            <p>Width</p>
+                            <input id="text-position-w-pixel" class="text-position" type="text" /> px 
+                            <input id="text-position-w-procent" class="text-position" type="text" /> %
+                        </div>
+                        <div id="" class="slider-bottom all">
+                            <div id="slider-position-width" class="slider-position-h"></div>
+                        </div>
                     </div>
                     
                     <div id="tool-09" class="tools">
