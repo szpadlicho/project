@@ -1,9 +1,13 @@
+var funTopMax = function(){
+    return 660;
+}
 $(document).ready(function(){
     /**
     * Dynamically add elements to site and save it in array
     * Save array with element to cookie
     * Remove chosen element from site and array
     **/
+    //var topMax = 660; // x2 jest w projekcie w width jescze
     var setCookie = function(){
         var jsonStr = JSON.stringify(arr);//converting array into json string   
         $.cookie('arr', jsonStr);//storing it in a cookie
@@ -25,7 +29,8 @@ $(document).ready(function(){
                     $('#text-left-pixel').val(xPos);
                     $('#slider-left').slider( "value", xPos );
                     $('#text-top-pixel').val(yPos);
-                    $('#slider-top').slider( "value", yPos );
+                    var yPos2 = funTopMax() - yPos;
+                    $('#slider-top').slider( "value", yPos2 );
                 },
                 stop: function(event, ui) {
                     $.cookie('draggableLeft'+id, ui.position.left);

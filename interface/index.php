@@ -368,24 +368,31 @@
                             /**
                             *   Position Heigh
                             **/
+                            //alert();
+                            //var topMax = funTopMax(); // x2 jest w projekcie w dragable
                             $("#slider-top").slider({
                                 orientation: "vertical",
                                 range: "min",
                                 min: 0,
-                                max: 660,
+                                max: funTopMax(),
                                 value: 0,
                                 step: 1,
                                 slide: function( event, ui ) {
-                                    $('#text-top-pixel').val(ui.value);
+                                    var yPos = funTopMax()-ui.value;
+                                    $('#text-top-pixel').val(yPos);
                                     //
-                                    $('.curent').css('top',ui.value+'px');
+                                    //var yPos = funTopMax()-ui.value;
+                                    $('.curent').css('top',yPos+'px');
                                     var id = $( '.curent' ).attr('id').slice(-1);
-                                    $.cookie('draggableTop'+id, ui.value);
+                                    $.cookie('draggableTop'+id, yPos);
                                 },
                             });
                             $( "#text-top-pixel" ).val( $( "#slider-top" ).slider( "value" ) );
+                            //$( "#slider-top" ).slider( 'option', 'max', funTopMax() );
+                            //$( "#slider-top" ).slider( 'option', 'min', 0 );
                             $(document).on('keyup', '#text-top-pixel', function (event) {
-                                $( "#slider-top" ).slider( "value", this.value );
+                                var yPos2 = funTopMax()-this.value;
+                                $( "#slider-top" ).slider( "value", yPos2 );
                                 $('.curent').css('top',this.value+'px');
                                 var id = $( '.curent' ).attr('id').slice(-1);
                                 $.cookie('draggableTop'+id, this.value);
@@ -394,8 +401,8 @@
                                 var pTop = $(this).css('top');
                                 var pTop = parseInt(pTop);
                                 $( '#text-top-pixel' ).val(pTop);
-                                //var wyn = pTop-660;
-                                $( '#slider-top' ).slider({ value: wyn });
+                                var yPos2 = funTopMax()-pTop;
+                                $( '#slider-top' ).slider({ value: yPos2 });
                             });
                             /**
                             * Position Width
@@ -404,7 +411,7 @@
                                 orientation: "horizontal",
                                 range: "min",
                                 min: 0,
-                                max: 1132,
+                                max: 1164,
                                 value: 0,
                                 step: 1,
                                 slide: function( event, ui ) {
