@@ -4,6 +4,12 @@ var funTopMax = function(){
 var funLeftMax = function(){
     return 1164;
 }
+var funHeightMax = function(){
+    return 660;
+}
+var funWidthMax = function(){
+    return 1164;
+}
 $(document).ready(function(){
     /**
     * Dynamically add elements to site and save it in array
@@ -51,6 +57,13 @@ $(document).ready(function(){
             var id = $(this).attr('id').slice(-1);
             $( '#draggable-'+id ).resizable({
                 containment: "parent", 
+                resize: function( event, ui ) {
+                    $('#text-width-pixel').val(ui.size.width);
+                    $('#slider-width').slider( "value", ui.size.width );
+                    $('#text-height-pixel').val(ui.size.height);
+                    var yPos = funTopMax() - ui.size.height;
+                    $('#slider-height').slider( "value", yPos );
+                },
                 stop: function(event, ui) {
                     $.cookie('resizableWidth'+id, ui.size.width);
                     $.cookie('resizableHeight'+id, ui.size.height);

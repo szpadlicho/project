@@ -366,10 +366,8 @@
                     <script type="text/javascript">
                         $(function(){
                             /**
-                            *   Position Heigh
+                            *   Position Top
                             **/
-                            //alert();
-                            //var topMax = funTopMax(); // x2 jest w projekcie w dragable
                             $("#slider-top").slider({
                                 orientation: "vertical",
                                 range: "min",
@@ -388,8 +386,8 @@
                             });
                             $( "#text-top-pixel" ).val( $( "#slider-top" ).slider( "value" ) );
                             $(document).on('keyup', '#text-top-pixel', function (event) {
-                                var yPos2 = funTopMax()-this.value;
-                                $( "#slider-top" ).slider( "value", yPos2 );
+                                var yPos = funTopMax()-this.value;
+                                $( "#slider-top" ).slider( "value", yPos );
                                 $('.curent').css('top',this.value+'px');
                                 var id = $( '.curent' ).attr('id').slice(-1);
                                 $.cookie('draggableTop'+id, this.value);
@@ -398,11 +396,11 @@
                                 var pTop = $(this).css('top');
                                 var pTop = parseInt(pTop);
                                 $( '#text-top-pixel' ).val(pTop);
-                                var yPos2 = funTopMax()-pTop;
-                                $( '#slider-top' ).slider({ value: yPos2 });
+                                var yPos = funTopMax()-pTop;
+                                $( '#slider-top' ).slider({ value: yPos });
                             });
                             /**
-                            * Position Width
+                            * Position Left
                             **/
                             $("#slider-left").slider({
                                 orientation: "horizontal",
@@ -438,14 +436,13 @@
                         <div id="" class="slider-float all">
                             <div id="slider-top" class="slider-top"></div>
                         </div>
-                        
                         <div id="" class="text-top all">
-                            <p>Height:</p>
+                            <p>Top:</p>
                             <input id="text-top-pixel" class="text-position" type="text" />&nbsp;px&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                             <input id="text-top-procent" class="text-position" type="text" />&nbsp;%
                         </div>
                         <div id="" class="text-bottom all">
-                            <p>Width:</p>
+                            <p>Left:</p>
                             <input id="text-left-pixel" class="text-position" type="text" />&nbsp;px&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                             <input id="text-left-procent" class="text-position" type="text" />&nbsp;%
                         </div>
@@ -453,9 +450,97 @@
                             <div id="slider-left" class="slider-left"></div>
                         </div>
                     </div>
+                    <script type="text/javascript">
+                        $(function(){
+                            /**
+                            *   Position Height
+                            **/
+                            $("#slider-height").slider({
+                                orientation: "vertical",
+                                range: "min",
+                                min: 0,
+                                max: funHeightMax(),
+                                value: 0,
+                                step: 1,
+                                slide: function( event, ui ) {
+                                    var yPos = funHeightMax()-ui.value;
+                                    $('#text-height-pixel').val(yPos);
+                                    //
+                                    $('.curent').css('height',yPos+'px');
+                                    var id = $( '.curent' ).attr('id').slice(-1);
+                                    //$.cookie('draggableTop'+id, yPos);
+                                    $.cookie('resizableHeight'+id, yPos);
+                                },
+                            });
+                            $( "#text-height-pixel" ).val( $( "#slider-height" ).slider( "value" ) );
+                            $(document).on('keyup', '#text-height-pixel', function (event) {
+                                var yPos = funHeightMax()-this.value;
+                                $( "#slider-height" ).slider( "value", yPos );
+                                $('.curent').css('height',this.value+'px');
+                                var id = $( '.curent' ).attr('id').slice(-1);
+                                //$.cookie('draggableTop'+id, this.value);
+                                $.cookie('resizableHeight'+id, this.value);
+                            });
+                            $(document).on('mousedown', '.drag', function () {
+                                var pTop = $(this).css('height');
+                                var pTop = parseInt(pTop);
+                                $( '#text-height-pixel' ).val(pTop);
+                                var yPos = funHeightMax()-pTop;
+                                $( '#slider-height' ).slider({ value: yPos });
+                            });
+                            /**
+                            * Position Width
+                            **/
+                            $("#slider-width").slider({
+                                orientation: "horizontal",
+                                range: "min",
+                                min: 0,
+                                max: funWidthMax(),
+                                value: 0,
+                                step: 1,
+                                slide: function( event, ui ) {
+                                    $('#text-width-pixel').val(ui.value);
+                                    //
+                                    $('.curent').css('width',ui.value+'px');
+                                    var id = $( '.curent' ).attr('id').slice(-1);
+                                    //$.cookie('draggableLeft'+id, ui.value);
+                                    $.cookie('resizableWidth'+id, ui.value);
+                                }
+                            });
+                            $( "#text-width-pixel" ).val( $( "#slider-width" ).slider( "value" ) );
+                            $(document).on('keyup', '#text-width-pixel', function (event) {
+                                $( "#slider-width" ).slider( "value", this.value );
+                                $('.curent').css('width',this.value+'px');
+                                var id = $( '.curent' ).attr('id').slice(-1);
+                                //$.cookie('draggableLeft'+id, this.value);
+                                $.cookie('resizableWidth'+id, this.value);
                     
+                            });
+                            $(document).on('mousedown', '.drag', function () {
+                                var pLeft = $(this).css('width');
+                                var pLeft = parseInt(pLeft);
+                                $( '#text-width-pixel' ).val(pLeft);
+                                $( '#slider-width' ).slider({ value: pLeft });
+                            });
+                        });
+                    </script>
                     <div id="tool-09" class="tools">
-                        
+                        <div id="" class="slider-float all">
+                            <div id="slider-height" class="slider-top"></div>
+                        </div>
+                        <div id="" class="text-top all">
+                            <p>Height:</p>
+                            <input id="text-height-pixel" class="text-position" type="text" />&nbsp;px&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                            <input id="text-height-procent" class="text-position" type="text" />&nbsp;%
+                        </div>
+                        <div id="" class="text-bottom all">
+                            <p>Width:</p>
+                            <input id="text-width-pixel" class="text-position" type="text" />&nbsp;px&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                            <input id="text-width-procent" class="text-position" type="text" />&nbsp;%
+                        </div>
+                        <div id="" class="slider-bottom all">
+                            <div id="slider-width" class="slider-left"></div>
+                        </div>
                     </div>
                     <div id="tool-10" class="tools">h</div>
                     <div id="tool-11" class="tools">
