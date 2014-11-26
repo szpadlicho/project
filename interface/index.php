@@ -368,112 +368,84 @@
                             /**
                             *   Position Heigh
                             **/
-                            $("#slider-position-heigh").slider({
+                            $("#slider-top").slider({
                                 orientation: "vertical",
                                 range: "min",
                                 min: 0,
-                                max: 100,
+                                max: 660,
                                 value: 0,
                                 step: 1,
                                 slide: function( event, ui ) {
-                                    $('#text-position-h-pixel').val(ui.value);
+                                    $('#text-top-pixel').val(ui.value);
                                     //
                                     $('.curent').css('top',ui.value+'px');
-                                    //var pTop = $('.curent').css('top');
-                                    //var pTop = parseInt(pTop);
-                                    var saveId = $('.curent').attr('id');
-                                    $.cookie(saveId+'Top',ui.value);
-                                }
+                                    var id = $( '.curent' ).attr('id').slice(-1);
+                                    $.cookie('draggableTop'+id, ui.value);
+                                },
                             });
-                            $( "#text-position-h-pixel" ).val( $( "#slider-position-heigh" ).slider( "value" ) );
-                            $(document).on('keyup', '#text-position-h-pixel', function (event) {
-                                $( "#text-position-h-pixel" ).slider( "value", this.value );
+                            $( "#text-top-pixel" ).val( $( "#slider-top" ).slider( "value" ) );
+                            $(document).on('keyup', '#text-top-pixel', function (event) {
+                                $( "#slider-top" ).slider( "value", this.value );
                                 $('.curent').css('top',this.value+'px');
-                                var saveId = $('.curent').attr('id');
-                                $.cookie(saveId+'Top',this.value);
+                                var id = $( '.curent' ).attr('id').slice(-1);
+                                $.cookie('draggableTop'+id, this.value);
                             });
-                            // $(document).on('mousedown', '.drag', function () {
-                                // var pTop = $(this).css('top');
-                                // $( '#text-position-h-pixel' ).val(pTop);
-                                // $( '#slider-position-heigh' ).slider({ value: pTop });
-                            // });
-                            // $( '.drag' ).each(function(){//'p[id^="draggable-"]'
-                                // var getId = $( this ).attr('id');
-                                // var values = $.cookie(getId+'Top');
-                                // $('#'+getId).css('top',values);
-                            // });
-                            //
-                            // $( '#slider-rotation' ).slider({
-                                // orientation: 'vertical',
-                                // range: 'min',
-                                // min: -360,
-                                // max: 360,
-                                // value: 0,
-                                // step: 1,
-                                // slide: function( event, ui ) {
-                                    // $( '#text-rotation' ).val( ui.value );
-                                    // //
-                                    // $('.curent').css('transform','rotate('+ui.value+'deg)');
-                                    // var saveId = $('.curent').attr('id');
-                                    // $.cookie(saveId+'Transform',$('.curent').css('transform'));
-                                // }
-                            // });
-                            // $( '#text-rotation' ).val( $( '#slider-rotation' ).slider( 'value' ) );
-                            // $(document).on('keyup', '#text-rotation', function (event) {
-                                // $( '#slider-rotation' ).slider( 'value', this.value );
-                                // $('.curent').css('transform','rotate('+this.value+'deg)');
-                                // var saveId = $('.curent').attr('id');
-                                // $.cookie(saveId+'Transform',$('.curent').css('transform'));
-                            // });
-                            // $(document).on('mousedown', '.drag', function () {
-                                // var rot = $(this).css('transform');
-                                // var rot = getRotationDegrees($(this));
-                                // $( '#text-rotation' ).val(rot);
-                                // $( '#slider-rotation' ).slider({ value: rot });
-                            // });
-                            // $( '.drag' ).each(function(){//'p[id^="draggable-"]'
-                                // var getId = $( this ).attr('id');
-                                // var values = $.cookie(getId+'Transform');
-                                // $('#'+getId).css('transform',values);
-                            // });
-                            //
+                            $(document).on('mousedown', '.drag', function () {
+                                var pTop = $(this).css('top');
+                                var pTop = parseInt(pTop);
+                                $( '#text-top-pixel' ).val(pTop);
+                                $( '#slider-top' ).slider({ value: pTop });
+                            });
                             /**
                             * Position Width
                             **/
-                            $("#slider-position-width").slider({
+                            $("#slider-left").slider({
                                 orientation: "horizontal",
                                 range: "min",
                                 min: 0,
-                                max: 100,
+                                max: 1132,
                                 value: 0,
                                 step: 1,
                                 slide: function( event, ui ) {
-                                    $('#text-position-w-pixel').val(ui.value);
+                                    $('#text-left-pixel').val(ui.value);
+                                    //
+                                    $('.curent').css('left',ui.value+'px');
+                                    var id = $( '.curent' ).attr('id').slice(-1);
+                                    $.cookie('draggableLeft'+id, ui.value);
                                 }
                             });
-                            $( "#text-position-w-pixel" ).val( $( "#slider-position-width" ).slider( "value" ) );
-                            $(document).on('keyup', '#text-rotate', function (event) {
-                                $( "#text-position-w-pixel" ).slider( "value", this.value );
+                            $( "#text-left-pixel" ).val( $( "#slider-left" ).slider( "value" ) );
+                            $(document).on('keyup', '#text-left-pixel', function (event) {
+                                $( "#slider-left" ).slider( "value", this.value );
+                                $('.curent').css('left',this.value+'px');
+                                var id = $( '.curent' ).attr('id').slice(-1);
+                                $.cookie('draggableLeft'+id, this.value);
+                            });
+                            $(document).on('mousedown', '.drag', function () {
+                                var pLeft = $(this).css('left');
+                                var pLeft = parseInt(pLeft);
+                                $( '#text-left-pixel' ).val(pLeft);
+                                $( '#slider-left' ).slider({ value: pLeft });
                             });
                         });
                     </script>
                     <div id="tool-08" class="tools">
-                        <div id="" class="slider-left all">
-                            <div id="slider-position-heigh" class="slider-position-v"></div>
+                        <div id="" class="slider-float all">
+                            <div id="slider-top" class="slider-top"></div>
                         </div>
                         
                         <div id="" class="text-top all">
                             <p>Height</p>
-                            <input id="text-position-h-pixel" class="text-position" type="text" /> px 
-                            <input id="text-position-h-procent" class="text-position" type="text" /> %
+                            <input id="text-top-pixel" class="text-position" type="text" /> px 
+                            <input id="text-top-procent" class="text-position" type="text" /> %
                         </div>
                         <div id="" class="text-bottom all">
                             <p>Width</p>
-                            <input id="text-position-w-pixel" class="text-position" type="text" /> px 
-                            <input id="text-position-w-procent" class="text-position" type="text" /> %
+                            <input id="text-left-pixel" class="text-position" type="text" /> px 
+                            <input id="text-left-procent" class="text-position" type="text" /> %
                         </div>
                         <div id="" class="slider-bottom all">
-                            <div id="slider-position-width" class="slider-position-h"></div>
+                            <div id="slider-left" class="slider-left"></div>
                         </div>
                     </div>
                     

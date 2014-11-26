@@ -22,8 +22,10 @@ $(document).ready(function(){
                     var offset = $(this).offset();
                     var xPos = offset.left.toFixed(0);// number.toFixed(2) - leaves only two spots after comma
                     var yPos = offset.top.toFixed(0);// number.toFixed(2) - leaves only two spots after comma
-                    $('#posX'+id).text('Left: ' + xPos);
-                    $('#posY'+id).text('Top: ' + yPos);
+                    $('#text-left-pixel').val(xPos);
+                    $('#slider-left').slider( "value", xPos );
+                    $('#text-top-pixel').val(yPos);
+                    $('#slider-top').slider( "value", yPos );
                 },
                 stop: function(event, ui) {
                     $.cookie('draggableLeft'+id, ui.position.left);

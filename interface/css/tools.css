@@ -84,7 +84,7 @@
     min-height:2em;
     text-align: center;
 }
-.slider-left{
+.slider-float{
     display:inline-block;
     height:100%;
     float:left;
