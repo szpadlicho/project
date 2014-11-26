@@ -381,15 +381,12 @@
                                     var yPos = funTopMax()-ui.value;
                                     $('#text-top-pixel').val(yPos);
                                     //
-                                    //var yPos = funTopMax()-ui.value;
                                     $('.curent').css('top',yPos+'px');
                                     var id = $( '.curent' ).attr('id').slice(-1);
                                     $.cookie('draggableTop'+id, yPos);
                                 },
                             });
                             $( "#text-top-pixel" ).val( $( "#slider-top" ).slider( "value" ) );
-                            //$( "#slider-top" ).slider( 'option', 'max', funTopMax() );
-                            //$( "#slider-top" ).slider( 'option', 'min', 0 );
                             $(document).on('keyup', '#text-top-pixel', function (event) {
                                 var yPos2 = funTopMax()-this.value;
                                 $( "#slider-top" ).slider( "value", yPos2 );
@@ -411,7 +408,7 @@
                                 orientation: "horizontal",
                                 range: "min",
                                 min: 0,
-                                max: 1164,
+                                max: funLeftMax(),
                                 value: 0,
                                 step: 1,
                                 slide: function( event, ui ) {

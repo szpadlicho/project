@@ -1,6 +1,9 @@
 var funTopMax = function(){
     return 660;
 }
+var funLeftMax = function(){
+    return 1164;
+}
 $(document).ready(function(){
     /**
     * Dynamically add elements to site and save it in array
