@@ -1,14 +1,18 @@
 var funTopMax = function(){
-    return 660;
+    var h = $( '#picture' ).height();
+    return h;
 }
 var funLeftMax = function(){
-    return 1164;
+    var w = $( '#picture' ).width();
+    return w;
 }
 var funHeightMax = function(){
-    return 660;
+    var h = $( '#picture' ).height();
+    return h;
 }
 var funWidthMax = function(){
-    return 1164;
+    var w = $( '#picture' ).width();
+    return w;
 }
 $(document).ready(function(){
     /**

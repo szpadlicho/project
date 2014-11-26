@@ -382,6 +382,9 @@
                                     $('.curent').css('top',yPos+'px');
                                     var id = $( '.curent' ).attr('id').slice(-1);
                                     $.cookie('draggableTop'+id, yPos);
+                                    //
+                                    var prTop = ((yPos / funTopMax()) * 100).toFixed(3);
+                                    $('#text-top-procent').val(prTop);
                                 },
                             });
                             $( "#text-top-pixel" ).val( $( "#slider-top" ).slider( "value" ) );
@@ -415,6 +418,9 @@
                                     $('.curent').css('left',ui.value+'px');
                                     var id = $( '.curent' ).attr('id').slice(-1);
                                     $.cookie('draggableLeft'+id, ui.value);
+                                    //
+                                    var prLeft = ((ui.value / funLeftMax()) * 100).toFixed(3);
+                                    $('#text-left-procent').val(prLeft);
                                 }
                             });
                             $( "#text-left-pixel" ).val( $( "#slider-left" ).slider( "value" ) );
@@ -468,8 +474,10 @@
                                     //
                                     $('.curent').css('height',yPos+'px');
                                     var id = $( '.curent' ).attr('id').slice(-1);
-                                    //$.cookie('draggableTop'+id, yPos);
                                     $.cookie('resizableHeight'+id, yPos);
+                                    //
+                                    var prHeight = ((yPos / funHeightMax()) * 100).toFixed(3);
+                                    $('#text-height-procent').val(prHeight);
                                 },
                             });
                             $( "#text-height-pixel" ).val( $( "#slider-height" ).slider( "value" ) );
@@ -478,7 +486,6 @@
                                 $( "#slider-height" ).slider( "value", yPos );
                                 $('.curent').css('height',this.value+'px');
                                 var id = $( '.curent' ).attr('id').slice(-1);
-                                //$.cookie('draggableTop'+id, this.value);
                                 $.cookie('resizableHeight'+id, this.value);
                             });
                             $(document).on('mousedown', '.drag', function () {
@@ -503,8 +510,10 @@
                                     //
                                     $('.curent').css('width',ui.value+'px');
                                     var id = $( '.curent' ).attr('id').slice(-1);
-                                    //$.cookie('draggableLeft'+id, ui.value);
                                     $.cookie('resizableWidth'+id, ui.value);
+                                    //
+                                    var prWidth = ((ui.value / funWidthMax()) * 100).toFixed(3);
+                                    $('#text-width-procent').val(prWidth);
                                 }
                             });
                             $( "#text-width-pixel" ).val( $( "#slider-width" ).slider( "value" ) );
@@ -512,7 +521,6 @@
                                 $( "#slider-width" ).slider( "value", this.value );
                                 $('.curent').css('width',this.value+'px');
                                 var id = $( '.curent' ).attr('id').slice(-1);
-                                //$.cookie('draggableLeft'+id, this.value);
                                 $.cookie('resizableWidth'+id, this.value);
                     
                             });
@@ -549,8 +557,15 @@
                     <!--<div id="tool-13" class="tools">j</div>-->
                 </div>
                 <script type="text/javascript">
-                $(document).ready(function(){
-                    
+                $(document).ready(function() {
+                    $("img").load(function() {
+                        //alert($(this).height());
+                        //alert($(this).width());
+                    });
+                    //var img = document.getElementById("picture");
+                    //alert("height:" + img.height + ", width: " + img.width);
+                    //alert("natural height:" + img.naturalHeight + ", natural width: " + img.naturalWidth);
+                    //alert("jquery height:" + $("#picture").height() + ",jquery width: "+ $("#picture").width());
                 });
                 </script>
                 <div id="middle-ph">
