@@ -383,7 +383,7 @@
                                     var id = $( '.curent' ).attr('id').slice(-1);
                                     $.cookie('draggableTop'+id, yPos);
                                     //
-                                    var prTop = ((yPos / funTopMax()) * 100).toFixed(3);
+                                    var prTop = funProcent(ui.value, funTopMax());
                                     $('#text-top-procent').val(prTop);
                                 },
                             });
@@ -394,13 +394,29 @@
                                 $('.curent').css('top',this.value+'px');
                                 var id = $( '.curent' ).attr('id').slice(-1);
                                 $.cookie('draggableTop'+id, this.value);
+                                //
+                                var prTop = funProcent(this.value, funTopMax());
+                                $('#text-top-procent').val(prTop);
                             });
+                            // $(document).on('keyup', '#text-top-procent', function (event) {
+                                // var yPos = funTopMax()-this.value;
+                                // $( "#slider-top" ).slider( "value", yPos );
+                                // $('.curent').css('top',this.value+'px');
+                                // var id = $( '.curent' ).attr('id').slice(-1);
+                                // $.cookie('draggableTop'+id, this.value);
+                                // //
+                                // var prTop = funProcent(this.value, funTopMax());
+                                // $('#text-top-procent').val(prTop);
+                            // });
                             $(document).on('mousedown', '.drag', function () {
                                 var pTop = $(this).css('top');
                                 var pTop = parseInt(pTop);
                                 $( '#text-top-pixel' ).val(pTop);
                                 var yPos = funTopMax()-pTop;
                                 $( '#slider-top' ).slider({ value: yPos });
+                                //
+                                var prTop = funProcent(yPos, funTopMax());
+                                $('#text-top-procent').val(prTop);
                             });
                             /**
                             * Position Left
@@ -419,8 +435,9 @@
                                     var id = $( '.curent' ).attr('id').slice(-1);
                                     $.cookie('draggableLeft'+id, ui.value);
                                     //
-                                    var prLeft = ((ui.value / funLeftMax()) * 100).toFixed(3);
+                                    var prLeft = funProcent(ui.value, funLeftMax());
                                     $('#text-left-procent').val(prLeft);
+                                    
                                 }
                             });
                             $( "#text-left-pixel" ).val( $( "#slider-left" ).slider( "value" ) );
@@ -429,12 +446,18 @@
                                 $('.curent').css('left',this.value+'px');
                                 var id = $( '.curent' ).attr('id').slice(-1);
                                 $.cookie('draggableLeft'+id, this.value);
+                                //
+                                var prLeft = funProcent(this.value, funLeftMax());
+                                $('#text-left-procent').val(prLeft);
                             });
                             $(document).on('mousedown', '.drag', function () {
                                 var pLeft = $(this).css('left');
                                 var pLeft = parseInt(pLeft);
                                 $( '#text-left-pixel' ).val(pLeft);
                                 $( '#slider-left' ).slider({ value: pLeft });
+                                //
+                                var prLeft = funProcent(pLeft, funLeftMax());
+                                $('#text-left-procent').val(prLeft);
                             });
                         });
                     </script>
@@ -476,7 +499,7 @@
                                     var id = $( '.curent' ).attr('id').slice(-1);
                                     $.cookie('resizableHeight'+id, yPos);
                                     //
-                                    var prHeight = ((yPos / funHeightMax()) * 100).toFixed(3);
+                                    var prHeight = funProcent(ui.value, funHeightMax());
                                     $('#text-height-procent').val(prHeight);
                                 },
                             });
@@ -512,7 +535,7 @@
                                     var id = $( '.curent' ).attr('id').slice(-1);
                                     $.cookie('resizableWidth'+id, ui.value);
                                     //
-                                    var prWidth = ((ui.value / funWidthMax()) * 100).toFixed(3);
+                                    var prWidth = funProcent(ui.value, funWidthMax());
                                     $('#text-width-procent').val(prWidth);
                                 }
                             });

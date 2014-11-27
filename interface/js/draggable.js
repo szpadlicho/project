@@ -14,6 +14,10 @@ var funWidthMax = function(){
     var w = $( '#picture' ).width();
     return w;
 }
+var funProcent = function(val, value){
+    var prcent = ((val / value) * 100).toFixed(3);
+    return prcent;
+}
 $(document).ready(function(){
     /**
     * Dynamically add elements to site and save it in array
@@ -44,6 +48,11 @@ $(document).ready(function(){
                     $('#text-top-pixel').val(yPos);
                     var yPos2 = funTopMax() - yPos;
                     $('#slider-top').slider( "value", yPos2 );
+                    //
+                    var prLeft = funProcent(xPos, funLeftMax());
+                    $('#text-left-procent').val(prLeft);
+                    var prTop = funProcent(yPos2, funTopMax());
+                    $('#text-top-procent').val(prTop);
                 },
                 stop: function(event, ui) {
                     $.cookie('draggableLeft'+id, ui.position.left);
