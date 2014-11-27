@@ -43,10 +43,12 @@ $(document).ready(function(){
             var id = $(this).attr('id').slice(-1);
             $( '#draggable-'+id ).draggable({
                 containment: "parent", 
-                drag: function(){
-                    var offset = $(this).offset();
-                    var xPos = offset.left.toFixed(0);// number.toFixed(2) - leaves only two spots after comma
-                    var yPos = offset.top.toFixed(0);// number.toFixed(2) - leaves only two spots after comma
+                drag: function(event, ui){
+                    //var offset = $(this).offset();
+                    //var xPos = offset.left.toFixed(0);// number.toFixed(2) - leaves only two spots after comma
+                    //var yPos = offset.top.toFixed(0);// number.toFixed(2) - leaves only two spots after comma
+                    var xPos = ui.position.left;
+                    var yPos = ui.position.top;
                     $('#text-left-pixel').val(xPos);
                     $('#slider-left').slider( "value", xPos );
                     $('#text-top-pixel').val(yPos);
@@ -61,6 +63,7 @@ $(document).ready(function(){
                 stop: function(event, ui) {
                     $.cookie('draggableLeft'+id, ui.position.left);
                     $.cookie('draggableTop'+id, ui.position.top);
+                    //alert(ui.position.left);
                 }
             });
             $( '#draggable-'+id ).css({left : parseInt($.cookie('draggableLeft'+id)), top : parseInt($.cookie('draggableTop'+id))});//, 'background-color':'blue'
@@ -75,9 +78,9 @@ $(document).ready(function(){
             $( '#draggable-'+id ).resizable({
                 containment: "parent", 
                 resize: function( event, ui ) {
-                    $('#text-width-pixel').val(ui.size.width);
+                    $('#text-width-pixel').val(ui.size.width.toFixed(0));
                     $('#slider-width').slider( "value", ui.size.width );
-                    $('#text-height-pixel').val(ui.size.height);
+                    $('#text-height-pixel').val(ui.size.height.toFixed(0));
                     var yPos = funTopMax() - ui.size.height;
                     $('#slider-height').slider( "value", yPos );
                 },
@@ -88,6 +91,7 @@ $(document).ready(function(){
             });
             $( '#draggable-'+id ).css({width : parseInt($.cookie('resizableWidth'+id)), height : parseInt($.cookie('resizableHeight'+id))});
         });
+        $( '#tool-11' ).append( 'lol' );
     };
     /**
     * initiate arrays and cookies
@@ -106,6 +110,7 @@ $(document).ready(function(){
     $( '#middle' ).append(empArr);
     elements();
     resize();
+    $( 'input[type="text"]' ).val('0');//reset for procent text box
     /**
     * Button behavior
     **/
@@ -120,7 +125,7 @@ $(document).ready(function(){
             $.cookie('lastID', lastId);
         }
         //var elem = '<p id="draggable-'+lastId+'" class="drag"><button type="button" class="close" >&times;</button><br /><span id="posY'+lastId+'"></span><br /><span id="posX'+lastId+'"></span><br />id : '+lastId+'</p>';
-        var elem = '<p id="draggable-'+lastId+'" class="drag"><button class="close" type="button" >&times;</button><span class="number">id : '+lastId+'</span><br /><span id="toText'+lastId+' class="toText">Some Text</span></p>';
+        var elem = '<p id="draggable-'+lastId+'" class="drag"><button class="close" type="button" >&times;</button><span class="number">id : '+lastId+'</span><br /><span id="toText'+lastId+'" class="toText">Some Text</span></p>';
         $( '#middle' ).append(elem);
         arr.push(elem);
         setCookie();
@@ -137,6 +142,9 @@ $(document).ready(function(){
     $(document).on('mousedown', '.drag', function () { //work on dynamic elements.mousedown()
         $( '.drag' ).removeClass( 'curent' );
         $( this ).addClass( 'curent' );
+    });
+    $( '#picture' ).click(function(){
+        //$( '.curent' ).removeClass( 'curent' );
     });
     $(document).on('click', '.close', function () { //work on dynamic elements
         //var idi = $(this).parents('p').attr('id').slice(-1);
@@ -158,7 +166,7 @@ $(document).ready(function(){
             $( '.drag' ).resizable( 'enable' );
         };
     }
-    $( '#resize' ).removeClass( 'active' );
+    //$( '#resize' ).removeClass( 'active' ); // Uncomment to active disable resize at start
     resizeCheck( '#resize' );
     $( '#resize' ).click(function(){
         resizeCheck(this);

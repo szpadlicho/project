@@ -44,12 +44,27 @@
     width:98%;
     height:96%;
 }
-#tool-07{
+.btn{
+    background:none;
+    border: 1px solid #999;
+    width:100%;
+    height:5.8em;
     text-align:center;
-    background-color:black;
+    color:white;
+    margin-bottom:0.1em;
 }
+.btn:first-child{
+    margin-top:0.1em;    
+}
+#tool-07,
+#tool-10{
+    text-align:center;
+}
+#tool-04,
+#tool-07,
 #tool-08,
-#tool-09{
+#tool-09,
+#tool-10{
     background-color:black;
 }
 .tool-sub-ph-v{
@@ -117,4 +132,14 @@
     width:4em;
     text-align:center;
     color:white;
+}
+select{
+    background:none;
+    border: 1px solid #999;
+    text-align:center;
+    color:white;
+}
+select option{
+    height:2em;
+    padding-top:0.5em;
 }

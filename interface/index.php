@@ -88,7 +88,7 @@
                                 <li id="button-07">Rotate & Size</li>
                                 <li id="button-08">Position</li>
                                 <li id="button-09">Size</li>
-                                <li id="button-10">ten</li>
+                                <li id="button-10">Fonts</li>
                                 <li id="button-11">eleven</li>
                                 <!--
                                 <li id="button-12">twelve</li>
@@ -140,7 +140,7 @@
                         });
                     </script>
                     <div id="tool-05" class="tools">
-                        <textarea id="txt" class="btn" type="text" value="Some text" />Some text</textarea>
+                        <textarea id="txt" class="txt" type="text" value="Some text" />Some text</textarea>
                     </div>
                     <script type="text/javascript">
                     $(function(){
@@ -616,7 +616,48 @@
                             <div id="slider-width" class="slider-left"></div>
                         </div>
                     </div>
-                    <div id="tool-10" class="tools">h</div>
+                    <script type="text/javascript">
+                        $(function(){
+                            $("#fontChange").click(function() {
+                                $( '.curent .toText' ).css( 'font-family', $(this).val());
+                                var saveId = $( '.curent' ).attr('id');
+                                $.cookie(saveId+'fontFamily',$( '.curent .toText' ).css( 'font-family' ));
+                            });
+                            $(document).on('mousedown', '.drag', function () {
+                                var fontFamily = $( '.curent .toText' ).css( 'font-family');
+                                $("#fontChange option").each(function(){
+                                    if($(this).val()==fontFamily){
+                                        $(this).attr("selected",true); 
+                                        $("#fontChange").val(fontFamily);
+                                    } else {
+                                        $(this).attr("selected",false); 
+                                    }
+                                });
+                                //$('select#fontChange').find(":selected").text();
+                                //$('option').val(fontFamily).attr("selected","selected");
+
+                            });
+                            $( '.drag' ).each(function(){
+                                var getId = $( this ).attr('id');
+                                var values = $.cookie(getId+'fontFamily');
+                                $('#'+getId+' .toText').css('font-family',values);
+                            });
+                        });
+                        $(function(){
+                        
+                        });
+                    </script>
+                    <div id="tool-10" class="tools">
+                        <p>Fonts:</p>
+                        <select id="fontChange">
+                            <option value="Arial">Arial</option>
+                            <option value="Verdana">Verdana</option>
+                            <option value="Impact">Impact</option>
+                            <option value="Comic Sans MS">Comic Sans MS</option>
+                            <option value="" selected>Default</option>
+                        </select> 
+                    </div>
+                    <!--END-->
                     <div id="tool-11" class="tools">
                         Color: <input id="fontColor" class="" type="text" /><br />
                     </div>

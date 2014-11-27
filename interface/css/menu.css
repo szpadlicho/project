@@ -1,10 +1,10 @@
 #top-menu-ph{
     width: calc(100%-(2*2px));
-    background-color: rgb(214,214,214);
-    border:1px solid rgb(73,73,73);
+    background-color: rgb(0,0,0);
+    border:1px solid #999;
     border-top:none;
     padding:0.2em 1.5em;
-    color:black;
+    color:white;
     z-index:100;
 }
 
@@ -27,13 +27,13 @@
     display:inline-block;
     position:relative;
     padding:0em 0.5em;
-    background-color: rgb(224,224,224);
+    background-color: rgb(150,150,150);
 }
 #top-menu > ul > li > ul{
     list-style-type:none;
     visibility:hidden;
     position:absolute;   
-    background-color: rgb(214,214,214);
+    background-color: rgb(0,0,0);
     #border: 1px solid rgb(73,73,73);
     left:-0.5em;
     text-align:center;
@@ -50,8 +50,8 @@
 }
 #top-menu > ul > li > ul > li:hover{
     padding:0em 0.5em;
-    background-color: rgb(224,224,224);
+    background-color: rgb(150,150,150);
 }
 .active{
-    color:red;
+    color:lime;
 }

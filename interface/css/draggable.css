@@ -19,6 +19,9 @@
 .curent{
     border: 1px solid red;
 }
+.curent span.toText{
+    #border: 1px solid red;
+}
 .close{
     position:absolute;
     top:0;
