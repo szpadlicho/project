@@ -383,7 +383,8 @@
                                     var id = $( '.curent' ).attr('id').slice(-1);
                                     $.cookie('draggableTop'+id, yPos);
                                     //
-                                    var prTop = funProcent(ui.value, funTopMax());
+                                    //var pPos = 
+                                    var prTop = funProcent(yPos, funTopMax());
                                     $('#text-top-procent').val(prTop);
                                 },
                             });
@@ -398,16 +399,17 @@
                                 var prTop = funProcent(this.value, funTopMax());
                                 $('#text-top-procent').val(prTop);
                             });
-                            // $(document).on('keyup', '#text-top-procent', function (event) {
-                                // var yPos = funTopMax()-this.value;
-                                // $( "#slider-top" ).slider( "value", yPos );
-                                // $('.curent').css('top',this.value+'px');
-                                // var id = $( '.curent' ).attr('id').slice(-1);
-                                // $.cookie('draggableTop'+id, this.value);
-                                // //
-                                // var prTop = funProcent(this.value, funTopMax());
-                                // $('#text-top-procent').val(prTop);
-                            // });
+                            $(document).on('keyup', '#text-top-procent', function (event) {
+                                var prTop = funProcentBack(this.value, funTopMax());
+                                var prTopSl = funTopMax() - prTop;
+                                $( "#slider-top" ).slider( "value", prTopSl );
+                                $('.curent').css('top',prTop+'px');
+                                var id = $( '.curent' ).attr('id').slice(-1);
+                                $.cookie('draggableTop'+id, prTop);
+                                //
+                                //var prTop2 = funProcentBack(prTop, funTopMax());
+                                $('#text-top-pixel').val(prTop);
+                            });
                             $(document).on('mousedown', '.drag', function () {
                                 var pTop = $(this).css('top');
                                 var pTop = parseInt(pTop);
@@ -415,7 +417,7 @@
                                 var yPos = funTopMax()-pTop;
                                 $( '#slider-top' ).slider({ value: yPos });
                                 //
-                                var prTop = funProcent(yPos, funTopMax());
+                                var prTop = funProcent(pTop, funTopMax());
                                 $('#text-top-procent').val(prTop);
                             });
                             /**
@@ -449,6 +451,16 @@
                                 //
                                 var prLeft = funProcent(this.value, funLeftMax());
                                 $('#text-left-procent').val(prLeft);
+                            });
+                            $(document).on('keyup', '#text-left-procent', function (event) {
+                                var prLeft = funProcentBack(this.value, funLeftMax());
+                                $( "#slider-left" ).slider( "value", prLeft );
+                                $('.curent').css('left',prLeft+'px');
+                                var id = $( '.curent' ).attr('id').slice(-1);
+                                $.cookie('draggableLeft'+id, prLeft);
+                                //
+                                //var prLeft2 = funProcentBack(prLeft, funLeftMax());
+                                $('#text-left-pixel').val(prLeft);
                             });
                             $(document).on('mousedown', '.drag', function () {
                                 var pLeft = $(this).css('left');
@@ -499,7 +511,7 @@
                                     var id = $( '.curent' ).attr('id').slice(-1);
                                     $.cookie('resizableHeight'+id, yPos);
                                     //
-                                    var prHeight = funProcent(ui.value, funHeightMax());
+                                    var prHeight = funProcent(yPos, funHeightMax());
                                     $('#text-height-procent').val(prHeight);
                                 },
                             });
@@ -510,6 +522,19 @@
                                 $('.curent').css('height',this.value+'px');
                                 var id = $( '.curent' ).attr('id').slice(-1);
                                 $.cookie('resizableHeight'+id, this.value);
+                                //
+                                var prTop = funProcent(this.value, funHeightMax());
+                                $('#text-height-procent').val(prTop);
+                            });
+                            $(document).on('keyup', '#text-height-procent', function (event) {
+                                var prHeight = funProcentBack(this.value, funHeightMax());
+                                var prHeightSl = funHeightMax() - prHeight;
+                                $( "#slider-height" ).slider( "value", prHeightSl );
+                                $('.curent').css('height',prHeight+'px');
+                                var id = $( '.curent' ).attr('id').slice(-1);
+                                $.cookie('resizableHeight'+id, prHeight);
+                                //
+                                $('#text-height-pixel').val(prHeight);
                             });
                             $(document).on('mousedown', '.drag', function () {
                                 var pTop = $(this).css('height');
@@ -517,6 +542,9 @@
                                 $( '#text-height-pixel' ).val(pTop);
                                 var yPos = funHeightMax()-pTop;
                                 $( '#slider-height' ).slider({ value: yPos });
+                                //
+                                var prTop = funProcent(pTop, funHeightMax());
+                                $('#text-height-procent').val(prTop);
                             });
                             /**
                             * Position Width
@@ -545,13 +573,28 @@
                                 $('.curent').css('width',this.value+'px');
                                 var id = $( '.curent' ).attr('id').slice(-1);
                                 $.cookie('resizableWidth'+id, this.value);
+                                //
+                                var prWidth = funProcent(this.value, funWidthMax());
+                                $('#text-width-procent').val(prWidth);
                     
+                            });
+                            $(document).on('keyup', '#text-width-procent', function (event) {
+                                var prWidth = funProcentBack(this.value, funHeightMax());
+                                $( "#slider-width" ).slider( "value", prWidth );
+                                $('.curent').css('width',prWidth+'px');
+                                var id = $( '.curent' ).attr('id').slice(-1);
+                                $.cookie('resizableWidth'+id, prWidth);
+                                //
+                                $('#text-width-pixel').val(prWidth);
                             });
                             $(document).on('mousedown', '.drag', function () {
                                 var pLeft = $(this).css('width');
                                 var pLeft = parseInt(pLeft);
                                 $( '#text-width-pixel' ).val(pLeft);
                                 $( '#slider-width' ).slider({ value: pLeft });
+                                //
+                                var prLeft = funProcent(pLeft, funHeightMax());
+                                $('#text-width-procent').val(prLeft);
                             });
                         });
                     </script>

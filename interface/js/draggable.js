@@ -15,7 +15,11 @@ var funWidthMax = function(){
     return w;
 }
 var funProcent = function(val, value){
-    var prcent = ((val / value) * 100).toFixed(3);
+    var prcent = ((val / value) * 100).toFixed(0);
+    return prcent;
+}
+var funProcentBack = function(val, value){
+    var prcent = ((val / 100) * value).toFixed(0);
     return prcent;
 }
 $(document).ready(function(){
@@ -51,7 +55,7 @@ $(document).ready(function(){
                     //
                     var prLeft = funProcent(xPos, funLeftMax());
                     $('#text-left-procent').val(prLeft);
-                    var prTop = funProcent(yPos2, funTopMax());
+                    var prTop = funProcent(yPos, funTopMax());
                     $('#text-top-procent').val(prTop);
                 },
                 stop: function(event, ui) {
