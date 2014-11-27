@@ -633,9 +633,6 @@
                                         $(this).attr("selected",false); 
                                     }
                                 });
-                                //$('select#fontChange').find(":selected").text();
-                                //$('option').val(fontFamily).attr("selected","selected");
-
                             });
                             $( '.drag' ).each(function(){
                                 var getId = $( this ).attr('id');
@@ -643,9 +640,7 @@
                                 $('#'+getId+' .toText').css('font-family',values);
                             });
                         });
-                        $(function(){
-                        
-                        });
+                        //$(function(){});
                     </script>
                     <div id="tool-10" class="tools">
                         <p>Fonts:</p>
