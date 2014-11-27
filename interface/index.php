@@ -204,30 +204,44 @@
                     </div>
                     <!-- Font Family -->
                     <script type="text/javascript">
-                        $(function(){
-                            $("#fontChange").click(function() {
-                                $( '.curent .toText' ).css( 'font-family', $(this).val());
-                                var saveId = $( '.curent' ).attr('id');
-                                $.cookie(saveId+'fontFamily',$( '.curent .toText' ).css( 'font-family' ));
-                            });
-                            $(document).on('mousedown', '.drag', function () {
-                                var fontFamily = $( '.curent .toText' ).css( 'font-family');
-                                $("#fontChange option").each(function(){
-                                    if($(this).val()==fontFamily){
-                                        $(this).attr("selected",true); 
-                                        $("#fontChange").val(fontFamily);
-                                    } else {
-                                        $(this).attr("selected",false); 
-                                    }
+                        $(function() {
+                            $('#form').change(function(e) {
+                                e.preventDefault();
+                                data = new FormData($('#form')[0]);
+                                console.log('Submitting');
+                                $.ajax({
+                                    type: 'POST',
+                                    url: 'php/upload_files.php',
+                                    data:  data,
+                                    cache: false,
+                                    success: function (data) {
+                                        // do something
+                                        //alert('Success');
+                                        alert(data);
+                                    },
+                                    // xhrFields: {
+                                        // //add listener to XMLHTTPRequest object directly for progress (jquery doesn't have this yet)
+                                        // onprogress: function (progress) {
+                                            // //calculate upload progress
+                                            // var percentage = Math.floor((progress.total / progress.totalSize) * 100);
+                                            // //log upload progress to console
+                                            // console.log('progress', percentage);
+                                            // if (percentage === 100) {
+                                                // console.log('DONE!');
+                                            // }
+                                        // }
+                                    // },
+                                    contentType: false,
+                                    processData: false
+                                }).done(function(data) {
+                                    console.log(data);
+                                }).fail(function(jqXHR,status, errorThrown) {
+                                    console.log(errorThrown);
+                                    console.log(jqXHR.responseText);
+                                    console.log(jqXHR.status);
                                 });
                             });
-                            $( '.drag' ).each(function(){
-                                var getId = $( this ).attr('id');
-                                var values = $.cookie(getId+'fontFamily');
-                                $('#'+getId+' .toText').css('font-family',values);
-                            });
                         });
-                        //$(function(){});
                     </script>
                     <div id="tool-10" class="tools">
                         <p>Fonts:</p>
@@ -237,7 +251,15 @@
                             <option value="Impact">Impact</option>
                             <option value="Comic Sans MS">Comic Sans MS</option>
                             <option value="" selected>Default</option>
-                        </select> 
+                        </select>
+                        <form id="form" method="POST" enctype="multipart/form-data">
+                        <!--
+                            <p><input id="fontFileInput" name="file" type="file" /></p>
+                            <p><input id="buttonSubmit" name="go" type="submit" /></p>
+                            <!--<p id="fontDropZone">Drop here.</p>-->
+                            <input id="file" name="file" type="file" />
+                            <!--<button id="upload">Upload</button>-->
+                        </form>
                     </div>
                     <!--END-->
                     <div id="tool-11" class="tools">
@@ -267,7 +289,13 @@
             </article>
         </section>
         <footer>
-            <div id="count"></div>
+            <div id="count" style="visibility:hidden;"></div>
+            
         </footer>
+        
+        <?php var_dump($_FILES); ?>
+        <?php //var_dump($_POST); ?>
+        <?php //var_dump($_COOKIE); ?>
+        <?php?>
     </body>
 </html>
