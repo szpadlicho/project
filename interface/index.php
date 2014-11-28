@@ -108,6 +108,7 @@
                         <li>Pobierz</li>
                     </ul>
                 </nav>
+                <span id="info" style="position:absolute; top:0; left:40%;"></span>
             </header>
             <article>
                 <div id="left-option-ph">
@@ -211,8 +212,8 @@
                                 console.log('Submitting');
                                 $.ajax({
                                     type: 'POST',
-                                    //url: 'php/upload_files.php',
-                                    url: 'php/show.php',
+                                    url: 'php/upload_fonts.php',
+                                    //url: 'php/show.php',
                                     data:  data,
                                     cache: false,
                                     success: function (data) {
@@ -220,6 +221,7 @@
                                         //alert('Success');
                                         //alert(data);
                                         //$("#show").html(data);
+                                        $("#info").html(data);
                                     },
                                     // xhrFields: {
                                         // //add listener to XMLHTTPRequest object directly for progress (jquery doesn't have this yet)
@@ -241,19 +243,22 @@
                                     console.log(errorThrown);
                                     console.log(jqXHR.responseText);
                                     console.log(jqXHR.status);
+                                    //$("#info").text('font upload fail');
                                 });
                             });
                         });
                     </script>
                     <div id="tool-10" class="tools">
-                        <p>Fonts:</p>
-                        <select id="fontChange">
-                            <option value="Arial">Arial</option>
-                            <option value="Verdana">Verdana</option>
-                            <option value="Impact">Impact</option>
-                            <option value="Comic Sans MS">Comic Sans MS</option>
-                            <option value="" selected>Default</option>
-                        </select>
+                        <div id="fonts" >
+                            <p>Fonts:</p>
+                            <select id="fontChange">
+                                <option value="Arial">Arial</option>
+                                <option value="Verdana">Verdana</option>
+                                <option value="Impact">Impact</option>
+                                <option value="Comic Sans MS">Comic Sans MS</option>
+                                <option value="" selected>Default</option>
+                            </select>
+                        </div>
                         <form id="form" method="POST" enctype="multipart/form-data">
                             <!--<p id="fontDropZone">Drop here.</p>-->
                             <input id="files" name="files" type="file" />
@@ -352,7 +357,7 @@
                     }); 
                 </script>
                 </div>
-                <div id="show">asd</div>
+                <div id="show">-</div>
             </article>
         </section>
         <footer>
