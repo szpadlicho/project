@@ -111,6 +111,7 @@ $(document).ready(function(){
     elements();
     resize();
     $( 'input[type="text"]' ).val('0');//reset for procent text box
+    //alert(arr);
     /**
     * Button behavior
     **/

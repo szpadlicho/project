@@ -211,13 +211,15 @@
                                 console.log('Submitting');
                                 $.ajax({
                                     type: 'POST',
-                                    url: 'php/upload_files.php',
+                                    //url: 'php/upload_files.php',
+                                    url: 'php/show.php',
                                     data:  data,
                                     cache: false,
                                     success: function (data) {
                                         // do something
                                         //alert('Success');
-                                        alert(data);
+                                        //alert(data);
+                                        //$("#show").html(data);
                                     },
                                     // xhrFields: {
                                         // //add listener to XMLHTTPRequest object directly for progress (jquery doesn't have this yet)
@@ -253,19 +255,16 @@
                             <option value="" selected>Default</option>
                         </select>
                         <form id="form" method="POST" enctype="multipart/form-data">
-                        <!--
-                            <p><input id="fontFileInput" name="file" type="file" /></p>
-                            <p><input id="buttonSubmit" name="go" type="submit" /></p>
                             <!--<p id="fontDropZone">Drop here.</p>-->
-                            <input id="file" name="file" type="file" />
+                            <input id="files" name="files" type="file" />
                             <!--<button id="upload">Upload</button>-->
                         </form>
                     </div>
-                    <!--END-->
+                    <!-- Unknown -->
                     <div id="tool-11" class="tools">
                         Color: <input id="fontColor" class="" type="text" /><br />
                     </div>
-                    <!--<div id="tool-13" class="tools">j</div>-->
+                    <!-- END -->
                 </div>
                 <!-- Picture place -->
                 <script type="text/javascript">
@@ -285,15 +284,82 @@
                         <!--<img id="picture" src="../repo/data/src1.jpg" />-->
                         <img id="picture" src="../repo/data/Bikini.jpg" />
                     </div>
+                <script type="text/javascript">
+                    // $(function() {
+                        // dataString = {w:'val', h:'val2'}; // array
+                        // dataObject = {w:'val', h:'val2'}; // array
+                        // //dataString = ['val','val2']; // array
+                        // //var ary = ['fg','dfg','dddd'];
+                        // //var jsonString = JSON.stringify(ary);
+                        // $.ajax({
+                            // type: 'POST',
+                            // url: 'php/show.php',
+                            // //data: {data : jsonString}, 
+                            // //data: {data : dataString }, 
+                            // data: {data : dataObject }, 
+                            // cache: false,
+                            // dataType: 'text',
+                            // success: function(data){
+                                // //alert("OK");
+                                // $('#show').html(data);
+                            // }
+                        // });
+                        // // $.ajax({
+                            // // url : 'php/show.php',
+                            // // dataType: "text",
+                            // // success : function (data) {
+                                // // $('#show').html(data);
+                            // // }
+                        // // });
+                    // });
+                    $(function() {
+                        // dataObject = {w:'val', h:'val2'};
+                        // $.ajax({
+                            // type: 'POST',
+                            // url: 'php/show.php',
+                            // data: {data : dataObject }, 
+                            // cache: false,
+                            // dataType: 'text',
+                            // success: function(data){
+                                // $('#show').html(data);
+                            // }
+                        // });
+                        var arry = [];
+                        $( '.drag' ).each(function(){
+                            var getId = $( this ).attr('id');
+                            var top = $( this ).css('top');
+                            var left = $( this ).css('left');
+                            var size = $( this ).children('.toText').css('font-size');
+                            //var rotate = $( this ).children('.toText').css('font-family');
+                            var rotate = getRotationDegrees($(this));
+                            var family = $( this ).children('.toText').css('font-family');
+                            var color = $( this ).children('.toText').css('color');
+                            var value = $( this ).children('.toText').text();
+                            //var  = $( this ).css('');
+                            arry.push({top:top, left:left, size:size, rotate:rotate, family:family, color:color, value:value});
+                        });
+                        dataObject = {arry};
+                        $.ajax({
+                                type: 'POST',
+                                url: 'php/show.php',
+                                data: {data : dataObject }, 
+                                cache: false,
+                                dataType: 'text',
+                                success: function(data){
+                                    $('#show').html(data);
+                                }
+                            });
+                    }); 
+                </script>
                 </div>
+                <div id="show">asd</div>
             </article>
         </section>
         <footer>
             <div id="count" style="visibility:hidden;"></div>
-            
         </footer>
         
-        <?php var_dump($_FILES); ?>
+        <?php //var_dump($_FILES); ?>
         <?php //var_dump($_POST); ?>
         <?php //var_dump($_COOKIE); ?>
         <?php?>
