@@ -78,41 +78,6 @@ session_start();
         <section id="relative-holder">
             <header id="top-menu-ph">
                 <nav id="top-menu">
-                    <script type="text/javascript">
-                        $(function() {
-                            $('#form2').change(function(e) {
-                                e.preventDefault();
-                                data = new FormData($('#form2')[0]);
-                                console.log('Submitting');
-                                $.ajax({
-                                    type: 'POST',
-                                    url: 'php/upload_files.php',
-                                    //url: 'php/show.php',
-                                    data:  data,
-                                    cache: false,
-                                    success: function (data) {
-                                        // do something
-                                        //alert('Success');
-                                        //alert(data);
-                                        //$("#show").html(data);
-                                        $("#info").html(data);
-                                    },
-                                    contentType: false,
-                                    processData: false
-                                }).done(function(data) {
-                                    console.log(data);
-                                }).fail(function(jqXHR,status, errorThrown) {
-                                    console.log(errorThrown);
-                                    console.log(jqXHR.responseText);
-                                    console.log(jqXHR.status);
-                                    //$("#info").text('font upload fail');
-                                });
-                            });
-                            $( '#button-01' ).click(function(){
-                                $( '#pictures' ).click();
-                            });
-                        });
-                    </script>
                     <ul>
                         <li>File
                             <ul>
@@ -336,6 +301,42 @@ session_start();
                             //echo '<br />';
                             //echo session_id();
                         ?>
+                        <script type="text/javascript">
+                            $(function() {
+                                $('#form2').change(function(e) {
+                                    e.preventDefault();
+                                    data = new FormData($('#form2')[0]);
+                                    console.log('Submitting');
+                                    $.ajax({
+                                        type: 'POST',
+                                        url: 'php/upload_files.php',
+                                        //url: 'php/show.php',
+                                        data:  data,
+                                        cache: false,
+                                        success: function (data) {
+                                            // do something
+                                            //alert('Success');
+                                            //alert(data);
+                                            //$("#show").html(data);
+                                            $("#info").html(data);
+                                            location.reload();
+                                        },
+                                        contentType: false,
+                                        processData: false
+                                    }).done(function(data) {
+                                        console.log(data);
+                                    }).fail(function(jqXHR,status, errorThrown) {
+                                        console.log(errorThrown);
+                                        console.log(jqXHR.responseText);
+                                        console.log(jqXHR.status);
+                                        //$("#info").text('font upload fail');
+                                    });
+                                });
+                                $( '#button-01' ).click(function(){
+                                    $( '#pictures' ).click();
+                                });
+                            });
+                        </script>
                         <img id="image" src="data/picture/<?php echo session_id();?>.jpg" />
                     </div>
                 <script type="text/javascript">
