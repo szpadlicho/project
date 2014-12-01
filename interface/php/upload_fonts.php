@@ -16,7 +16,7 @@ class UpLoadFiles
     {
 		$disallowed = array (/*pliki które są nie do przyjęcia*/);
 		if (! in_array($x, $disallowed)) {		
-			echo '<span class="catch_span">fonts upload successfull: '.$_FILES['files']['name'].'</span>';
+			echo '<span class="catch_span">Font upload successful: '.$_FILES['files']['name'].'</span>';
 			move_uploaded_file($_FILES['files']['tmp_name'], $des.'/'.$_FILES['files']['name']);
 		} else {
 			echo '<span class="catch_span">Nie dozwolony format pliku: '.$_FILES['files']['name'].'</span>';
@@ -32,6 +32,6 @@ class UpLoadFiles
 }
 if (@$_FILES['files']['error']!=4 && @$_FILES['files']['error']==0) {
     $upload_and_check_file=new UpLoadFiles();
-    $upload_and_check_file->upLoad('../data/fonts/');/*$cmd gdzie ma wkleić*/
+    $upload_and_check_file->upLoad('../data/fonts');/*$cmd gdzie ma wkleić*/
 }
 ?>

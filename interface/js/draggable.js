@@ -1,17 +1,17 @@
 var funTopMax = function(){
-    var h = $( '#picture' ).height();
+    var h = $( '#image' ).height();
     return h;
 }
 var funLeftMax = function(){
-    var w = $( '#picture' ).width();
+    var w = $( '#image' ).width();
     return w;
 }
 var funHeightMax = function(){
-    var h = $( '#picture' ).height();
+    var h = $( '#image' ).height();
     return h;
 }
 var funWidthMax = function(){
-    var w = $( '#picture' ).width();
+    var w = $( '#image' ).width();
     return w;
 }
 var funProcent = function(val, value){

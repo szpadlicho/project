@@ -1,3 +1,6 @@
+<?php
+session_start();
+?>
 <!DOCTYPE HTML>
 <html lang="pl">
     <head>
@@ -75,6 +78,41 @@
         <section id="relative-holder">
             <header id="top-menu-ph">
                 <nav id="top-menu">
+                    <script type="text/javascript">
+                        $(function() {
+                            $('#form2').change(function(e) {
+                                e.preventDefault();
+                                data = new FormData($('#form2')[0]);
+                                console.log('Submitting');
+                                $.ajax({
+                                    type: 'POST',
+                                    url: 'php/upload_files.php',
+                                    //url: 'php/show.php',
+                                    data:  data,
+                                    cache: false,
+                                    success: function (data) {
+                                        // do something
+                                        //alert('Success');
+                                        //alert(data);
+                                        //$("#show").html(data);
+                                        $("#info").html(data);
+                                    },
+                                    contentType: false,
+                                    processData: false
+                                }).done(function(data) {
+                                    console.log(data);
+                                }).fail(function(jqXHR,status, errorThrown) {
+                                    console.log(errorThrown);
+                                    console.log(jqXHR.responseText);
+                                    console.log(jqXHR.status);
+                                    //$("#info").text('font upload fail');
+                                });
+                            });
+                            $( '#button-01' ).click(function(){
+                                $( '#pictures' ).click();
+                            });
+                        });
+                    </script>
                     <ul>
                         <li>File
                             <ul>
@@ -264,6 +302,11 @@
                             <input id="files" name="files" type="file" />
                             <!--<button id="upload">Upload</button>-->
                         </form>
+                        <form id="form2" style="visibility:hidden;" method="POST" enctype="multipart/form-data">
+                            <!--<p id="fontDropZone">Drop here.</p>-->
+                            <input id="pictures" name="pictures" type="file" />
+                            <!--<button id="upload">Upload</button>-->
+                        </form>
                     </div>
                     <!-- Unknown -->
                     <div id="tool-11" class="tools">
@@ -271,23 +314,29 @@
                     </div>
                     <!-- END -->
                 </div>
-                <!-- Picture place -->
+                <!-- Image place -->
                 <script type="text/javascript">
                 $(document).ready(function() {
                     $("img").load(function() {
                         //alert($(this).height());
                         //alert($(this).width());
                     });
-                    //var img = document.getElementById("picture");
+                    //var img = document.getElementById("pimage");
                     //alert("height:" + img.height + ", width: " + img.width);
                     //alert("natural height:" + img.naturalHeight + ", natural width: " + img.naturalWidth);
-                    //alert("jquery height:" + $("#picture").height() + ",jquery width: "+ $("#picture").width());
+                    //alert("jquery height:" + $("#image").height() + ",jquery width: "+ $("#image").width());
                 });
                 </script>
                 <div id="middle-ph">
                     <div id="middle">
-                        <!--<img id="picture" src="../repo/data/src1.jpg" />-->
-                        <img id="picture" src="../repo/data/Bikini.jpg" />
+                        <!--<img id="image" src="../repo/data/src1.jpg" />-->
+                        <!--<img id="image" src="../repo/data/Bikini.jpg" />-->
+                        <?php
+                            //echo $_COOKIE["PHPSESSID"];
+                            //echo '<br />';
+                            //echo session_id();
+                        ?>
+                        <img id="image" src="data/picture/<?php echo session_id();?>.jpg" />
                     </div>
                 <script type="text/javascript">
                     // $(function() {
