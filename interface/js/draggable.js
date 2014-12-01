@@ -168,8 +168,17 @@ $(document).ready(function(){
         };
     }
     //$( '#resize' ).removeClass( 'active' ); // Uncomment to active disable resize at start
+    $( '#resize' ).addClass( 'active' );
+    $( '#resize' ).click(function(){
+        if ( $( this ).hasClass( 'active' ) ) {
+            $( this ).removeClass( 'active' );
+        } else {
+            $( this ).addClass( 'active' );
+        };
+    });
     resizeCheck( '#resize' );
     $( '#resize' ).click(function(){
         resizeCheck(this);
     });
+    
 });

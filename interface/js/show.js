@@ -1,31 +1,20 @@
 $(document).ready(function(){
     /**
-        * Show and hide container when top menu is checked or not
+    * Show and hide container when top menu is checked or not
     **/
-    $( '#top-menu ul li ul li' ).addClass( 'active' );
-    $( '#button-11' ).removeClass( 'active' );
-    $( '#button-01' ).removeClass( 'active' );
-    $( '#button-02' ).removeClass( 'active' );
-    $( '#button-03' ).removeClass( 'active' );
-    //$( '#button-09' ).removeClass( 'active' );
-    $( '#top-menu ul li ul li' ).click(function(){
+    $( '[id^="button-"]' ).addClass( 'active' );
+    $( '#button-11' ).removeClass( 'active' ); // hide for last dive
+    $( '[id^="button-"]' ).click(function(){
         if ( $( this ).hasClass( 'active' ) ) {
             $( this ).removeClass( 'active' );
         } else {
             $( this ).addClass( 'active' );
-            $( '#button-01' ).removeClass( 'active' );
-            $( '#button-02' ).removeClass( 'active' );
-            $( '#button-03' ).removeClass( 'active' );
         };
     });
-    //$( '[id^="tool-"]' ).hide(); // hide the other divs
+    //$( '[id^="button-"]' ).hide(); // hide the other divs
     $( '[id^="tool-"]' ).addClass( 't-show' );
-    $( '#tool-11' ).removeClass( 't-show' ).addClass( 't-hide' ).hide();
-    // $( '#tool-01' ).removeClass( 't-show' ).addClass( 't-hide' ).hide();
-    // $( '#tool-02' ).removeClass( 't-show' ).addClass( 't-hide' ).hide();
-    // $( '#tool-03' ).removeClass( 't-show' ).addClass( 't-hide' ).hide();
-    //$( '#tool-09' ).removeClass( 't-show' ).addClass( 't-hide' ).hide();
-    $( 'li[id^="button-"]' ).click(function(){
+    $( '#tool-11' ).removeClass( 't-show' ).addClass( 't-hide' ).hide(); // hide for last dive
+    $( '[id^="button-"]' ).click(function(){
         if ( $( '#tool-'+this.id.slice(7) ).hasClass( 't-show' ) ) {
             $( '#tool-'+this.id.slice(7) ).removeClass( 't-show' );
             $( '#tool-'+this.id.slice(7) ).hide( 'fold' ).addClass( 't-hide' ); // drop size scale slide fold

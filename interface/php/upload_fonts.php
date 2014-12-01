@@ -1,12 +1,10 @@
 <?php
-
-    // if ( 0 < $_FILES['file']['error'] ) {
-        // echo 'Error: ' . $_FILES['file']['error'] . '<br>';
-    // } else {
-        // echo 'tu skrypt php - wszystko OK';
-        // move_uploaded_file($_FILES['file']['tmp_name'], '../data/' . $_FILES['file']['name']);
-    // }
-
+// if ( 0 < $_FILES['file']['error'] ) {
+    // echo 'Error: ' . $_FILES['file']['error'] . '<br>';
+// } else {
+    // echo 'tu skrypt php - wszystko OK';
+    // move_uploaded_file($_FILES['file']['tmp_name'], '../data/' . $_FILES['file']['name']);
+// }
 ?>
 <?php
 class UpLoadFiles
@@ -19,7 +17,7 @@ class UpLoadFiles
 			echo '<span class="catch_span">Font upload successful: '.$_FILES['files']['name'].'</span>';
 			move_uploaded_file($_FILES['files']['tmp_name'], $des.'/'.$_FILES['files']['name']);
 		} else {
-			echo '<span class="catch_span">Nie dozwolony format pliku: '.$_FILES['files']['name'].'</span>';
+			echo '<span class="catch_span">Not allowed file type: '.$_FILES['files']['name'].'</span>';
 		}
 	}
 	public function upLoad($des)

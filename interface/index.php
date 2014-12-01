@@ -81,7 +81,7 @@ session_start();
                     <ul>
                         <li>File
                             <ul>
-                                <li id="button-01">Load file</li>
+                                <li id="load-file">Load file</li>
                                 <li id="button-02">Save</li>
                                 <li id="button-03">Download file</li>
                             </ul>
@@ -102,13 +102,9 @@ session_start();
                                 -->
                             </ul>
                         </li>
-                        <li>Edycja
-                            <ul>
-                                <li id="resize">resize</li>
-                            </ul>
-                        </li>
-                        <li>Zapisz</li>
-                        <li>Pobierz</li>
+                        <li id="resize">Resize on/off</li>
+                        <li id="add-font">Add font</li>
+                        <li>About</li>
                     </ul>
                 </nav>
                 <span id="info" style="position:absolute; top:0; left:40%;"></span>
@@ -209,9 +205,9 @@ session_start();
                     <!-- Font Family -->
                     <script type="text/javascript">
                         $(function() {
-                            $('#form').change(function(e) {
+                            $('#form-fonts').change(function(e) {
                                 e.preventDefault();
-                                data = new FormData($('#form')[0]);
+                                data = new FormData($('#form-fonts')[0]);
                                 console.log('Submitting');
                                 $.ajax({
                                     type: 'POST',
@@ -226,18 +222,6 @@ session_start();
                                         //$("#show").html(data);
                                         $("#info").html(data);
                                     },
-                                    // xhrFields: {
-                                        // //add listener to XMLHTTPRequest object directly for progress (jquery doesn't have this yet)
-                                        // onprogress: function (progress) {
-                                            // //calculate upload progress
-                                            // var percentage = Math.floor((progress.total / progress.totalSize) * 100);
-                                            // //log upload progress to console
-                                            // console.log('progress', percentage);
-                                            // if (percentage === 100) {
-                                                // console.log('DONE!');
-                                            // }
-                                        // }
-                                    // },
                                     contentType: false,
                                     processData: false
                                 }).done(function(data) {
@@ -248,6 +232,9 @@ session_start();
                                     console.log(jqXHR.status);
                                     //$("#info").text('font upload fail');
                                 });
+                            });
+                            $( '#add-font' ).click(function(){
+                                $( '#files' ).click();
                             });
                         });
                     </script>
@@ -262,15 +249,11 @@ session_start();
                                 <option value="" selected>Default</option>
                             </select>
                         </div>
-                        <form id="form" method="POST" enctype="multipart/form-data">
-                            <!--<p id="fontDropZone">Drop here.</p>-->
+                        <form id="form-fonts" method="POST" enctype="multipart/form-data">
                             <input id="files" name="files" type="file" />
-                            <!--<button id="upload">Upload</button>-->
                         </form>
-                        <form id="form2" style="visibility:hidden;" method="POST" enctype="multipart/form-data">
-                            <!--<p id="fontDropZone">Drop here.</p>-->
+                        <form id="form-pictures" method="POST" enctype="multipart/form-data">
                             <input id="pictures" name="pictures" type="file" />
-                            <!--<button id="upload">Upload</button>-->
                         </form>
                     </div>
                     <!-- Unknown -->
@@ -296,28 +279,18 @@ session_start();
                     <div id="middle">
                         <!--<img id="image" src="../repo/data/src1.jpg" />-->
                         <!--<img id="image" src="../repo/data/Bikini.jpg" />-->
-                        <?php
-                            //echo $_COOKIE["PHPSESSID"];
-                            //echo '<br />';
-                            //echo session_id();
-                        ?>
                         <script type="text/javascript">
                             $(function() {
-                                $('#form2').change(function(e) {
+                                $('#form-pictures').change(function(e) {
                                     e.preventDefault();
-                                    data = new FormData($('#form2')[0]);
+                                    data = new FormData($('#form-pictures')[0]);
                                     console.log('Submitting');
                                     $.ajax({
                                         type: 'POST',
                                         url: 'php/upload_files.php',
-                                        //url: 'php/show.php',
                                         data:  data,
                                         cache: false,
                                         success: function (data) {
-                                            // do something
-                                            //alert('Success');
-                                            //alert(data);
-                                            //$("#show").html(data);
                                             $("#info").html(data);
                                             location.reload();
                                         },
@@ -329,91 +302,82 @@ session_start();
                                         console.log(errorThrown);
                                         console.log(jqXHR.responseText);
                                         console.log(jqXHR.status);
-                                        //$("#info").text('font upload fail');
+                                        $("#info").text('Picture upload fail');
                                     });
                                 });
-                                $( '#button-01' ).click(function(){
+                                $( '#load-file' ).click(function(){
                                     $( '#pictures' ).click();
                                 });
                             });
                         </script>
                         <img id="image" src="data/picture/<?php echo session_id();?>.jpg" />
                     </div>
-                <script type="text/javascript">
-                    // $(function() {
-                        // dataString = {w:'val', h:'val2'}; // array
-                        // dataObject = {w:'val', h:'val2'}; // array
-                        // //dataString = ['val','val2']; // array
-                        // //var ary = ['fg','dfg','dddd'];
-                        // //var jsonString = JSON.stringify(ary);
-                        // $.ajax({
-                            // type: 'POST',
-                            // url: 'php/show.php',
-                            // //data: {data : jsonString}, 
-                            // //data: {data : dataString }, 
-                            // data: {data : dataObject }, 
-                            // cache: false,
-                            // dataType: 'text',
-                            // success: function(data){
-                                // //alert("OK");
-                                // $('#show').html(data);
-                            // }
+                    <script type="text/javascript">
+                        // $(function() {
+                            // dataString = {w:'val', h:'val2'}; // array
+                            // dataObject = {w:'val', h:'val2'}; // array
+                            // //dataString = ['val','val2']; // array
+                            // //var ary = ['fg','dfg','dddd'];
+                            // //var jsonString = JSON.stringify(ary);
+                            // $.ajax({
+                                // type: 'POST',
+                                // url: 'php/show.php',
+                                // //data: {data : jsonString}, 
+                                // //data: {data : dataString }, 
+                                // data: {data : dataObject }, 
+                                // cache: false,
+                                // dataType: 'text',
+                                // success: function(data){
+                                    // //alert("OK");
+                                    // $('#show').html(data);
+                                // }
+                            // });
+                            // // $.ajax({
+                                // // url : 'php/show.php',
+                                // // dataType: "text",
+                                // // success : function (data) {
+                                    // // $('#show').html(data);
+                                // // }
+                            // // });
                         // });
-                        // // $.ajax({
-                            // // url : 'php/show.php',
-                            // // dataType: "text",
-                            // // success : function (data) {
-                                // // $('#show').html(data);
-                            // // }
-                        // // });
-                    // });
-                    $(function() {
-                        // dataObject = {w:'val', h:'val2'};
-                        // $.ajax({
-                            // type: 'POST',
-                            // url: 'php/show.php',
-                            // data: {data : dataObject }, 
-                            // cache: false,
-                            // dataType: 'text',
-                            // success: function(data){
-                                // $('#show').html(data);
-                            // }
-                        // });
-                        var arry = [];
-                        $( '.drag' ).each(function(){
-                            var getId = $( this ).attr('id');
-                            var top = $( this ).css('top');
-                            var left = $( this ).css('left');
-                            var size = $( this ).children('.toText').css('font-size');
-                            //var rotate = $( this ).children('.toText').css('font-family');
-                            var rotate = getRotationDegrees($(this));
-                            var family = $( this ).children('.toText').css('font-family');
-                            var color = $( this ).children('.toText').css('color');
-                            var value = $( this ).children('.toText').text();
-                            //var  = $( this ).css('');
-                            arry.push({top:top, left:left, size:size, rotate:rotate, family:family, color:color, value:value});
-                        });
-                        dataObject = {arry};
-                        $.ajax({
-                                type: 'POST',
-                                url: 'php/show.php',
-                                data: {data : dataObject }, 
-                                cache: false,
-                                dataType: 'text',
-                                success: function(data){
-                                    $('#show').html(data);
-                                }
+                        $(function() {
+                            /**
+                            * Array with all parameters to create image in GD
+                            **/
+                            var arry = [];
+                            $( '.drag' ).each(function(){
+                                var getId = $( this ).attr('id');
+                                var top = $( this ).css('top');
+                                var left = $( this ).css('left');
+                                var size = $( this ).children('.toText').css('font-size');
+                                //var rotate = $( this ).children('.toText').css('font-family');
+                                var rotate = getRotationDegrees($(this));
+                                var family = $( this ).children('.toText').css('font-family');
+                                var color = $( this ).children('.toText').css('color');
+                                var value = $( this ).children('.toText').text();
+                                //var  = $( this ).css('');
+                                arry.push({top:top, left:left, size:size, rotate:rotate, family:family, color:color, value:value});
                             });
-                    }); 
-                </script>
+                            dataObject = {arry};
+                            $.ajax({
+                                    type: 'POST',
+                                    url: 'php/show.php',
+                                    data: {data : dataObject }, 
+                                    cache: false,
+                                    dataType: 'text',
+                                    success: function(data){
+                                        $('#show').html(data);
+                                    }
+                                });
+                        }); 
+                    </script>
                 </div>
-                <div id="show">-</div>
+                <div id="show"></div>
             </article>
         </section>
         <footer>
             <div id="count" style="visibility:hidden;"></div>
         </footer>
-        
         <?php //var_dump($_FILES); ?>
         <?php //var_dump($_POST); ?>
         <?php //var_dump($_COOKIE); ?>

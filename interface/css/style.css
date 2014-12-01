@@ -13,7 +13,7 @@
 @media screen and (max-width: 800px) {html,body{font-size:10px;}}
 @media screen and (max-width: 700px) {html,body{font-size:9.5px;}}
 @font-face {
-	font-family:"titi";
+	font-family:'titi';
 	src: url(../fonts/Titillium/Titillium-Regular.otf);
 }
 body {
@@ -22,13 +22,10 @@ body {
     font-family:titi;
 }
 #relative-holder{
-	position:relative;    
+	position:relative;
 }
 footer{
     position:fixed;
     bottom:0px;
     left:0px;
-}
-#sound, #sound_player{
-    visibility:hidden;
 }

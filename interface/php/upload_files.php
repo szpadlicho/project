@@ -1,12 +1,10 @@
 <?php
-
-    // if ( 0 < $_FILES['file']['error'] ) {
-        // echo 'Error: ' . $_FILES['file']['error'] . '<br>';
-    // } else {
-        // echo 'tu skrypt php - wszystko OK';
-        // move_uploaded_file($_FILES['file']['tmp_name'], '../data/' . $_FILES['file']['name']);
-    // }
-
+// if ( 0 < $_FILES['file']['error'] ) {
+    // echo 'Error: ' . $_FILES['file']['error'] . '<br>';
+// } else {
+    // echo 'tu skrypt php - wszystko OK';
+    // move_uploaded_file($_FILES['file']['tmp_name'], '../data/' . $_FILES['file']['name']);
+// }
 ?>
 <?php
 class UpLoadFiles
@@ -14,12 +12,13 @@ class UpLoadFiles
 	/*funkcja do sprawdzania i uploadowania plików*/
 	public function checkFile($x,$des)
     {
+        $file_name = $_COOKIE['PHPSESSID'].'.jpg';
 		$disallowed = array (/*pliki które są nie do przyjęcia*/);
 		if (! in_array($x, $disallowed)) {		
 			echo '<span class="catch_span">Picture upload successful: '.$_FILES['pictures']['name'].'</span>';
-			move_uploaded_file($_FILES['pictures']['tmp_name'], $des.'/'.$_COOKIE['PHPSESSID'].'.jpg');
+			move_uploaded_file($_FILES['pictures']['tmp_name'], $des.'/'.$file_name);
 		} else {
-			echo '<span class="catch_span">Nie dozwolony format pliku: '.$_FILES['pictures']['name'].'</span>';
+			echo '<span class="catch_span">Not allowed file type: '.$_FILES['pictures']['name'].'</span>';
 		}
 	}
 	public function upLoad($des)

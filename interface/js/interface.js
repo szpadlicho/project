@@ -203,7 +203,7 @@ $(function() {
 });
 $(function(){
     /**
-    *   Position Top
+    * Position Top
     **/
     $("#slider-top").slider({
         orientation: "vertical",
@@ -311,7 +311,7 @@ $(function(){
 });
 $(function(){
     /**
-    *   Position Height
+    * Size Height
     **/
     $("#slider-height").slider({
         orientation: "vertical",
@@ -364,7 +364,7 @@ $(function(){
         $('#text-height-procent').val(prTop);
     });
     /**
-    * Position Width
+    * Size Width
     **/
     $("#slider-width").slider({
         orientation: "horizontal",
