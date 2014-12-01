@@ -102,7 +102,10 @@ session_start();
                                 -->
                             </ul>
                         </li>
-                        <li id="resize">Resize on/off</li>
+                        <li>Options
+                        <ul>
+                            <li id="resize">Resize on/off</li>
+                        </ul>
                         <li id="add-font">Add font</li>
                         <li>About</li>
                     </ul>
