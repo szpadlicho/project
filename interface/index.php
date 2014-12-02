@@ -230,7 +230,10 @@ session_start();
                                 <option value="Comic Sans MS">Comic Sans MS</option>
                                 <option value="">Default</option>
                             </select>
-                            <?php include_once('php/show_fonts.php'); ?>
+                            <p>My fonts:</p>
+                            <select id="fontChangeMy" class="fontChange">
+                                <?php include_once('php/show_fonts.php'); ?>
+                            </select>
                         </div>
                         <form id="form-fonts" method="POST" enctype="multipart/form-data">
                             <input id="files" name="files" type="file" />

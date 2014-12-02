@@ -1,5 +1,3 @@
-<p>My fonts:</p>
-<select id="fontChangeMy" class="fontChange">
 <?php
 //$files = glob('../data/fonts/*.*');
 $files = glob('data/fonts/*.otf');
@@ -26,4 +24,3 @@ foreach ($files as $file) {
     // filePathParts(pathinfo($file));
 // };
 ?>
-</select>
