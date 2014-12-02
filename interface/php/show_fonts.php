@@ -10,7 +10,7 @@ foreach ($files as $file) {
         //echo $file.' - '.basename($file);
         //echo '<br />';
         ?>
-        <option value="<?php echo $file ?>"><?php echo basename($file, '.otf'); ?></option>
+        <option style="font-family: <?php echo basename($file, '.otf'); ?>;" value="<?php echo $file ?>"><?php echo basename($file, '.otf'); ?></option>
         <?php
     };
 };

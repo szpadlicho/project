@@ -25,25 +25,26 @@ $(function(){
     });
     $(document).on('mousedown', '.drag', function () {
         var fontFamily = $( '.curent .toText' ).css( 'font-family');
-        //alert(fontFamily);
         //console.log('font family: '+fontFamily);
         //var text2 = $( '#fontChange2 option:selected' ).text();
-        //alert(value);
         //console.log('text2: '+text2);
         $( '#fontChange2 option' ).each(function(){
             //console.log('this text: '+$( this ).text());
             if($( this ).text()==fontFamily){
-                //alert($( this ).text());
-                //alert(fontFamily);
-                $(this).attr("selected",true); 
-                $("#fontChange2 option:selected").text(fontFamily);
+                //console.log('this: '+$( this ).text());
+                //console.log('ff: '+fontFamily);
+                //console.log('------------');
+                //$(this).attr("selected",true); 
+                //$("#fontChange2 option:selected").text( $( '#fontChange2 option:selected' ).text() );
+                //$('#fontChange2 option:contains("'+$( this ).text()+'")').prop('selected', true);
+                $('#fontChange2 option').filter(function() { 
+                    return ($(this).text() == fontFamily); //To select actually font family
+                }).prop('selected', true);
             } else {
                 $(this).attr("selected",false); 
             }
         });
-        //var text3 = $( '#fontChange2 option:selected' ).text();
-        //alert(value);
-        //console.log('text3: '+text3);
+        //console.log($( '#fontChange2 option:selected' ).text());
     });
     $( '.drag' ).each(function(){
         var getId = $( this ).attr('id');
