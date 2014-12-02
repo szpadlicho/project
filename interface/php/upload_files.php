@@ -7,6 +7,7 @@
 // }
 ?>
 <?php
+include_once('clear_old.php');
 class UpLoadFiles
 {
 	/*funkcja do sprawdzania i uploadowania plików*/

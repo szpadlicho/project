@@ -22,6 +22,7 @@ session_start();
         <link title="deafult" type="text/css" rel="stylesheet" href="css/colpick.css" />
         <link title="deafult" type="text/css" rel="stylesheet" href="css/slider.css" />
         <link title="deafult" type="text/css" rel="stylesheet" href="css/fonts.css" />
+        <link title="deafult" type="text/css" rel="stylesheet" href="css/font_css.php" />
         <!--
         <link rel="stylesheet" href="//code.jquery.com/ui/1.11.2/themes/smoothness/jquery-ui.css">
         -->
@@ -49,29 +50,6 @@ session_start();
         $(document).ready(both);
         $(document).load(both);
         $(window).resize(both);
-        </script>
-        <script type="text/javascript">
-        /*
-        $(function() {
-            $( "#set div" ).draggable({ 
-                stack: "#set div",
-                stop: function(event, ui) {
-                    var pos_x = ui.offset.left;
-                    var pos_y = ui.offset.top;
-                    var need = ui.helper.data("need");
-
-                    //Do the ajax call to the server
-                    $.ajax({
-                        type: "POST",
-                        url: "your_php_script.php",
-                        data: { x: pos_x, y: pos_y, need_id: need}
-                    }).done(function( msg ) {
-                        alert( "Data Saved: " + msg );
-                    }); 
-                }
-            });
-        });
-        */
         </script>
     </head>
     <body>
@@ -251,6 +229,7 @@ session_start();
                                 <option value="Comic Sans MS">Comic Sans MS</option>
                                 <option value="" selected>Default</option>
                             </select>
+                            <?php include_once('php/show_fonts.php'); ?>
                         </div>
                         <form id="form-fonts" method="POST" enctype="multipart/form-data">
                             <input id="files" name="files" type="file" />
@@ -361,17 +340,22 @@ session_start();
                                 //var  = $( this ).css('');
                                 arry.push({top:top, left:left, size:size, rotate:rotate, family:family, color:color, value:value});
                             });
-                            // function loadMenu() {
-                                // if (!localStorage.length < 1) {
-                                    // for (var i = 0; i < localStorage.length; i++) {
-                                        // var item = localStorage.getItem(localStorage.key(i));
-                                        // alert(item);
-                                    // }
-                                // } else {
-                                    // alert('no item');
-                                // }
-                            // }
-                            // loadMenu();
+                            function loadMenu() {
+                                /**
+                                * function do display all localStorage data
+                                **/
+                                if (!localStorage.length < 1) {
+                                    for (var i = 0; i < localStorage.length; i++) {
+                                        var item = localStorage.getItem(localStorage.key(i));
+                                        //alert(item);
+                                        //$('#show-local').append(item);
+                                        //$('#show-local').append('<br />');
+                                    }
+                                } else {
+                                    alert('no item');
+                                }
+                            }
+                            loadMenu();
                             dataObject = {arry};
                             $.ajax({
                                     type: 'POST',
@@ -386,6 +370,7 @@ session_start();
                         }); 
                     </script>
                 </div>
+                <div id="show-local"></div>
                 <div id="show"></div>
             </article>
         </section>
