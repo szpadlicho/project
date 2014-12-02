@@ -10,13 +10,12 @@
    $red = 'silver'
 ?>
 body {
-   background-color: <?php echo $red; ?>;
+   /*background-color: <?php echo $red; ?>;*/
 }
 <?php
 $files = glob('../data/fonts/*.otf');
 //$files = glob('data/fonts/*.*');
 //$time  = time();
-
 foreach ($files as $file) {
     if (is_file($file)) {
         //echo $file
@@ -31,5 +30,5 @@ foreach ($files as $file) {
 };
 ?>
 #show{
-    font-family:'Titillium-Bold';
+    /*font-family:'Titillium-thin';*/
 }
