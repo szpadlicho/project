@@ -15,63 +15,64 @@ $data = $_POST['data'];
 $count = count($data['arry']);
 //---------------------------------//
 $picture = '../data/picture/'.$_COOKIE['PHPSESSID'].'.jpg';
+
 list($width, $height, $type, $attr) = getimagesize($picture); // pobieram wymiary x i y obrazy , typ i atrybuty
-if (file_exists('../data/picture/'.$_COOKIE['PHPSESSID'].'-preview.jpg')) {
-    //echo ':)';
-    $picture = '../data/picture/'.$_COOKIE['PHPSESSID'].'-preview.jpg';
-}
+
 // foreach start
 for ($i = 0; $i < $count; $i++) {
-$color = $data['arry'][$i]['color'];// here color set
-$color = str_replace(array('rgb(', ')', ' '), '', $color);
-$rgb = explode(',', $color);
-//var_dump($rgb);
-$r = $rgb[0];
-$g = $rgb[1];
-$b = $rgb[2];
+    if (file_exists('../data/picture/'.$_COOKIE['PHPSESSID'].'-preview.jpg')) {
+        $picture = '../data/picture/'.$_COOKIE['PHPSESSID'].'-preview.jpg';
+    }
+    $color = $data['arry'][$i]['color'];// here color set
+    $color = str_replace(array('rgb(', ')', ' '), '', $color);
+    $rgb = explode(',', $color);
+    //var_dump($rgb);
+    $r = $rgb[0];
+    $g = $rgb[1];
+    $b = $rgb[2];
 
-$opacity = 1;// here opacity set
-$j = __getProcentFromNumber($opacity, 1);
-//var_dump($j);
-$m = __getNumberFromProcent($j, 127);
-//var_dump($m);
-$alpha = 127-$m;// 0 to 127
-//var_dump($alpha);
+    $opacity = 1;// here opacity set
+    $j = __getProcentFromNumber($opacity, 1);
+    //var_dump($j);
+    $m = __getNumberFromProcent($j, 127);
+    //var_dump($m);
+    $alpha = 127-$m;// 0 to 127
+    //var_dump($alpha);
 
-$ffname = $data['arry'][$i]['family'];// here font family set
-$font = '../data/fonts/'.$ffname.'.otf';
+    $ffname = $data['arry'][$i]['family'];// here font family set
+    $font = '../data/fonts/'.$ffname.'.otf';
 
-$size = $data['arry'][$i]['size'];// here font size set
-$int = intval($size);
-$workH = $data['arry'][$i]['workH'];// here workH set
-//var_dump($int);
-$h = __getProcentFromNumber($int, $workH);
-//var_dump($hjk);
-$rsize = __getNumberFromProcent($h, $height);
-//var_dump($rsize);
-$fsize = $rsize;
+    $size = $data['arry'][$i]['size'];// here font size set
+    $int = intval($size);
+    $workH = $data['arry'][$i]['workH'];// here workH set
+    //var_dump($int);
+    $h = __getProcentFromNumber($int, $workH);
+    //var_dump($hjk);
+    $rsize = __getNumberFromProcent($h, $height);
+    //var_dump($rsize);
+    $fsize = $rsize;
 
-$inscription = $data['arry'][$i]['value'];// here set value
+    $inscription = $data['arry'][$i]['value'];// here set value
 
-$rotate = $data['arry'][$i]['rotate'];// here set rotate
+    $rotate = $data['arry'][$i]['rotate'];// here set rotate
 
-$top = $data['arry'][$i]['top'];// here set top
-$th = __getProcentFromNumber($top, $workH);
-$x = __getNumberFromProcent($th, $height);
-//var_dump($x);
+    $top = $data['arry'][$i]['top']+$size;// here set top
+    $th = __getProcentFromNumber($top, $workH);
+    $x = __getNumberFromProcent($th, $height);
+    //var_dump($x);
 
-$workW = $data['arry'][$i]['workW'];// here workW set
-$left = $data['arry'][$i]['left'];// here set left
-$lw = __getProcentFromNumber($left, $workW);
-$y = __getNumberFromProcent($lw, $width);
-//var_dump($y);
+    $workW = $data['arry'][$i]['workW'];// here workW set
+    $left = $data['arry'][$i]['left'];// here set left
+    $lw = __getProcentFromNumber($left, $workW);
+    $y = __getNumberFromProcent($lw, $width);
+    //var_dump($y);
 
-$handle = imagecreatefromjpeg($picture);
-$fcolor = imagecolorallocatealpha($handle, $r, $g, $b, $alpha);
-imagettftext($handle, $fsize, $rotate, $y, $x, $fcolor, $font, $inscription);
-imagejpeg($handle, '../data/picture/'.$_COOKIE['PHPSESSID'].'-preview.jpg');
-imagedestroy($handle);
-// foreach end
+    $handle = imagecreatefromjpeg($picture);
+    $fcolor = imagecolorallocatealpha($handle, $r, $g, $b, $alpha);
+    imagettftext($handle, $fsize, $rotate, $y, $x, $fcolor, $font, $inscription);
+    imagejpeg($handle, '../data/picture/'.$_COOKIE['PHPSESSID'].'-preview.jpg');
+    imagedestroy($handle);
+    // foreach end
 }
 echo "<img width='340px' src=data/picture/".$_COOKIE['PHPSESSID']."-preview.jpg"."?mtime=".@filemtime($fileimg)." alt='Aby zacząć edycje prześlij obraz'/><br />\n";//dzieki temu wymuszam odswiezanie obrazka
 ?>
