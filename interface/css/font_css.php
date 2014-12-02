@@ -22,7 +22,7 @@ foreach ($files as $file) {
         //echo basename($file);
         ?>
 @font-face {
-	font-family:'<?php echo basename($file, '.otf'); ?>';
+	font-family: <?php echo basename($file, '.otf'); ?>;
 	src: url('<?php echo $file; ?>');
 }       
         <?php

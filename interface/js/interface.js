@@ -100,19 +100,31 @@ $(function() {
         value: 14,
         step: 1,
         slide: function( event, ui ) {
-            $( '#text-size' ).val( ui.value );
+            $( '.curent' ).css({'width':'','height':''});// only for handed resize setup reset
             //
             $('.curent').children(':nth-child(4)').css('font-size',ui.value+'px');
             var saveId = $('.curent').attr('id');
             localStorage.setItem(saveId+'font',$('.curent').children(':nth-child(4)').css('font-size'));
+        },
+        stop: function() {// only for fix resize setup
+            var id = $('.curent').attr('id').slice(-1);
+            localStorage.setItem('resizableWidth'+id, $( '.curent' ).width());
+            localStorage.setItem('resizableHeight'+id, $( '.curent' ).height());
+            //alert($( '.curent' ).width());
+            //alert($( '.curent' ).height());
         }
     });
     $( '#text-size' ).val( $( '#slider-size' ).slider( 'value' ) );
     $(document).on('keyup', '#text-size', function (event) {
+        $( '.curent' ).css({'width':'','height':''});//this is only for handed resize setup reset to fixed this
         $( '#slider-size' ).slider( 'value', this.value );
         $('.curent').children(':nth-child(4)').css('font-size',this.value+'px');
         var saveId = $('.curent').attr('id');
         localStorage.setItem(saveId+'font',$('.curent').children(':nth-child(4)').css('font-size'));
+        // next is only for fix resize setup
+        var id = $('.curent').attr('id').slice(-1);
+        localStorage.setItem('resizableWidth'+id, $( '.curent' ).width());
+        localStorage.setItem('resizableHeight'+id, $( '.curent' ).height());
     });
     $(document).on('mousedown', '.drag', function () {
         var size = $(this).children(':nth-child(4)').css('font-size');
