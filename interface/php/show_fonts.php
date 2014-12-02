@@ -1,18 +1,8 @@
-<!--
-<p>Fonts:</p>
-<select id="fontChange">
-    <option value="Arial">Arial</option>
-    <option value="Verdana">Verdana</option>
-    <option value="Impact">Impact</option>
-    <option value="Comic Sans MS">Comic Sans MS</option>
-    <option value="" selected>Default</option>
-</select>
--->
-<p>Fonts:</p>
+<p>My fonts:</p>
 <select id="fontChange2">
 <?php
 //$files = glob('../data/fonts/*.*');
-$files = glob('data/fonts/*.*');
+$files = glob('data/fonts/*.otf');
 //$time  = time();
 
 foreach ($files as $file) {
@@ -20,7 +10,7 @@ foreach ($files as $file) {
         //echo $file.' - '.basename($file);
         //echo '<br />';
         ?>
-        <option value="<?php echo $file ?>"><?php echo basename($file); ?> </option>
+        <option value="<?php echo $file ?>"><?php echo basename($file, '.otf'); ?></option>
         <?php
     };
 };

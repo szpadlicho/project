@@ -202,6 +202,7 @@ session_start();
                                         //alert(data);
                                         //$("#show").html(data);
                                         $("#info").html(data);
+                                        location.reload();
                                     },
                                     contentType: false,
                                     processData: false
