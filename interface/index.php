@@ -223,12 +223,12 @@ session_start();
                     <div id="tool-10" class="tools">
                         <div id="fonts" >
                             <p>Fonts:</p>
-                            <select id="fontChange">
+                            <select id="fontChange" class="fontChange" >
                                 <option value="Arial">Arial</option>
                                 <option value="Verdana">Verdana</option>
                                 <option value="Impact">Impact</option>
                                 <option value="Comic Sans MS">Comic Sans MS</option>
-                                <option value="" selected>Default</option>
+                                <option value="">Default</option>
                             </select>
                             <?php include_once('php/show_fonts.php'); ?>
                         </div>

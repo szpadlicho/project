@@ -1,5 +1,5 @@
 <p>My fonts:</p>
-<select id="fontChange2">
+<select id="fontChangeMy" class="fontChange">
 <?php
 //$files = glob('../data/fonts/*.*');
 $files = glob('data/fonts/*.otf');

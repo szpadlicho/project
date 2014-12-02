@@ -8,6 +8,7 @@ $(function(){
         var fontFamily = $( '.curent .toText' ).css( 'font-family');
         $("#fontChange option").each(function(){
             if($(this).val()==fontFamily){
+                $( '#fontChange' ).css('font-family', fontFamily);
                 $(this).attr("selected",true); 
                 $("#fontChange").val(fontFamily);
             } else {
@@ -15,8 +16,8 @@ $(function(){
             }
         });
     });
-    $("#fontChange2").click(function() {
-        var value = $( '#fontChange2 option:selected' ).text();
+    $("#fontChangeMy").click(function() {
+        var value = $( '#fontChangeMy option:selected' ).text();
         $( '.curent .toText' ).css( 'font-family', value);
         //alert(value);
         var saveId = $( '.curent' ).attr('id');
@@ -26,25 +27,26 @@ $(function(){
     $(document).on('mousedown', '.drag', function () {
         var fontFamily = $( '.curent .toText' ).css( 'font-family');
         //console.log('font family: '+fontFamily);
-        //var text2 = $( '#fontChange2 option:selected' ).text();
+        //var text2 = $( '#fontChangeMy option:selected' ).text();
         //console.log('text2: '+text2);
-        $( '#fontChange2 option' ).each(function(){
+        $( '#fontChangeMy option' ).each(function(){
             //console.log('this text: '+$( this ).text());
             if($( this ).text()==fontFamily){
                 //console.log('this: '+$( this ).text());
                 //console.log('ff: '+fontFamily);
                 //console.log('------------');
                 //$(this).attr("selected",true); 
-                //$("#fontChange2 option:selected").text( $( '#fontChange2 option:selected' ).text() );
-                //$('#fontChange2 option:contains("'+$( this ).text()+'")').prop('selected', true);
-                $('#fontChange2 option').filter(function() { 
+                //$("#fontChangeMy option:selected").text( $( '#fontChangeMy option:selected' ).text() );
+                //$('#fontChangeMy option:contains("'+$( this ).text()+'")').prop('selected', true);
+                $( '#fontChangeMy' ).css('font-family', fontFamily);
+                $('#fontChangeMy option').filter(function() { 
                     return ($(this).text() == fontFamily); //To select actually font family
                 }).prop('selected', true);
             } else {
                 $(this).attr("selected",false); 
             }
         });
-        //console.log($( '#fontChange2 option:selected' ).text());
+        //console.log($( '#fontChangeMy option:selected' ).text());
     });
     $( '.drag' ).each(function(){
         var getId = $( this ).attr('id');
@@ -52,28 +54,11 @@ $(function(){
         $('#'+getId+' .toText').css('font-family',values);
     });
 });
-// $(function(){
-    // $("#fontChange2").change(function() {
-        // var value = $( '#fontChange2 option:selected' ).text();
-        // alert(value);
-        // $( 'head' ).prepend('<style type=\"text/css\">' + 
-                                    // '@font-face {\n' +
-                                        // '\tfont-family: \"'+value+'\";\n' + 
-                                        // '\tsrc: local('☺'), url(''+$(this).val()+'') format('opentype');\n' + 
-                                    // '}\n' + 
-                                        // '\.curent .toText {\n' + 
-                                        // '\tfont-family: '+value+' !important;\n' + 
-                                    // '}\n' + 
-                                // '</style>');
-        
-        // $( '#show-local' ).append("<style type=\"text/css\">" + 
-                                    // "@font-face {\n" +
-                                        // "\tfont-family: \""+value+"\";\n" + 
-                                        // "\tsrc: local('☺'), url('"+$(this).val()+"') format('opentype');\n" + 
-                                    // "}\n" + 
-                                        // "\.curent .toText {\n" + 
-                                        // "\tfont-family: "+value+" !important;\n" + 
-                                    // "}\n" + 
-                                // "</style>");
+// $(document).ready(function(){
+    // $( '.fontChange' ).each(function(){
+        // var fontFamily = $( this ).find( ':first' ).text();
+        // $( this ).css('font-family', fontFamily);
+        // alert(fontFamily);
+        // //$(this).find(':first').attr('selected','selected');
     // });
 // });
