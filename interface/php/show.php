@@ -46,6 +46,7 @@ for ($i = 0; $i < $count; $i++) {
     $size = $data['arry'][$i]['size'];// here font size set
     $int = intval($size);
     $workH = $data['arry'][$i]['workH'];// here workH set
+    $workW = $data['arry'][$i]['workW'];// here workW set
     //var_dump($int);
     $h = __getProcentFromNumber($int, $workH);
     //var_dump($hjk);
@@ -62,7 +63,6 @@ for ($i = 0; $i < $count; $i++) {
     $x = __getNumberFromProcent($th, $height);
     //var_dump($x);
 
-    $workW = $data['arry'][$i]['workW'];// here workW set
     $left = $data['arry'][$i]['left'];// here set left
     $lw = __getProcentFromNumber($left, $workW);
     $y = __getNumberFromProcent($lw, $width);
