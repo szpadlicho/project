@@ -338,11 +338,14 @@ session_start();
                                 var size = $( this ).children('.toText').css('font-size');
                                 //var rotate = $( this ).children('.toText').css('font-family');
                                 var rotate = getRotationDegrees($(this));
-                                var family = $( this ).children('.toText').css('font-family');
                                 var color = $( this ).children('.toText').css('color');
+                                var opacity = $( this ).children('.toText').css('opacity');
                                 var value = $( this ).children('.toText').text();
+                                var family = $( this ).children('.toText').css('font-family');
                                 //var  = $( this ).css('');
-                                arry.push({top:top, left:left, size:size, rotate:rotate, color:color, value:value, family:family});
+                                var workH = $( '#image' ).height();
+                                var workW = $( '#image' ).width();
+                                arry.push({top:top, left:left, size:size, rotate:rotate, color:color, opacity:opacity, value:value, family:family, workH:workH, workW:workW});
                             });
                             function loadMenu() {
                                 /**
