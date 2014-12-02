@@ -29,14 +29,13 @@ $(document).ready(function(){
     * Remove chosen element from site and array
     **/
     //var topMax = 660; // x2 jest w projekcie w width jescze
-    var setStorageItem = function(){
+    var setCookie = function(){
         var jsonStr = JSON.stringify(arr);//converting array into json string   
-        localStorage.setItem('arr', jsonStr);//storing it in a cookie
+        $.cookie('arr', jsonStr);//storing it in a cookie
     };
-    var getStorageItem = function() {
-        var empString = localStorage.getItem('arr');//retrieving data from cookie
+    var getCookie = function() {
+        var empString = $.cookie('arr');//retrieving data from cookie
         var empArr = $.parseJSON(empString);//converting "empString" to an array.
-        //alert(empArr);
         return empArr;
     };
     var elements = function(){
@@ -62,12 +61,12 @@ $(document).ready(function(){
                     $('#text-top-procent').val(prTop);
                 },
                 stop: function(event, ui) {
-                    localStorage.setItem('draggableLeft'+id, ui.position.left);
-                    localStorage.setItem('draggableTop'+id, ui.position.top);
+                    $.cookie('draggableLeft'+id, ui.position.left);
+                    $.cookie('draggableTop'+id, ui.position.top);
                     //alert(ui.position.left);
                 }
             });
-            $( '#draggable-'+id ).css({left : parseInt(localStorage.getItem('draggableLeft'+id)), top : parseInt(localStorage.getItem('draggableTop'+id))});//, 'background-color':'blue'
+            $( '#draggable-'+id ).css({left : parseInt($.cookie('draggableLeft'+id)), top : parseInt($.cookie('draggableTop'+id))});//, 'background-color':'blue'
         });
     };
     /**
@@ -86,11 +85,11 @@ $(document).ready(function(){
                     $('#slider-height').slider( "value", yPos );
                 },
                 stop: function(event, ui) {
-                    localStorage.setItem('resizableWidth'+id, ui.size.width);
-                    localStorage.setItem('resizableHeight'+id, ui.size.height);
+                    $.cookie('resizableWidth'+id, ui.size.width);
+                    $.cookie('resizableHeight'+id, ui.size.height);
                 }
             });
-            $( '#draggable-'+id ).css({width : parseInt(localStorage.getItem('resizableWidth'+id)), height : parseInt(localStorage.getItem('resizableHeight'+id))});
+            $( '#draggable-'+id ).css({width : parseInt($.cookie('resizableWidth'+id)), height : parseInt($.cookie('resizableHeight'+id))});
         });
         $( '#tool-11' ).append( 'lol' );
     };
@@ -99,16 +98,15 @@ $(document).ready(function(){
     **/
     var empArr = [];
     var arr = [];
-    //alert(localStorage.getItem('arr'));
-    if ( localStorage.getItem('arr') != null ) { /*****************************************************************/
-        var empArr = getStorageItem();
+    if ( $.cookie('arr') != undefined ) {
+        var empArr = getCookie();
     } else {
-        setStorageItem();
+        setCookie();
     };
     if ( empArr.length > 0) {
         var arr = empArr;
     };
-    var empArr = getStorageItem();
+    var empArr = getCookie();
     $( '#middle' ).append(empArr);
     elements();
     resize();
@@ -118,32 +116,28 @@ $(document).ready(function(){
     * Button behavior
     **/
     $( '#btnAdd' ).click(function(){
-        if ( localStorage.getItem('lastID') != null ) { /*************************************************************/
+        if ( $.cookie('lastID') != undefined ) {
             //var lastId = $('.drag').last().attr('id').split('-')[1];
-            lastId = localStorage.getItem('lastID');
+            lastId = $.cookie('lastID');
             lastId++;
-            localStorage.setItem('lastID', lastId);
+            $.cookie('lastID', lastId);
         } else {
             var lastId = 0;
-            localStorage.setItem('lastID', lastId);
+            $.cookie('lastID', lastId);
         }
         //var elem = '<p id="draggable-'+lastId+'" class="drag"><button type="button" class="close" >&times;</button><br /><span id="posY'+lastId+'"></span><br /><span id="posX'+lastId+'"></span><br />id : '+lastId+'</p>';
         var elem = '<p id="draggable-'+lastId+'" class="drag"><button class="close" type="button" >&times;</button><span class="number">id : '+lastId+'</span><br /><span id="toText'+lastId+'" class="toText">Some Text</span></p>';
         $( '#middle' ).append(elem);
         arr.push(elem);
-        setStorageItem();
+        setCookie();
         elements()
         resize();
-        $( '.drag' ).removeClass( 'curent' );
-        $( '.drag' ).last().addClass( 'curent' );
-        $('#txt').val( $( '.curent' ).children('.toText').text() );
     });
-    $( '#btnReset' ).click(function(){/***********************************/
-        // var cookies = $.cookie();
-        // for(var cookie in cookies) {
-           // $.removeCookie(cookie);
-        // };
-        localStorage.clear();
+    $( '#btnReset' ).click(function(){
+        var cookies = $.cookie();
+        for(var cookie in cookies) {
+           $.removeCookie(cookie);
+        }
         location.reload();
     });
     $(document).on('mousedown', '.drag', function () { //work on dynamic elements.mousedown()
@@ -158,7 +152,7 @@ $(document).ready(function(){
         var idi = $(this).parents('p').attr('id').split('-')[1];
         $(this).parents('p').remove();
         arr.splice(idi, 1,'');
-        setStorageItem();
+        setCookie();
     });
     /**
     * resize setup 

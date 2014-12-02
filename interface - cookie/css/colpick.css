@@ -1,0 +1,224 @@
+/*
+colpick Color Picker / colpick.com
+*/
+
+/*Main container*/
+.colpick {
+	position: absolute;
+	width: 18.875em;
+	height: 9.875em;
+	#overflow: hidden;
+	display: none;
+	font-family: Arial, Helvetica, sans-serif;
+	background:#000;
+	border: 1px solid #000;
+	#-webkit-border-radius: 5px;
+	#-moz-border-radius: 5px;
+	#border-radius: 5px;
+	/*Prevents selecting text when dragging the selectors*/
+	-webkit-user-select: none;
+	-moz-user-select: none;
+	-ms-user-select: none;
+	-o-user-select: none;
+	user-select: none;
+}
+/*Color selection box with gradients*/
+.colpick_color {
+	position: absolute;
+	#left: 7px;
+	#top: 7px;
+	width: 9.75em;
+	height: 9.75em;
+	overflow: hidden;
+	#outline: 1px solid #aaa;
+	cursor: crosshair;
+    border: 1px solid #999;
+    #display:none;
+}
+.colpick_color_overlay1 {
+	position: absolute;
+	left:0;
+	top:0;
+	width: 9.75em;
+	height: 9.75em;
+	-ms-filter: "progid:DXImageTransform.Microsoft.gradient(GradientType=1,startColorstr='#ffffff', endColorstr='#00ffffff')"; /* IE8 */
+	background: -moz-linear-gradient(left, rgba(255,255,255,1) 0%, rgba(255,255,255,0) 100%); /* FF3.6+ */
+	background: -webkit-gradient(linear, left top, right top, color-stop(0%,rgba(255,255,255,1)), color-stop(100%,rgba(255,255,255,0))); /* Chrome,Safari4+ */
+	background: -webkit-linear-gradient(left, rgba(255,255,255,1) 0%,rgba(255,255,255,0) 100%); /* Chrome10+,Safari5.1+ */
+	background: -o-linear-gradient(left, rgba(255,255,255,1) 0%,rgba(255,255,255,0) 100%); /* Opera 11.10+ */
+	background: -ms-linear-gradient(left, rgba(255,255,255,1) 0%,rgba(255,255,255,0) 100%); /* IE10+ */
+	background: linear-gradient(to right, rgba(255,255,255,1) 0%, rgba(255,255,255,0) 100%);
+	filter:  progid:DXImageTransform.Microsoft.gradient(GradientType=1,startColorstr='#ffffff', endColorstr='#00ffffff'); /* IE6 & IE7 */
+}
+.colpick_color_overlay2 {
+	position: absolute;
+	left:0;
+	top:0;
+	width: 9.75em;
+	height: 9.75em;
+	-ms-filter: "progid:DXImageTransform.Microsoft.gradient(GradientType=0,startColorstr='#00000000', endColorstr='#000000')"; /* IE8 */
+	background: -moz-linear-gradient(top, rgba(0,0,0,0) 0%, rgba(0,0,0,1) 100%); /* FF3.6+ */
+	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(0,0,0,0)), color-stop(100%,rgba(0,0,0,1))); /* Chrome,Safari4+ */
+	background: -webkit-linear-gradient(top, rgba(0,0,0,0) 0%,rgba(0,0,0,1) 100%); /* Chrome10+,Safari5.1+ */
+	background: -o-linear-gradient(top, rgba(0,0,0,0) 0%,rgba(0,0,0,1) 100%); /* Opera 11.10+ */
+	background: -ms-linear-gradient(top, rgba(0,0,0,0) 0%,rgba(0,0,0,1) 100%); /* IE10+ */
+	background: linear-gradient(to bottom, rgba(0,0,0,0) 0%,rgba(0,0,0,1) 100%); /* W3C */
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00000000', endColorstr='#000000',GradientType=0 ); /* IE6-9 */
+}
+/*Circular color selector*/
+.colpick_selector_outer {
+	background:none;
+	position: absolute;
+	width: 0.6875em;
+	height: 0.6875em;
+	margin: -0.375em 0 0 -0.375em;
+	border: 1px solid black;
+	border-radius: 50%;
+}
+.colpick_selector_inner{
+	position: absolute;
+	width: 0.5625em;
+	height: 0.5625em;
+	border: 1px solid white;
+	border-radius: 50%;
+}
+/*Vertical hue bar*/
+.colpick_hue {
+	position: absolute;
+	#top: 6px;
+	left: 11.5625em;
+	width: 1.1875em;
+	height: 9.75em;
+	#border: 1px solid #aaa;
+	cursor: n-resize;
+}
+/*Hue bar sliding indicator*/
+.colpick_hue_arrs {
+	position: absolute;
+	left: -0.5em;
+	width: 2.1875em;
+	height: 0.4375em;
+	margin: -0.4375em 0 0 0;
+}
+.colpick_hue_larr {
+	position:absolute;
+	width: 0; 
+	height: 0; 
+	border-top: 6px solid transparent;
+	border-bottom: 6px solid transparent;
+	border-left: 7px solid #858585;
+}
+.colpick_hue_rarr {
+	position:absolute;
+	right:0;
+	width: 0; 
+	height: 0; 
+	border-top: 6px solid transparent;
+	border-bottom: 6px solid transparent; 
+	border-right: 7px solid #858585; 
+}
+/*New color box*/
+.colpick_new_color {
+	position: absolute;
+	#left: 12.9375em;
+    left: 14.4375em;
+	#top: 0.5em;
+	width: 4.25em;
+	height: 1.6875em;
+	background: #000;
+	border: 1px solid #999;
+}
+/*Input field containers*/
+.colpick_field, .colpick_hex_field  {
+	position: absolute;
+	height: 1.25em;
+	width: 4.25em;
+	overflow:hidden;
+	background:#000;
+	color:#ffffff;
+	border:1px solid #999;
+    left: 14.4375em;
+    #font-size: 0.75em;
+}
+.colpick_rgb_r {
+	top: 2.375em;
+}
+.colpick_rgb_g {
+	top: 4.375em;
+}
+.colpick_rgb_b {
+	top: 6.375em;
+}
+.colpick_hex_field {	
+    top: 8.375em;
+	width: 4.25em;
+}
+/*Text field container on focus*/
+.colpick_focus {
+	border-color: #f00;
+}
+/*Field label container*/
+.colpick_field_letter {
+	position: absolute;
+	width: 0.75em;
+	height: 1.6em;
+	line-height: 1.6em;
+	padding-left: 0.25em;
+    padding-right: 0.25em;
+	background: #000;
+	border-right: 1px solid #999;
+	font-weight: bold;
+	color:#fff;
+    font-size: 0.75em;
+}
+/*Text inputs*/
+.colpick_field input, .colpick_hex_field input {
+	position: absolute;
+	right: 0.6875em;
+	margin: 0;
+	padding: 0;
+	height: 1.6em;
+	line-height: 1.6em;
+	background: transparent;
+    border:none;
+	font-family: Arial, Helvetica, sans-serif;
+	color: #fff;
+	text-align: right;
+	outline: none;
+    font-size: 0.75em;
+    padding-right: 0.25em;
+}
+.colpick_hex_field input {
+	right: 0.25em;
+}
+/*Field up/down arrows*/
+.colpick_field_arrs {
+	position: absolute;
+	top: 0;
+	right: 0;
+	width: 0.5625em;
+	height: 1.3125em;
+	cursor: n-resize;
+}
+.colpick_field_uarr {
+	position: absolute;
+	top: 0.3125em;
+	width: 0; 
+	height: 0; 
+	border-left: 4px solid transparent;
+	border-right: 4px solid transparent;
+	border-bottom: 4px solid #959595;
+}
+.colpick_field_darr {
+	position: absolute;
+	bottom: 0.3125em;
+	width: 0; 
+	height: 0; 
+	border-left: 4px solid transparent;
+	border-right: 4px solid transparent;
+	border-top: 4px solid #959595;
+}
+/*rgbhex layout*/
+.colpick_rgbhex .colpick_hsb_h, .colpick_rgbhex .colpick_hsb_s, .colpick_rgbhex .colpick_hsb_b, .colpick_submit{
+	display:none;
+}

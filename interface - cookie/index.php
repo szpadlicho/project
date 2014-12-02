@@ -29,7 +29,7 @@ session_start();
         <script type="text/javascript" src="js/jquery-1.9.1.min.js"></script>
         <script type="text/javascript" src="js/scrypt.js"></script>
         <script type="text/javascript" src="js/jquery-ui.min-1.11.2.js"></script>
-        <!--<script type="text/javascript" src="js/jquery.cookie.js"></script>-->
+        <script type="text/javascript" src="js/jquery.cookie.js"></script>
         <script type="text/javascript" src="js/show.js"></script>
         <script type="text/javascript" src="js/draggable.js"></script>
         <script type="text/javascript" src="js/colpick.js"></script>
@@ -361,17 +361,6 @@ session_start();
                                 //var  = $( this ).css('');
                                 arry.push({top:top, left:left, size:size, rotate:rotate, family:family, color:color, value:value});
                             });
-                            // function loadMenu() {
-                                // if (!localStorage.length < 1) {
-                                    // for (var i = 0; i < localStorage.length; i++) {
-                                        // var item = localStorage.getItem(localStorage.key(i));
-                                        // alert(item);
-                                    // }
-                                // } else {
-                                    // alert('no item');
-                                // }
-                            // }
-                            // loadMenu();
                             dataObject = {arry};
                             $.ajax({
                                     type: 'POST',

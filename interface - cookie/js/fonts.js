@@ -2,7 +2,7 @@ $(function(){
     $("#fontChange").click(function() {
         $( '.curent .toText' ).css( 'font-family', $(this).val());
         var saveId = $( '.curent' ).attr('id');
-        localStorage.setItem(saveId+'fontFamily',$( '.curent .toText' ).css( 'font-family' ));
+        $.cookie(saveId+'fontFamily',$( '.curent .toText' ).css( 'font-family' ));
     });
     $(document).on('mousedown', '.drag', function () {
         var fontFamily = $( '.curent .toText' ).css( 'font-family');
@@ -17,7 +17,7 @@ $(function(){
     });
     $( '.drag' ).each(function(){
         var getId = $( this ).attr('id');
-        var values = localStorage.getItem(getId+'fontFamily');
+        var values = $.cookie(getId+'fontFamily');
         $('#'+getId+' .toText').css('font-family',values);
     });
 });
