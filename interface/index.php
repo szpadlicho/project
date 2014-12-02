@@ -342,7 +342,7 @@ session_start();
                                 var color = $( this ).children('.toText').css('color');
                                 var value = $( this ).children('.toText').text();
                                 //var  = $( this ).css('');
-                                arry.push({top:top, left:left, size:size, rotate:rotate, family:family, color:color, value:value});
+                                arry.push({top:top, left:left, size:size, rotate:rotate, color:color, value:value, family:family});
                             });
                             function loadMenu() {
                                 /**
@@ -352,25 +352,26 @@ session_start();
                                     for (var i = 0; i < localStorage.length; i++) {
                                         var item = localStorage.getItem(localStorage.key(i));
                                         //alert(item);
+                                        //$('#show-local').append(localStorage.key(i));
                                         //$('#show-local').append(item);
                                         //$('#show-local').append('<br />');
-                                    }
+                                    };
                                 } else {
                                     alert('no item');
-                                }
-                            }
+                                };
+                            };
                             loadMenu();
                             dataObject = {arry};
                             $.ajax({
-                                    type: 'POST',
-                                    url: 'php/show.php',
-                                    data: {data : dataObject }, 
-                                    cache: false,
-                                    dataType: 'text',
-                                    success: function(data){
-                                        $('#show').html(data);
-                                    }
-                                });
+                                type: 'POST',
+                                url: 'php/show.php',
+                                data: {data : dataObject }, 
+                                cache: false,
+                                dataType: 'text',
+                                success: function(data){
+                                    $('#show').html(data);
+                                }
+                            });
                         }); 
                     </script>
                 </div>
