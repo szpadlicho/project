@@ -14,6 +14,7 @@ function __getNumberFromProcent($number_procent, $number_from)// Obliczanie proc
 $data = $_POST['data'];
 $count = count($data['arry']);
 //---------------------------------//
+unlink($picture = '../data/picture/'.$_COOKIE['PHPSESSID'].'-preview.jpg');
 $picture = '../data/picture/'.$_COOKIE['PHPSESSID'].'.jpg';
 
 list($width, $height, $type, $attr) = getimagesize($picture); // pobieram wymiary x i y obrazy , typ i atrybuty
