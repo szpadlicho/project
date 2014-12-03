@@ -62,13 +62,13 @@ for ($i = 0; $i < $count; $i++) {
     $top = $data['arry'][$i]['top']+$size;// here set top
     $th = __getProcentFromNumber($top, $workH);
     $x = __getNumberFromProcent($th, $height);
-    $x = $x+51;
+    //$x = $x+51;
     //var_dump($x);
 
     $left = $data['arry'][$i]['left'];// here set left
     $lw = __getProcentFromNumber($left, $workW);
     $y = __getNumberFromProcent($lw, $width);
-    $y = $y +10;
+    //$y = $y +10;
     //var_dump($y);
 
     $handle = imagecreatefromjpeg($picture);

@@ -1,7 +1,7 @@
 .drag{
     #background-color:black;
-    min-width:5em;
-    min-height:2em;
+    #min-width:9em;
+    #min-height:2.5em;
     width: auto;
     height:auto;
     z-index:128;
@@ -12,29 +12,24 @@
     #padding:0.1em;
     #margin:0.5em;
     color:black;
-    border: 1px solid black;
+    #border: 1px solid black;
     right:auto;
     bottom:auto;
 }
 .curent{
     border: 1px solid red;
 }
-.curent span.toText{
-    #border: 1px solid red;
-}
 .close{
     position:absolute;
-    top:0;
-    right:0;
+    top:-1px;
+    right:-30px;
     background-color:rgb(190,37,10);
     border:1px solid rgb(145,28,7);
-    margin:0.1em;
 }
 .number{
     position:absolute;
-    top:0;
-    left:0;
-    margin:0.1em;
+    top:-7px;
+    left:-37px;
 }
 .toText{
     #position:absolute;

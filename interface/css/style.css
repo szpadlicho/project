@@ -13,13 +13,13 @@
 @media screen and (max-width: 800px) {html,body{font-size:10px;}}
 @media screen and (max-width: 700px) {html,body{font-size:9.5px;}}
 @font-face {
-	font-family: titillium;
+	font-family: Titillium-Regular;
 	src: url('../fonts/Titillium/Titillium-Regular.otf');
 }
 body {
  	background-color: rgb(127,127,127);
     color:white;
-    font-family: titillium;
+    font-family: Titillium-Regular;
 }
 #relative-holder{
 	position:relative;

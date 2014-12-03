@@ -128,7 +128,7 @@ $(document).ready(function(){
             localStorage.setItem('lastID', lastId);
         }
         //var elem = '<p id="draggable-'+lastId+'" class="drag"><button type="button" class="close" >&times;</button><br /><span id="posY'+lastId+'"></span><br /><span id="posX'+lastId+'"></span><br />id : '+lastId+'</p>';
-        var elem = '<p id="draggable-'+lastId+'" class="drag"><button class="close" type="button" >&times;</button><span class="number">id : '+lastId+'</span><br /><span id="toText'+lastId+'" class="toText">Some Text</span></p>';
+        var elem = '<p id="draggable-'+lastId+'" class="drag"><button class="close" type="button" >&times;</button><span class="number">id : '+lastId+'</span><span id="toText'+lastId+'" class="toText">Some Text</span></p>';
         $( '#middle' ).append(elem);
         arr.push(elem);
         setStorageItem();
@@ -136,7 +136,7 @@ $(document).ready(function(){
         resize();
         $( '.drag' ).removeClass( 'curent' );
         $( '.drag' ).last().addClass( 'curent' );
-        $('#txt').val( $( '.curent' ).children('.toText').text() );
+        $('#txt').val( $( '.curent' ).children( '.toText' ).text() );
     });
     $( '#btnReset' ).click(function(){/***********************************/
         // var cookies = $.cookie();

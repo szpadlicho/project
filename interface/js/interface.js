@@ -22,25 +22,25 @@ $(function(){
     * Change, save and load text
     * Text
     **/
-    //var myChildren = $('.curent').children(':nth-child(4)');
+    //var myChildren = $('.curent').children( '.toText' );
     $(document).on('keyup', '#txt', function (event) {
         if (event.keyCode == 13) { // change enter to <br>
-            $('.curent').children(':nth-child(4)').append('<br />');
+            $('.curent').children( '.toText' ).append('<br />');
             return false;
         }
-        $('.curent').children(':nth-child(4)').text($(this).val());
+        $('.curent').children( '.toText' ).text($(this).val());
         var saveId = $('.curent').attr('id');
         localStorage.setItem(saveId,$(this).val());
     });
     $(document).on('mousedown', '.drag', function () {
-        var value = $(this).children(':nth-child(4)').text();
+        var value = $(this).children( '.toText' ).text();
         $('#txt').val(value);
     });
     $( '.drag' ).each(function(){//'p[id^="draggable-"]'
         var getId = $( this ).attr('id');
         var values = localStorage.getItem(getId);
         if (values) {
-            $('#'+getId).children(':nth-child(4)').text(values);
+            $('#'+getId).children( '.toText' ).text(values);
         }
     });
 });
@@ -60,13 +60,13 @@ $(function(){
             //$('#tool-09').text(rgb.r);//.rgb.g.rgb.b
             //$('#tool-10').text(rgb.g);//.rgb.g.rgb.b
             //$('#tool-11').text(rgb.b);//.rgb.g.rgb.b
-            $('.curent').children(':nth-child(4)').css('color','#'+hex);
+            $('.curent').children( '.toText' ).css('color','#'+hex);
             var saveId = $('.curent').attr('id');
-            localStorage.setItem(saveId+'color',$('.curent').children(':nth-child(4)').css('color'));
+            localStorage.setItem(saveId+'color',$('.curent').children( '.toText' ).css('color'));
         }
     });
     $(document).on('mousedown', '.drag', function () {
-        var colorRGB = $(this).children(':nth-child(4)').css('color');
+        var colorRGB = $(this).children( '.toText' ).css('color');
         $('#fontColor').val(colorRGB);
         /**/
         function rgb2hex(rgb) { // Convert rgb to hex
@@ -84,7 +84,7 @@ $(function(){
     $( '.drag' ).each(function(){//'p[id^="draggable-"]'
         var getId = $( this ).attr('id');
         var values = localStorage.getItem(getId+'color');
-        $('#'+getId).children(':nth-child(4)').css('color',values);
+        $('#'+getId).children( '.toText' ).css('color',values);
     });
 });
 $(function() {
@@ -102,9 +102,9 @@ $(function() {
         slide: function( event, ui ) {
             $( '.curent' ).css({'width':'','height':''});// only for handed resize setup reset
             //
-            $('.curent').children(':nth-child(4)').css('font-size',ui.value+'px');
+            $('.curent').children( '.toText' ).css('font-size',ui.value+'px');
             var saveId = $('.curent').attr('id');
-            localStorage.setItem(saveId+'font',$('.curent').children(':nth-child(4)').css('font-size'));
+            localStorage.setItem(saveId+'font',$('.curent').children( '.toText' ).css('font-size'));
         },
         stop: function() {// only for fix resize setup
             var id = $('.curent').attr('id').slice(-1);
@@ -118,16 +118,16 @@ $(function() {
     $(document).on('keyup', '#text-size', function (event) {
         $( '.curent' ).css({'width':'','height':''});//this is only for handed resize setup reset to fixed this
         $( '#slider-size' ).slider( 'value', this.value );
-        $('.curent').children(':nth-child(4)').css('font-size',this.value+'px');
+        $('.curent').children( '.toText' ).css('font-size',this.value+'px');
         var saveId = $('.curent').attr('id');
-        localStorage.setItem(saveId+'font',$('.curent').children(':nth-child(4)').css('font-size'));
+        localStorage.setItem(saveId+'font',$('.curent').children( '.toText' ).css('font-size'));
         // next is only for fix resize setup
         var id = $('.curent').attr('id').slice(-1);
         localStorage.setItem('resizableWidth'+id, $( '.curent' ).width());
         localStorage.setItem('resizableHeight'+id, $( '.curent' ).height());
     });
     $(document).on('mousedown', '.drag', function () {
-        var size = $(this).children(':nth-child(4)').css('font-size');
+        var size = $(this).children( '.toText' ).css('font-size');
         var size = parseInt(size);
         $( '#text-size' ).val(size);
         $( '#slider-size' ).slider({ value: size });
@@ -135,7 +135,7 @@ $(function() {
     $( '.drag' ).each(function(){//'p[id^="draggable-"]'
         var getId = $( this ).attr('id');
         var values = localStorage.getItem(getId+'font');
-        $('#'+getId).children(':nth-child(4)').css('font-size',values);
+        $('#'+getId).children( '.toText' ).css('font-size',values);
     });
 });
 $(function() {
@@ -153,27 +153,27 @@ $(function() {
         slide: function( event, ui ) {
             $( '#text-opacity' ).val( ui.value );
             //
-            $('.curent').children(':nth-child(4)').css('opacity',ui.value);
+            $('.curent').children( '.toText' ).css('opacity',ui.value);
             var saveId = $('.curent').attr('id');
-            localStorage.setItem(saveId+'Opacity',$('.curent').children(':nth-child(4)').css('opacity'));
+            localStorage.setItem(saveId+'Opacity',$('.curent').children( '.toText' ).css('opacity'));
         }
     });
     $( '#text-opacity' ).val( $( '#slider-opacity' ).slider( 'value' ) );
     $(document).on('keyup', '#text-opacity', function (event) {
         $( '#slider-opacity' ).slider( 'value', this.value );
-        $('.curent').children(':nth-child(4)').css('opacity',this.value);
+        $('.curent').children( '.toText' ).css('opacity',this.value);
         var saveId = $('.curent').attr('id');
-        localStorage.setItem(saveId+'Opacity',$('.curent').children(':nth-child(4)').css('opacity'));
+        localStorage.setItem(saveId+'Opacity',$('.curent').children( '.toText' ).css('opacity'));
     });
     $(document).on('mousedown', '.drag', function () {
-        var opac = $(this).children(':nth-child(4)').css('opacity');
+        var opac = $(this).children( '.toText' ).css('opacity');
         $( '#text-opacity' ).val(opac);
         $( '#slider-opacity' ).slider({ value: opac });
     });
     $( '.drag' ).each(function(){//'p[id^="draggable-"]'
         var getId = $( this ).attr('id');
         var values = localStorage.getItem(getId+'Opacity');
-        $('#'+getId).children(':nth-child(4)').css('opacity',values);
+        $('#'+getId).children( '.toText' ).css('opacity',values);
     });
 });
 $(function() {
