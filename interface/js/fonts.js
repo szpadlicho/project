@@ -1,4 +1,5 @@
 $(function(){
+    /*
     $("#fontChange").click(function() {
         $( '.curent .toText' ).css( 'font-family', $(this).val());
         var saveId = $( '.curent' ).attr('id');
@@ -16,6 +17,7 @@ $(function(){
             }
         });
     });
+    */
     $("#fontChangeMy").click(function() {
         var value = $( '#fontChangeMy option:selected' ).text();
         $( '.curent .toText' ).css( 'font-family', value);
@@ -54,11 +56,3 @@ $(function(){
         $('#'+getId+' .toText').css('font-family',values);
     });
 });
-// $(document).ready(function(){
-    // $( '.fontChange' ).each(function(){
-        // var fontFamily = $( this ).find( ':first' ).text();
-        // $( this ).css('font-family', fontFamily);
-        // alert(fontFamily);
-        // //$(this).find(':first').attr('selected','selected');
-    // });
-// });

@@ -2,7 +2,6 @@
 //$files = glob('../data/fonts/*.*');
 $files = glob('data/fonts/*.otf');
 //$time  = time();
-
 foreach ($files as $file) {
     if (is_file($file)) {
         //echo $file.' - '.basename($file);

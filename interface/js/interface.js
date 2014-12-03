@@ -24,7 +24,7 @@ $(function(){
     **/
     //var myChildren = $('.curent').children( '.toText' );
     $(document).on('keyup', '#txt', function (event) {
-        if (event.keyCode == 13) { // change enter to <br>
+        if (event.keyCode == 13) { // change enter to <br />
             $('.curent').children( '.toText' ).append('<br />');
             return false;
         }
@@ -36,7 +36,7 @@ $(function(){
         var value = $(this).children( '.toText' ).text();
         $('#txt').val(value);
     });
-    $( '.drag' ).each(function(){//'p[id^="draggable-"]'
+    $( '.drag' ).each(function(){
         var getId = $( this ).attr('id');
         var values = localStorage.getItem(getId);
         if (values) {
@@ -68,8 +68,10 @@ $(function(){
     $(document).on('mousedown', '.drag', function () {
         var colorRGB = $(this).children( '.toText' ).css('color');
         $('#fontColor').val(colorRGB);
-        /**/
-        function rgb2hex(rgb) { // Convert rgb to hex
+        /**
+        * Convert rgb to hex
+        **/
+        function rgb2hex(rgb) {
             rgb = rgb.match(/^rgb\((\d+),\s*(\d+),\s*(\d+)\)$/);
             function hex(x) {
                 return ("0" + parseInt(x).toString(16)).slice(-2);
@@ -81,7 +83,7 @@ $(function(){
         var colorHEX = rgb2hex(colorRGB);
         $('#tool-06').colpickSetColor(colorHEX);
     });
-    $( '.drag' ).each(function(){//'p[id^="draggable-"]'
+    $( '.drag' ).each(function(){
         var getId = $( this ).attr('id');
         var values = localStorage.getItem(getId+'color');
         $('#'+getId).children( '.toText' ).css('color',values);
@@ -102,6 +104,7 @@ $(function() {
         slide: function( event, ui ) {
             $( '.curent' ).css({'width':'','height':''});// only for handed resize setup reset
             //
+            $( '#text-size' ).val(ui.value);
             $('.curent').children( '.toText' ).css('font-size',ui.value+'px');
             var saveId = $('.curent').attr('id');
             localStorage.setItem(saveId+'font',$('.curent').children( '.toText' ).css('font-size'));
@@ -132,7 +135,7 @@ $(function() {
         $( '#text-size' ).val(size);
         $( '#slider-size' ).slider({ value: size });
     });
-    $( '.drag' ).each(function(){//'p[id^="draggable-"]'
+    $( '.drag' ).each(function(){
         var getId = $( this ).attr('id');
         var values = localStorage.getItem(getId+'font');
         $('#'+getId).children( '.toText' ).css('font-size',values);
@@ -170,7 +173,7 @@ $(function() {
         $( '#text-opacity' ).val(opac);
         $( '#slider-opacity' ).slider({ value: opac });
     });
-    $( '.drag' ).each(function(){//'p[id^="draggable-"]'
+    $( '.drag' ).each(function(){
         var getId = $( this ).attr('id');
         var values = localStorage.getItem(getId+'Opacity');
         $('#'+getId).children( '.toText' ).css('opacity',values);
@@ -209,7 +212,7 @@ $(function() {
         $( '#text-rotation' ).val(rot);
         $( '#slider-rotation' ).slider({ value: rot });
     });
-    $( '.drag' ).each(function(){//'p[id^="draggable-"]'
+    $( '.drag' ).each(function(){
         var getId = $( this ).attr('id');
         var values = localStorage.getItem(getId+'Transform');
         $('#'+getId).css('transform',values);
@@ -234,7 +237,6 @@ $(function(){
             var id = $( '.curent' ).attr('id').slice(-1);
             localStorage.setItem('draggableTop'+id, yPos);
             //
-            //var pPos = 
             var prTop = funProcent(yPos, funTopMax());
             $('#text-top-procent').val(prTop);
         },
@@ -258,7 +260,6 @@ $(function(){
         var id = $( '.curent' ).attr('id').slice(-1);
         localStorage.setItem('draggableTop'+id, prTop);
         //
-        //var prTop2 = funProcentBack(prTop, funTopMax());
         $('#text-top-pixel').val(prTop);
     });
     $(document).on('mousedown', '.drag', function () {
@@ -310,7 +311,6 @@ $(function(){
         var id = $( '.curent' ).attr('id').slice(-1);
         localStorage.setItem('draggableLeft'+id, prLeft);
         //
-        //var prLeft2 = funProcentBack(prLeft, funLeftMax());
         $('#text-left-pixel').val(prLeft);
     });
     $(document).on('mousedown', '.drag', function () {

@@ -1,27 +1,27 @@
 var funTopMax = function(){
     var h = $( '#image' ).height();
     return h;
-}
+};
 var funLeftMax = function(){
     var w = $( '#image' ).width();
     return w;
-}
+};
 var funHeightMax = function(){
     var h = $( '#image' ).height();
     return h;
-}
+};
 var funWidthMax = function(){
     var w = $( '#image' ).width();
     return w;
-}
+};
 var funProcent = function(val, value){
     var prcent = ((val / value) * 100).toFixed(0);
     return prcent;
-}
+};
 var funProcentBack = function(val, value){
     var prcent = ((val / 100) * value).toFixed(0);
     return prcent;
-}
+};
 $(document).ready(function(){
     /**
     * Dynamically add elements to site and save it in array
@@ -76,6 +76,7 @@ $(document).ready(function(){
     var resize = function(){
         $( '.drag' ).each(function(index){
             var id = $(this).attr('id').slice(-1);
+            var now = $(this).width();
             $( '#draggable-'+id ).resizable({
                 containment: "parent", 
                 resize: function( event, ui ) {
@@ -84,6 +85,12 @@ $(document).ready(function(){
                     $('#text-height-pixel').val(ui.size.height.toFixed(0));
                     var yPos = funTopMax() - ui.size.height;
                     $('#slider-height').slider( "value", yPos );
+                    //var rr = parseInt($( this ).children( '.toText' ).css( 'font-size' ));
+                    //var bb = ui.size.width;
+                    //var cc = (now - rr);
+                    //var prcent = ((val / 100) * value).toFixed(0);
+                    //return prcent;
+                    //console.log(cc);
                 },
                 stop: function(event, ui) {
                     localStorage.setItem('resizableWidth'+id, ui.size.width);
@@ -126,7 +133,7 @@ $(document).ready(function(){
         } else {
             var lastId = 0;
             localStorage.setItem('lastID', lastId);
-        }
+        };
         //var elem = '<p id="draggable-'+lastId+'" class="drag"><button type="button" class="close" >&times;</button><br /><span id="posY'+lastId+'"></span><br /><span id="posX'+lastId+'"></span><br />id : '+lastId+'</p>';
         var elem = '<p id="draggable-'+lastId+'" class="drag"><button class="close" type="button" >&times;</button><span class="number">id : '+lastId+'</span><span id="toText'+lastId+'" class="toText">Some Text</span></p>';
         $( '#middle' ).append(elem);
@@ -172,7 +179,7 @@ $(document).ready(function(){
         if ( $( what ).hasClass( 'active' ) ) {
             $( '.drag' ).resizable( 'enable' );
         };
-    }
+    };
     //$( '#resize' ).removeClass( 'active' ); // Uncomment to active disable resize at start
     $( '#resize' ).addClass( 'active' );
     $( '#resize' ).click(function(){

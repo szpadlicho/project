@@ -222,6 +222,7 @@ session_start();
                     </script>
                     <div id="tool-10" class="tools">
                         <div id="fonts" >
+                            <!--
                             <p>Fonts:</p>
                             <select id="fontChange" class="fontChange" >
                                 <option value="Arial">Arial</option>
@@ -230,10 +231,12 @@ session_start();
                                 <option value="Comic Sans MS">Comic Sans MS</option>
                                 <option value="">Default</option>
                             </select>
+                            -->
                             <p>My fonts:</p>
                             <select id="fontChangeMy" class="fontChange">
                                 <?php include_once('php/show_fonts.php'); ?>
                             </select>
+                            <input id="font-size-procent" class="text-position" type="text" />
                         </div>
                         <form id="form-fonts" method="POST" enctype="multipart/form-data">
                             <input id="files" name="files" type="file" />
@@ -243,8 +246,29 @@ session_start();
                         </form>
                     </div>
                     <!-- Unknown -->
+                    <script type="text/javascript">
+                    var funProcent = function(val, value){
+                        var prcent = ((val / value) * 100).toFixed(0);
+                        return prcent;
+                    };
+                    $(function() {
+                        $(document).on('mousedown', '.drag', function () { //work on dynamic elements.mousedown()
+                            var val2 = $( '.curent' ).children('.toText').css('font-size');
+                            var val2 = parseInt(val2);
+                            var value2 = $( '#image' ).width();
+                            var img = document.getElementById("image");
+                            //var value2 = img.naturalHeight;
+                            var er = funProcent(val2, value2);
+                            $( '#font-size-procent' ).val(er+'%');
+                            //console.log(val2);
+                            //console.log(value2);
+                            //console.log(er+'%');
+                        });
+                    });
+                    </script>
                     <div id="tool-11" class="tools">
                         Color: <input id="fontColor" class="" type="text" /><br />
+                        
                     </div>
                     <!-- END -->
                 </div>
@@ -255,7 +279,7 @@ session_start();
                         //alert($(this).height());
                         //alert($(this).width());
                     });
-                    //var img = document.getElementById("pimage");
+                    //var img = document.getElementById("image");
                     //alert("height:" + img.height + ", width: " + img.width);
                     //alert("natural height:" + img.naturalHeight + ", natural width: " + img.naturalWidth);
                     //alert("jquery height:" + $("#image").height() + ",jquery width: "+ $("#image").width());

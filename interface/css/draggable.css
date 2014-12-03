@@ -1,18 +1,11 @@
 .drag{
-    #background-color:black;
-    #min-width:9em;
-    #min-height:2.5em;
     width: auto;
     height:auto;
     z-index:128;
     position:absolute !important;
-    #cursor: move;
     top:0;
     left:0;
-    #padding:0.1em;
-    #margin:0.5em;
     color:black;
-    #border: 1px solid black;
     right:auto;
     bottom:auto;
 }
@@ -28,14 +21,18 @@
 }
 .number{
     position:absolute;
-    top:-7px;
-    left:-37px;
+    top:-1px;
+    left:-34px;
+    background-color:rgb(190,37,10);
+    border:1px solid rgb(145,28,7);
+    line-height:1.2em;
 }
 .toText{
-    #position:absolute;
     position:relative;
     left:0;
     right:0;
     top:0;
     bottom:0;
+    #border:1px solid lime;
+    #line-height:0.7em;
 }
