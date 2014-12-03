@@ -47,12 +47,13 @@ for ($i = 0; $i < $count; $i++) {
     $int = intval($size);
     $workH = $data['arry'][$i]['workH'];// here workH set
     $workW = $data['arry'][$i]['workW'];// here workW set
-    //var_dump($int);
+    var_dump($int);
     $h = __getProcentFromNumber($int, $workH);
-    //var_dump($hjk);
+    var_dump($h);
     $rsize = __getNumberFromProcent($h, $height);
-    //var_dump($rsize);
+    var_dump($rsize);
     $fsize = $rsize;
+    $fsize = $fsize - 45;
 
     $inscription = $data['arry'][$i]['value'];// here set value
 
@@ -61,11 +62,13 @@ for ($i = 0; $i < $count; $i++) {
     $top = $data['arry'][$i]['top']+$size;// here set top
     $th = __getProcentFromNumber($top, $workH);
     $x = __getNumberFromProcent($th, $height);
+    $x = $x+51;
     //var_dump($x);
 
     $left = $data['arry'][$i]['left'];// here set left
     $lw = __getProcentFromNumber($left, $workW);
     $y = __getNumberFromProcent($lw, $width);
+    $y = $y +10;
     //var_dump($y);
 
     $handle = imagecreatefromjpeg($picture);
