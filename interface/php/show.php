@@ -42,8 +42,9 @@ for ($i = 0; $i < $count; $i++) {
 
     $ffname = $data['arry'][$i]['family'];// here font family set
     $font = '../data/fonts/'.$ffname.'.otf';
-
+    /**|**/
     $size = $data['arry'][$i]['size'];// here font size set
+    //var_dump($size);
     $int = intval($size);
     $workH = $data['arry'][$i]['workH'];// here workH set
     $workW = $data['arry'][$i]['workW'];// here workW set
@@ -54,7 +55,7 @@ for ($i = 0; $i < $count; $i++) {
     //var_dump($rsize);
     $fsize = $rsize;
     $fsize = $fsize - 41;
-
+    /**|**/
     $inscription = $data['arry'][$i]['value'];// here set value
 
     $rotate = $data['arry'][$i]['rotate'];// here set rotate
@@ -78,7 +79,7 @@ for ($i = 0; $i < $count; $i++) {
     imagedestroy($handle);
     // foreach end
 }
-echo "<img width='340px' src=data/picture/".$_COOKIE['PHPSESSID']."-preview.jpg"."?mtime=".@filemtime($fileimg)." alt='Aby zacząć edycje prześlij obraz'/><br />\n";//dzieki temu wymuszam odswiezanie obrazka
+echo "<div id='preview-div'><img id='preview' width='1210' src=data/picture/".$_COOKIE['PHPSESSID']."-preview.jpg"."?mtime=".@filemtime($fileimg)." alt='Aby zacząć edycje prześlij obraz'/></div><br />\n";//dzieki temu wymuszam odswiezanie obrazka
 ?>
 <?php
 $data = $_POST['data'];

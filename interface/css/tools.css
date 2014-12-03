@@ -159,3 +159,9 @@ select option{
 #form-pictures{
     display:none;
 }
+#preview{
+    text-align:center;
+}
+#preview-div{
+    text-align:center;
+}
