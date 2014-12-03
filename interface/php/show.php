@@ -76,17 +76,16 @@ for ($i = 0; $i < $count; $i++) {
     * Top position
     * Top + font size = Top in GD
     **/
-    $top = $data['arry'][$i]['top']+$size+6;// here set top
-    //$top = $data['arry'][$i]['top']+$fsize;// here set top
+    $top = $data['arry'][$i]['top']+$size+8;// here set top
     $th = __getProcentFromNumber($top, $workH);//check
     $rx = __getNumberFromProcent($th, $height);//check
-    //$px = __getNumberFromProcent(24, $rx);
+    $px = __getNumberFromProcent(24, $rx);
     $x = $rx;
     //$x = $rx - $px;
     //$hh = __getProcentFromNumber(208, $x);
     //var_dump($hh);//
     //$x = $x - 47;
-    echo $inscription;
+    //echo $inscription;
     //var_dump($th);
     /**
     * Left position
@@ -104,7 +103,7 @@ for ($i = 0; $i < $count; $i++) {
     imagejpeg($handle, '../data/picture/'.$_COOKIE['PHPSESSID'].'-preview.jpg');
     imagedestroy($handle);
 }
-echo "<div id='preview-div'><img id='preview' width='1090' src=data/picture/".$_COOKIE['PHPSESSID']."-preview.jpg"."?mtime=".@filemtime($fileimg)." alt='Aby zacząć edycje prześlij obraz'/></div><br />\n";//@filemtime($fileimg) thanks this image is always refresh
+echo "<div id='preview-div'><img id='preview' width='".$workW."px' src=data/picture/".$_COOKIE['PHPSESSID']."-preview.jpg"."?mtime=".@filemtime($fileimg)." alt='Aby zacząć edycje prześlij obraz'/></div><br />\n";//@filemtime($fileimg) thanks this image is always refresh
 ?>
 <?php
 // $data = $_POST['data'];
