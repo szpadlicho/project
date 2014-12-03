@@ -47,13 +47,13 @@ for ($i = 0; $i < $count; $i++) {
     $int = intval($size);
     $workH = $data['arry'][$i]['workH'];// here workH set
     $workW = $data['arry'][$i]['workW'];// here workW set
-    var_dump($int);
+    //var_dump($int);
     $h = __getProcentFromNumber($int, $workH);
-    var_dump($h);
+    //var_dump($h);
     $rsize = __getNumberFromProcent($h, $height);
-    var_dump($rsize);
+    //var_dump($rsize);
     $fsize = $rsize;
-    $fsize = $fsize - 45;
+    $fsize = $fsize - 41;
 
     $inscription = $data['arry'][$i]['value'];// here set value
 
