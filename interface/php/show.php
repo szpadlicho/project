@@ -77,11 +77,13 @@ for ($i = 0; $i < $count; $i++) {
     * Top + font size = Top in GD
     **/
     $top = $data['arry'][$i]['top']+$size+8;// here set top
+    //$top = $data['arry'][$i]['top'];// here set top
+    //var_dump($top);
     $th = __getProcentFromNumber($top, $workH);//check
     $rx = __getNumberFromProcent($th, $height);//check
     $px = __getNumberFromProcent(24, $rx);
     $x = $rx;
-    //$x = $rx - $px;
+    //$x = ($rx - $px);
     //$hh = __getProcentFromNumber(208, $x);
     //var_dump($hh);//
     //$x = $x - 47;
@@ -90,7 +92,7 @@ for ($i = 0; $i < $count; $i++) {
     /**
     * Left position
     **/
-    $left = $data['arry'][$i]['left'];// here set left
+    $left = $data['arry'][$i]['left'] - 2;// here set left
     $lw = __getProcentFromNumber($left, $workW);
     $y = __getNumberFromProcent($lw, $width);
     //var_dump($lw);
