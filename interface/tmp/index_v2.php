@@ -62,7 +62,7 @@ session_start();
                             <ul>
                                 <li id="new-file">New file</li>
                                 <li id="load-file">Upload file</li>
-                                <li id="download-file"><a href="data/picture/<?php echo $_COOKIE['PHPSESSID']; ?>-preview.jpg" download="mynewimage.jpg">Download file</a></li>
+                                <li id="download-file"><a href="data/picture/<?php echo session_id(); ?>-preview.jpg" download="mynewimage.jpg">Download file</a></li>
                             </ul>
                         </li>
                         <li>Windows
@@ -379,28 +379,30 @@ session_start();
                                     url: 'php/show.php',
                                     data: {data : dataObject }, 
                                     cache: false,
-                                    dataType: 'text',
+                                    dataType: 'html',
                                     success: function(data){
-                                        $('#show').html(data);
+                                        //$('#show').html(data);
+                                        //passAndShow();
                                     }
                                 });
                             };
                             passAndShow();
+                            /**//**/
                             $(document).on( 'mousedown', 'body', function(){
-
-                            });
-                            $(document).on( 'mouseup', 'body', function(){
-                                passAndShow();
-                                $("#preview-img").attr("src", $("#preview-img").attr("src")+"?timestamp=" + new Date().getTime());
-                                //console.log( $("#preview-img").attr("src") );
+                                //passAndShow();
                                 //console.log( 'mousedown' );
-                                //location.reload();
-                                //$("#preview-img").remove();
+                                //$( '#show' ).css( 'display','none' );
+                                //$( '#preview' ).remove();
+                                
+                            });
+                            $(document).on( 'click', '#preview', function(){
+                                //console.log( 'click' );
+                                //alert($( '#preview' ).attr('src'));
                             });
                             /**
                             * function do display all localStorage data
                             **/
-                            function loadMenu() {
+                            var loadMenu = function() {
                                 if (!localStorage.length < 1) {
                                     for (var i = 0; i < localStorage.length; i++) {
                                         var item = localStorage.getItem(localStorage.key(i));
@@ -418,7 +420,17 @@ session_start();
                     </script>
                 </div>
                 <!--<div id="show2"></div>-->
-                <div id="show"></div>
+                <script type="text/javascript">
+                    $(function() {
+                        $( '#preview' ).css('width',$( '#image' ).width()+'px');
+                        $(document).on( 'mouseup', 'body', function(){
+                            //passAndShow();
+                            console.log( 'mouseup' );
+                            alert($( '.asd' ).attr('src'));
+                        });
+                    });
+                </script>
+                <div id="show"><div id="preview-div"><img id="preview" class="asd" src="data/picture/<?php echo session_id(); ?>-preview.jpg" /></div></div>
             </article>
         </section>
         <footer>

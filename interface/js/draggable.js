@@ -99,7 +99,7 @@ $(document).ready(function(){
             });
             $( '#draggable-'+id ).css({width : parseInt(localStorage.getItem('resizableWidth'+id)), height : parseInt(localStorage.getItem('resizableHeight'+id))});
         });
-        $( '#tool-11' ).append( 'lol' );
+        //$( '#tool-11' ).append( 'lol' );
     };
     /**
     * initiate arrays and cookies
@@ -156,6 +156,10 @@ $(document).ready(function(){
     $(document).on('mousedown', '.drag', function () { //work on dynamic elements.mousedown()
         $( '.drag' ).removeClass( 'curent' );
         $( this ).addClass( 'curent' );
+        $( this ).css( 'cursor', 'grabbing' );
+    });
+    $(document).on('mouseup', '.drag', function () { //work on dynamic elements.mousedown()
+        $( this ).css( 'cursor', 'grab' );
     });
     $( '#picture' ).click(function(){
         //$( '.curent' ).removeClass( 'curent' );
@@ -188,10 +192,30 @@ $(document).ready(function(){
         } else {
             $( this ).addClass( 'active' );
         };
-    });
-    resizeCheck( '#resize' );
-    $( '#resize' ).click(function(){
         resizeCheck(this);
     });
-    
+    resizeCheck( '#resize' );
+    /**
+    * Preview button
+    * when page is load disable preview
+    * enable when click button menu
+    **/
+    var previewCheck = function(what){
+        if (! $( what ).hasClass( 'active' ) ) {
+            $( '#show' ).css( 'display', 'none');
+        };
+        if ( $( what ).hasClass( 'active' ) ) {
+            $( '#show' ).css( 'display', 'block');
+        };
+    };
+    //previewCheck( '#preview' );
+    //$( '#show' ).css( 'display', 'none');// Setup what state has to have at the beginning
+    $( '#preview' ).click(function(){
+        if ( $( this ).hasClass( 'active' ) ) {
+            $( this ).removeClass( 'active' );
+        } else {
+            $( this ).addClass( 'active' );
+        };
+        previewCheck(this);
+    });
 });

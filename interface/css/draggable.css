@@ -8,6 +8,7 @@
     color:black;
     right:auto;
     bottom:auto;
+    cursor: grab;
 }
 .curent{
     border: 1px solid red;

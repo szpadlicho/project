@@ -64,7 +64,8 @@
 #tool-07,
 #tool-08,
 #tool-09,
-#tool-10{
+#tool-10,
+#tool-11{
     background-color:black;
 }
 .tool-sub-ph-v{
@@ -136,11 +137,6 @@ select option{
     #height:2em;
     #border: 1px solid #999;
 }
-#show{
-    border: 1px solid #999;
-    #margin:0 0.5em;
-    #display:inline-block;
-}
 #form-fonts{
     display:none;
 }
@@ -152,4 +148,7 @@ select option{
 }
 #preview-div{
     text-align:center;
+}
+#font-size-procent{
+    visibility:hidden;
 }

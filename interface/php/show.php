@@ -18,7 +18,7 @@ function __getNumberFromProcent($number_procent, $number_from)
     return $m;
 }
 if (file_exists('../data/picture/'.$_COOKIE['PHPSESSID'].'-preview.jpg')) {
-    unlink($picture = '../data/picture/'.$_COOKIE['PHPSESSID'].'-preview.jpg');
+    @unlink($picture = '../data/picture/'.$_COOKIE['PHPSESSID'].'-preview.jpg');
 };
 $picture = '../data/picture/'.$_COOKIE['PHPSESSID'].'.jpg';
 list($width, $height, $type, $attr) = getimagesize($picture); // get file size and type to array
@@ -105,7 +105,7 @@ for ($i = 0; $i < $count; $i++) {
     imagejpeg($handle, '../data/picture/'.$_COOKIE['PHPSESSID'].'-preview.jpg');
     imagedestroy($handle);
 }
-echo "<div id='preview-div'><img id='preview' width='".$workW."px' src=data/picture/".$_COOKIE['PHPSESSID']."-preview.jpg"."?mtime=".@filemtime($fileimg)." alt='Aby zacząć edycje prześlij obraz'/></div><br />\n";//@filemtime($fileimg) thanks this image is always refresh
+echo "<div id='preview-div'><img id='preview-img' width='".$workW."px' src=data/picture/".$_COOKIE['PHPSESSID']."-preview.jpg"."?mtime=".@filemtime($fileimg)." alt='Aby zacząć edycje prześlij obraz'/></div><br />\n";//@filemtime($fileimg) thanks this image is always refresh
 ?>
 <?php
 // $data = $_POST['data'];

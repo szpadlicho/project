@@ -11,7 +11,7 @@
 #top-menu > ul{
     list-style-type:none;
     z-index:101;
-    
+    cursor:default
 }
 
 #top-menu > ul > li{
@@ -54,4 +54,9 @@
 }
 .active{
     color:lime;
+}
+#download-file > a {
+    text-decoration:none;
+    color: inherit;
+    cursor: inherit;
 }
