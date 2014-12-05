@@ -110,7 +110,7 @@ session_start();
                         <!-- Font size -->
                         <div class="tool-sub-ph-v">
                             <div class="tool-sub-label-v">
-                                <p id="label-size" class="label-slider-v">Font-size:</p>
+                                <p id="label-size" class="label-slider-v">Size:</p>
                             </div>
                             <div class="tool-sub-slider-v">
                                 <div id="slider-size" class="slider-slider-v"></div>
@@ -387,11 +387,16 @@ session_start();
                             };
                             passAndShow();
                             $(document).on( 'mousedown', 'body', function(){
-
+                                //alert(imgsrc);
+                                //var imgsrc = $( '#preview-img' ).attr( 'src' );
+                                //$( '#preview-img' ).remove();
+                                
                             });
                             $(document).on( 'mouseup', 'body', function(){
                                 passAndShow();
-                                $("#preview-img").attr("src", $("#preview-img").attr("src")+"?timestamp=" + new Date().getTime());
+                                $( '#preview-img' ).attr( 'src', $( '#preview-img' ).attr( 'src' )+"?timestamp=" + new Date().getTime());
+                                //$( '#show' ).html( '<img id="#preview-img" style="width:'+$( '#image' ).width()+';" src="data/picture/<?php echo $_COOKIE['PHPSESSID']; ?>-preview.jpg?asd='+ new Date().getTime()+'" />');
+                                //alert(imgsrc);
                                 //console.log( $("#preview-img").attr("src") );
                                 //console.log( 'mousedown' );
                                 //location.reload();

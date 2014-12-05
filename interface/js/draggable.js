@@ -208,8 +208,8 @@ $(document).ready(function(){
             $( '#show' ).css( 'display', 'block');
         };
     };
-    //previewCheck( '#preview' );
-    //$( '#show' ).css( 'display', 'none');// Setup what state has to have at the beginning
+    previewCheck( '#preview' );
+    $( '#show' ).css( 'display', 'none');// Setup what state has to have at the beginning
     $( '#preview' ).click(function(){
         if ( $( this ).hasClass( 'active' ) ) {
             $( this ).removeClass( 'active' );
