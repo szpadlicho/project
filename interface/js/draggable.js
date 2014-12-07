@@ -120,6 +120,9 @@ $(document).ready(function(){
     elements();
     resize();
     $( 'input[type="text"]' ).val('0');//reset for procent text box
+    $( '#create-form-rgb input[type="text"]' ).val('255');//for create-form blank
+    $( '#create-form-width' ).val('1024');//for create-form blank
+    $( '#create-form-height' ).val('768');//for create-form blank
     //alert(arr);
     /**
     * Button behavior
@@ -189,12 +192,22 @@ $(document).ready(function(){
     $( '#resize' ).click(function(){
         if ( $( this ).hasClass( 'active' ) ) {
             $( this ).removeClass( 'active' );
+            //
+            localStorage.setItem('drag','drag');
         } else {
             $( this ).addClass( 'active' );
+            //
+            localStorage.removeItem('drag');
         };
         resizeCheck(this);
     });
     resizeCheck( '#resize' );
+    // Remember stage resize
+    var strep = localStorage.getItem('drag');
+    if ( strep != null && strep != '') {
+        $( '.drag' ).resizable( 'disable' );
+        $( '#resize' ).removeClass( 'active' );
+    }
     /**
     * Preview button
     * when page is load disable preview
@@ -210,12 +223,31 @@ $(document).ready(function(){
     };
     previewCheck( '#preview' );
     $( '#show' ).css( 'display', 'none');// Setup what state has to have at the beginning
+    //$( '#show' ).css( 'display', 'block');// Setup what state has to have at the beginning
     $( '#preview' ).click(function(){
         if ( $( this ).hasClass( 'active' ) ) {
             $( this ).removeClass( 'active' );
+            //
+            var id = $( this ).prop( 'id' );
+            localStorage.removeItem(id);
         } else {
             $( this ).addClass( 'active' );
+            //
+            var id = $( this ).prop( 'id' );
+            localStorage.setItem(id, id);
         };
         previewCheck(this);
     });
+    // Remember stage preview
+    $( '#preview' ).each(function(e){
+        var id = $( this ).prop( 'id' );
+        var stre = localStorage.getItem( id );
+        if ( stre != null && stre != '') {
+            $( '#show' ).css( 'display', 'block');
+            $( '#preview' ).addClass( 'active' );
+        }
+    });
+    //localStorage.setItem();
+    //localStorage.getItem();
+    //localStorage.removeItem();
 });

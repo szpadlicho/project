@@ -152,3 +152,48 @@ select option{
 #font-size-procent{
     visibility:hidden;
 }
+#dimming{
+    display:none;
+    position:absolute;
+    top:0;
+    left:0;
+    width:100%;
+    height:100%;
+    background-color: rgba(0,0,0,0.5);
+    z-index:200;
+}
+#create-form-ph{
+    width:20em;
+    height:20em;
+    background-color: rgba(0,0,0,1.0);
+    border: 1px solid #999;
+    margin: auto;
+    position: absolute;
+    top: 0; left: 0; bottom: 0; right: 0;
+}
+#create-form-colpick{
+    margin:0.5em 0.5em;
+}
+#create-form-rgb{
+    position:absolute;
+    visibility:hidden;
+}
+#create-form-size{
+    width:16em;
+    margin:0.5em auto;
+}
+fieldset{
+    display:inline-block;
+}
+.create-btn{
+    background:none;
+    border: 1px solid #999;
+    width:100%;
+    height:2.9em;
+    text-align:center;
+    color:white;
+    margin-bottom:0.1em;
+}
+.create-btn:first-child{
+    margin-top:0.1em;    
+}

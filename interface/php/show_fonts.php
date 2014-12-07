@@ -1,13 +1,16 @@
 <?php
 //$files = glob('../data/fonts/*.*');
-$files = glob('data/fonts/*.otf');
+$files = glob('data/fonts/*.*');
 //$time  = time();
-foreach ($files as $file) {
+foreach ($files as $file) {    
     if (is_file($file)) {
         //echo $file.' - '.basename($file);
         //echo '<br />';
+        $ext2 = pathinfo($file, PATHINFO_EXTENSION);
+        //echo $ext2;
+        //echo '<br />';
         ?>
-        <option style="font-family: <?php echo basename($file, '.otf'); ?>;" value="<?php echo $file ?>"><?php echo basename($file, '.otf'); ?></option>
+        <option style="font-family: <?php echo basename($file, '.'.$ext2); ?>;" value="<?php echo $file ?>"><?php echo basename($file, '.'.$ext2); ?></option>
         <?php
     };
 };

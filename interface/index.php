@@ -1,5 +1,12 @@
 <?php
 session_start();
+$name = $_COOKIE['PHPSESSID'];
+$dir = glob('data/picture/'.$name.'.*');
+//var_dump($dir);
+//$ext = pathinfo($dir[0], PATHINFO_EXTENSION);
+foreach ($dir as $filename) {
+    $ext = pathinfo($filename, PATHINFO_EXTENSION);
+}
 ?>
 <!DOCTYPE HTML>
 <html lang="pl">
@@ -60,9 +67,61 @@ session_start();
                     <ul>
                         <li>File
                             <ul>
+                                <script type="text/javascript">
+                                    $(function() {
+                                        $( '#new-file' ).click(function(){
+                                            //$("input").prop("disabled", true);
+                                            $( 'body' ).append( '<div id="dimming"></div>' );
+                                            $( '#dimming' ).show();
+                                        });
+                                        $('#create-form-colpick').colpick({
+                                            flat:true,
+                                            layout:'rgbhex',
+                                            submit:0,
+                                            color: 'ffffff',
+                                            onChange:function(hsb,hex,rgb,el,bySetColor) {
+                                                $('#rr').val(rgb.r);//.rgb.g.rgb.b
+                                                $('#gg').val(rgb.g);//.rgb.g.rgb.b
+                                                $('#bb').val(rgb.b);//.rgb.g.rgb.b
+                                            }
+                                        });
+                                        $( '#create-form-ok' ).click(function(){
+                                            if ( $( '[name="transparent-box"]' ).prop('checked') ) {//.prop('checked')
+                                                console.log('checked');
+                                                var opacity = true;
+                                            } else {
+                                                console.log('nop');
+                                                var opacity = false;
+                                            }
+                                            $.ajax({
+                                                type: 'POST',
+                                                url: 'php/blank.php',
+                                                data: { width: $( '#create-form-width' ).val(), height: $( '#create-form-height' ).val(), r:$( '#rr' ).val(), g:$( '#gg' ).val(), b:$( '#bb' ).val(), transparent: opacity  }, 
+                                                cache: false,
+                                                dataType: 'text',
+                                                success: function(data){
+                                                    //console.log(data);
+                                                    location.reload();
+                                                }
+                                            });
+                                        });
+                                        $( '#create-form-cancel' ).click(function(){
+                                            location.reload();
+                                        });
+                                    });
+                                </script>
                                 <li id="new-file">New file</li>
                                 <li id="load-file">Upload file</li>
-                                <li id="download-file"><a href="data/picture/<?php echo $_COOKIE['PHPSESSID']; ?>-preview.jpg" download="mynewimage.jpg">Download file</a></li>
+                                <script type="text/javascript">
+                                    $(function() {
+                                        $( '#download-files' ).click(function(){
+                                            setTimeout(function(){
+                                                window.open("php/download.php?file=../data/picture/<?php echo $_COOKIE['PHPSESSID']; ?>-preview.<?php echo $ext; ?>");
+                                            }, 500);
+                                        });
+                                    });
+                                </script>
+                                <li id="download-files">Download file</li>
                             </ul>
                         </li>
                         <li>Windows
@@ -75,10 +134,6 @@ session_start();
                                 <li id="button-09">Size</li>
                                 <li id="button-10">Fonts</li>
                                 <li id="button-11">Debugger</li>
-                                <!--
-                                <li id="button-12">twelve</li>
-                                <li id="button-13">thirteen</li>
-                                -->
                             </ul>
                         </li>
                         <li>Options
@@ -144,7 +199,6 @@ session_start();
                             </div>
                         </div>
                     </div>
-                    <!--<div id="tool-08" class="tools">e</div>-->
                 </div>
                 <div id="right-option-ph">
                     <!-- Position Top & Left -->
@@ -195,14 +249,9 @@ session_start();
                                 $.ajax({
                                     type: 'POST',
                                     url: 'php/upload_fonts.php',
-                                    //url: 'php/show.php',
                                     data:  data,
                                     cache: false,
                                     success: function (data) {
-                                        // do something
-                                        //alert('Success');
-                                        //alert(data);
-                                        //$("#show").html(data);
                                         $("#info").html(data);
                                         location.reload();
                                     },
@@ -224,16 +273,6 @@ session_start();
                     </script>
                     <div id="tool-10" class="tools">
                         <div id="fonts" >
-                            <!--
-                            <p>Fonts:</p>
-                            <select id="fontChange" class="fontChange" >
-                                <option value="Arial">Arial</option>
-                                <option value="Verdana">Verdana</option>
-                                <option value="Impact">Impact</option>
-                                <option value="Comic Sans MS">Comic Sans MS</option>
-                                <option value="">Default</option>
-                            </select>
-                            -->
                             <p>My fonts:</p>
                             <select id="fontChangeMy" class="fontChange">
                                 <?php include_once('php/show_fonts.php'); ?>
@@ -254,17 +293,13 @@ session_start();
                         return prcent;
                     };
                     $(function() {
-                        $(document).on('mousedown', '.drag', function () { //work on dynamic elements.mousedown()
+                        $(document).on('mousedown', '.drag', function () {
                             var val2 = $( '.curent' ).children('.toText').css('font-size');
                             var val2 = parseInt(val2);
                             var value2 = $( '#image' ).width();
                             var img = document.getElementById("image");
-                            //var value2 = img.naturalHeight;
                             var er = funProcent(val2, value2);
                             $( '#font-size-procent' ).val(er+'%');
-                            //console.log(val2);
-                            //console.log(value2);
-                            //console.log(er+'%');
                         });
                     });
                     </script>
@@ -288,8 +323,6 @@ session_start();
                 </script>
                 <div id="middle-ph">
                     <div id="middle">
-                        <!--<img id="image" src="../repo/data/src1.jpg" />-->
-                        <!--<img id="image" src="../repo/data/Bikini.jpg" />-->
                         <script type="text/javascript">
                             $(function() {
                                 $('#form-pictures').change(function(e) {
@@ -321,36 +354,9 @@ session_start();
                                 });
                             });
                         </script>
-                        <img id="image" src="data/picture/<?php echo session_id();?>.jpg" />
+                        <img id="image" src="data/picture/<?php echo session_id();?>.<?php echo $ext; ?>" />
                     </div>
                     <script type="text/javascript">
-                        // $(function() {
-                            // dataString = {w:'val', h:'val2'}; // array
-                            // dataObject = {w:'val', h:'val2'}; // array
-                            // //dataString = ['val','val2']; // array
-                            // //var ary = ['fg','dfg','dddd'];
-                            // //var jsonString = JSON.stringify(ary);
-                            // $.ajax({
-                                // type: 'POST',
-                                // url: 'php/show.php',
-                                // //data: {data : jsonString}, 
-                                // //data: {data : dataString }, 
-                                // data: {data : dataObject }, 
-                                // cache: false,
-                                // dataType: 'text',
-                                // success: function(data){
-                                    // //alert("OK");
-                                    // $('#show').html(data);
-                                // }
-                            // });
-                            // // $.ajax({
-                                // // url : 'php/show.php',
-                                // // dataType: "text",
-                                // // success : function (data) {
-                                    // // $('#show').html(data);
-                                // // }
-                            // // });
-                        // });
                         $(function() {
                             /**
                             * Array with all parameters to create image in GD
@@ -362,13 +368,11 @@ session_start();
                                     var top = $( this ).css('top');
                                     var left = $( this ).css('left');
                                     var size = $( this ).children('.toText').css('font-size');
-                                    //var rotate = $( this ).children('.toText').css('font-family');
                                     var rotate = getRotationDegrees($(this));
                                     var color = $( this ).children('.toText').css('color');
                                     var opacity = $( this ).children('.toText').css('opacity');
                                     var value = $( this ).children('.toText').text();
                                     var family = $( this ).children('.toText').css('font-family');
-                                    //var  = $( this ).css('');
                                     var workH = $( '#image' ).height();
                                     var workW = $( '#image' ).width();
                                     arry.push({top:top, left:left, size:size, rotate:rotate, color:color, opacity:opacity, value:value, family:family, workH:workH, workW:workW});
@@ -386,21 +390,17 @@ session_start();
                                 });
                             };
                             passAndShow();
-                            $(document).on( 'mousedown', 'body', function(){
-                                //alert(imgsrc);
-                                //var imgsrc = $( '#preview-img' ).attr( 'src' );
-                                //$( '#preview-img' ).remove();
-                                
+                            $(document).on( 'mouseup', 'body', function(e){
+                                if (e.target.id != 'create-form-ok') {
+                                    passAndShow();
+                                    $( '#preview-img' ).attr( 'src', $( '#preview-img' ).attr( 'src' )+"?timestamp=" + new Date().getTime());
+                                }
                             });
-                            $(document).on( 'mouseup', 'body', function(){
+                            /**
+                            * Download click create new image to download
+                            **/
+                            $( '#download-files' ).click( function(e){
                                 passAndShow();
-                                $( '#preview-img' ).attr( 'src', $( '#preview-img' ).attr( 'src' )+"?timestamp=" + new Date().getTime());
-                                //$( '#show' ).html( '<img id="#preview-img" style="width:'+$( '#image' ).width()+';" src="data/picture/<?php echo $_COOKIE['PHPSESSID']; ?>-preview.jpg?asd='+ new Date().getTime()+'" />');
-                                //alert(imgsrc);
-                                //console.log( $("#preview-img").attr("src") );
-                                //console.log( 'mousedown' );
-                                //location.reload();
-                                //$("#preview-img").remove();
                             });
                             /**
                             * function do display all localStorage data
@@ -424,6 +424,31 @@ session_start();
                 </div>
                 <!--<div id="show2"></div>-->
                 <div id="show"></div>
+                <div id="dimming">
+                    <div id="create-form-ph">
+                        <div id="create-form-colpick"></div>
+                        <div id="create-form-rgb"><input id="rr" type="text" /><input id="gg" type="text" /><input id="bb" type="text" /></div>
+                        <div id="create-form-size">
+                            <fieldset>
+                            <legend>Width:</legend>
+                                <input id="create-form-width" class="text-position" type="text" />
+                            </fieldset>
+                            X
+                            <fieldset>
+                            <legend>Height:</legend>
+                                <input id="create-form-height" class="text-position" type="text" />
+                            </fieldset>
+                            px
+                            <fieldset>
+                            <legend>Transparent:</legend>
+                                <input id="" class="" name="transparent-box" type="checkbox" /> Yes
+                            </fieldset>
+                        </div>
+                        <input id="create-form-ok" class="create-btn" type="button" value="Ok"/>
+                        <br />
+                        <input id="create-form-cancel" class="create-btn" type="button" value="Cancel"/>
+                    </div>
+                </div>
             </article>
         </section>
         <footer>

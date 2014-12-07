@@ -8,14 +8,23 @@
 ?>
 <?php
 include_once('clear_old.php');
+$path = '../data/picture/'.$_COOKIE['PHPSESSID'];
+foreach (glob($path.'*.*') as $filename) {
+    unlink($filename);
+}
+
 class UpLoadFiles
 {
 	/*funkcja do sprawdzania i uploadowania plików*/
 	public function checkFile($x,$des)
     {
-        $file_name = $_COOKIE['PHPSESSID'].'.jpg';
-		$disallowed = array (/*pliki które są nie do przyjęcia*/);
-		if (! in_array($x, $disallowed)) {		
+        $e = explode('/', $x);//wyciągam rozszerzenie 
+        if ($e[1] == 'jpeg') {//zmieniam na popularniejsze rozszezenie
+            $e[1] = 'jpg';
+        }
+        $file_name = $_COOKIE['PHPSESSID'].'.'.$e[1];
+		$allowed = array ('image/jpg','image/jpeg','image/png','image/gif');
+		if (in_array($x, $allowed)) {		
 			echo '<span class="catch_span">Picture upload successful: '.$_FILES['pictures']['name'].'</span>';
 			move_uploaded_file($_FILES['pictures']['tmp_name'], $des.'/'.$file_name);
 		} else {

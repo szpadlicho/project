@@ -1,5 +1,5 @@
 <?php
-$file = $_POST['file'];
+$file = $_GET['file'];
 //$file = '../data/picture/l5dq9rbhohnhtkvtq0ltcpvkc2-preview.jpg';
 if(file_exists($file)) {
     header('Content-Description: File Transfer');
@@ -13,7 +13,7 @@ if(file_exists($file)) {
     ob_clean();
     flush();
     readfile($file);
-	//unlink($file);
+	unlink($file);
 	//unlink($file2);
     exit;
 }

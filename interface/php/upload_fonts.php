@@ -12,8 +12,9 @@ class UpLoadFiles
 	/*funkcja do sprawdzania i uploadowania plików*/
 	public function checkFile($x,$des)
     {
-		$disallowed = array (/*pliki które są nie do przyjęcia*/);
-		if (! in_array($x, $disallowed)) {		
+        $ext5 = pathinfo($_FILES['files']['name'], PATHINFO_EXTENSION);
+		$allowed = array ('otf','ttf'/*pliki które są nie do przyjęcia*/);
+		if (in_array($ext5, $allowed)) {		
 			echo '<span class="catch_span">Font upload successful: '.$_FILES['files']['name'].'</span>';
 			move_uploaded_file($_FILES['files']['tmp_name'], $des.'/'.$_FILES['files']['name']);
 		} else {
