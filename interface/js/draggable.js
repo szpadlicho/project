@@ -28,7 +28,6 @@ $(document).ready(function(){
     * Save array with element to cookie
     * Remove chosen element from site and array
     **/
-    //var topMax = 660; // x2 jest w projekcie w width jescze
     var setStorageItem = function(){
         var jsonStr = JSON.stringify(arr);//converting array into json string   
         localStorage.setItem('arr', jsonStr);//storing it in a cookie
@@ -36,7 +35,6 @@ $(document).ready(function(){
     var getStorageItem = function() {
         var empString = localStorage.getItem('arr');//retrieving data from cookie
         var empArr = $.parseJSON(empString);//converting "empString" to an array.
-        //alert(empArr);
         return empArr;
     };
     var elements = function(){
@@ -45,9 +43,6 @@ $(document).ready(function(){
             $( '#draggable-'+id ).draggable({
                 containment: "parent", 
                 drag: function(event, ui){
-                    //var offset = $(this).offset();
-                    //var xPos = offset.left.toFixed(0);// number.toFixed(2) - leaves only two spots after comma
-                    //var yPos = offset.top.toFixed(0);// number.toFixed(2) - leaves only two spots after comma
                     var xPos = ui.position.left;
                     var yPos = ui.position.top;
                     $('#text-left-pixel').val(xPos);
@@ -64,7 +59,6 @@ $(document).ready(function(){
                 stop: function(event, ui) {
                     localStorage.setItem('draggableLeft'+id, ui.position.left);
                     localStorage.setItem('draggableTop'+id, ui.position.top);
-                    //alert(ui.position.left);
                 }
             });
             $( '#draggable-'+id ).css({left : parseInt(localStorage.getItem('draggableLeft'+id)), top : parseInt(localStorage.getItem('draggableTop'+id))});//, 'background-color':'blue'
@@ -85,12 +79,6 @@ $(document).ready(function(){
                     $('#text-height-pixel').val(ui.size.height.toFixed(0));
                     var yPos = funTopMax() - ui.size.height;
                     $('#slider-height').slider( "value", yPos );
-                    //var rr = parseInt($( this ).children( '.toText' ).css( 'font-size' ));
-                    //var bb = ui.size.width;
-                    //var cc = (now - rr);
-                    //var prcent = ((val / 100) * value).toFixed(0);
-                    //return prcent;
-                    //console.log(cc);
                 },
                 stop: function(event, ui) {
                     localStorage.setItem('resizableWidth'+id, ui.size.width);
@@ -99,15 +87,13 @@ $(document).ready(function(){
             });
             $( '#draggable-'+id ).css({width : parseInt(localStorage.getItem('resizableWidth'+id)), height : parseInt(localStorage.getItem('resizableHeight'+id))});
         });
-        //$( '#tool-11' ).append( 'lol' );
     };
     /**
     * initiate arrays and cookies
     **/
     var empArr = [];
     var arr = [];
-    //alert(localStorage.getItem('arr'));
-    if ( localStorage.getItem('arr') != null ) { /*****************************************************************/
+    if ( localStorage.getItem('arr') != null ) {
         var empArr = getStorageItem();
     } else {
         setStorageItem();
@@ -123,12 +109,11 @@ $(document).ready(function(){
     $( '#create-form-rgb input[type="text"]' ).val('255');//for create-form blank
     $( '#create-form-width' ).val('1024');//for create-form blank
     $( '#create-form-height' ).val('768');//for create-form blank
-    //alert(arr);
     /**
     * Button behavior
     **/
     $( '#btnAdd' ).click(function(){
-        if ( localStorage.getItem('lastID') != null ) { /*************************************************************/
+        if ( localStorage.getItem('lastID') != null ) { 
             //var lastId = $('.drag').last().attr('id').split('-')[1];
             lastId = localStorage.getItem('lastID');
             lastId++;
@@ -137,8 +122,7 @@ $(document).ready(function(){
             var lastId = 0;
             localStorage.setItem('lastID', lastId);
         };
-        //var elem = '<p id="draggable-'+lastId+'" class="drag"><button type="button" class="close" >&times;</button><br /><span id="posY'+lastId+'"></span><br /><span id="posX'+lastId+'"></span><br />id : '+lastId+'</p>';
-        var elem = '<p id="draggable-'+lastId+'" class="drag"><button class="close" type="button" >&times;</button><span class="number">id : '+lastId+'</span><span id="toText'+lastId+'" class="toText">Some Text</span></p>';
+        var elem = '<p id="draggable-'+lastId+'" class="drag"><button class="close" type="button" >&times;</button><span class="number">id : '+lastId+'</span><span id="toText'+lastId+'" class="toText">Dutedrakus</span></p>';
         $( '#middle' ).append(elem);
         arr.push(elem);
         setStorageItem();
@@ -148,26 +132,22 @@ $(document).ready(function(){
         $( '.drag' ).last().addClass( 'curent' );
         $('#txt').val( $( '.curent' ).children( '.toText' ).text() );
     });
-    $( '#btnReset' ).click(function(){/***********************************/
-        // var cookies = $.cookie();
-        // for(var cookie in cookies) {
-           // $.removeCookie(cookie);
-        // };
+    $( '#btnReset' ).click(function(){
         localStorage.clear();
         location.reload();
     });
-    $(document).on('mousedown', '.drag', function () { //work on dynamic elements.mousedown()
+    $(document).on('mousedown', '.drag', function () {
         $( '.drag' ).removeClass( 'curent' );
         $( this ).addClass( 'curent' );
         $( this ).css( 'cursor', 'grabbing' );
     });
-    $(document).on('mouseup', '.drag', function () { //work on dynamic elements.mousedown()
+    $(document).on('mouseup', '.drag', function () {
         $( this ).css( 'cursor', 'grab' );
     });
     $( '#picture' ).click(function(){
         //$( '.curent' ).removeClass( 'curent' );
     });
-    $(document).on('click', '.close', function () { //work on dynamic elements
+    $(document).on('click', '.close', function () {
         //var idi = $(this).parents('p').attr('id').slice(-1);
         var idi = $(this).parents('p').attr('id').split('-')[1];
         $(this).parents('p').remove();

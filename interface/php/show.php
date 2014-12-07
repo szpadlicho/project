@@ -122,7 +122,7 @@ for ($i = 0; $i < $count; $i++) {
         imagedestroy($handle);
     }
 }
-echo "<div id='preview-div'><img id='preview-img' width='".$workW."px' src=data/picture/".$_COOKIE['PHPSESSID']."-preview.".$ext."?mtime=".@filemtime($fileimg)." alt='Aby zacząć edycje prześlij obraz'/></div><br />\n";//@filemtime($fileimg) thanks this image is always refresh
+echo "<div id='preview-div'><img id='preview-img' width='".($workW - 18)."px' src=data/picture/".$_COOKIE['PHPSESSID']."-preview.".$ext."?mtime=".@filemtime($fileimg)." alt='Aby zacząć edycje prześlij obraz'/></div><br />\n";//@filemtime($fileimg) thanks this image is always refresh
 ?>
 <?php
 // $data = $_POST['data'];
@@ -140,13 +140,4 @@ echo "<div id='preview-div'><img id='preview-img' width='".$workW."px' src=data/
     // echo $data['arry'][$i]['workW'].'<br />';
     // echo '--------<br />';
 // };
-?>
-<?php
-// // fill an array with all items from a directory
-// $handle = opendir('../data/');
-// while (false !== ($file = readdir($handle))) {
-        // $files[] = $file;
-// }
-// var_dump($files);
-// closedir($handle); 
 ?>

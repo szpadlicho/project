@@ -1,4 +1,4 @@
-$(document).ready(function(){
+$(function() {
     /**
     * Show and hide container when top menu is checked or not
     **/
@@ -62,4 +62,12 @@ $(document).ready(function(){
     });
     //localStorage.removeItem('tool-05');
     //localStorage.removeItem('tool-09');
+});
+$(function() {
+    $( '#about' ).click(function(){
+        $( '#dimming-about' ).show();
+    });
+    $( '#close-about' ).click(function(){
+        $( '#dimming-about' ).hide();
+    });
 });

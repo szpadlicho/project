@@ -33,7 +33,9 @@ foreach ($dir as $filename) {
         <!--
         <link rel="stylesheet" href="//code.jquery.com/ui/1.11.2/themes/smoothness/jquery-ui.css">
         -->
+        
         <script type="text/javascript" src="js/jquery-1.9.1.min.js"></script>
+        <script type="text/javascript" src="js/scrypt.js"></script>
         <script type="text/javascript" src="js/jquery-ui.min-1.11.2.js"></script>
         <!--<script type="text/javascript" src="js/jquery.cookie.js"></script>-->
         <script type="text/javascript" src="js/show.js"></script>
@@ -41,11 +43,7 @@ foreach ($dir as $filename) {
         <script type="text/javascript" src="js/colpick.js"></script>
         <script type="text/javascript" src="js/interface.js"></script>
         <script type="text/javascript" src="js/fonts.js"></script>
-        <script type="text/javascript" src="js/new.js"></script>
-        <script type="text/javascript" src="js/upload.js"></script>
-        <script type="text/javascript" src="js/preview.js"></script>
-        <script type="text/javascript" src="js/indexx.js"></script>
-        <script type="text/javascript" src="js/preview.js"></script>
+        <script type="text/javascript" src="js/index.js"></script>
 
         <script type="text/javascript">
         var both = function () {
@@ -57,9 +55,6 @@ foreach ($dir as $filename) {
             // setup
             $( '#relative-holder' ).css({'width':wtt+'px','height':htt+'px'});
             $( '#show' ).css({'width':wtt+'px','height':htt+'px'});
-            // var iw = $( '#image' ).width();
-            // var iw = iw - 118;
-            // $( '#preview-img' ).css('width', iw+'px');
         };
         $(document).ready(both);
         $(document).load(both);
@@ -73,6 +68,47 @@ foreach ($dir as $filename) {
                     <ul>
                         <li>File
                             <ul>
+                                <script type="text/javascript">
+                                    $(function() {
+                                        $( '#new-file' ).click(function(){
+                                            $( '#dimming' ).show();
+                                        });
+                                        $('#create-form-colpick').colpick({
+                                            flat:true,
+                                            layout:'rgbhex',
+                                            submit:0,
+                                            color: 'ffffff',
+                                            onChange:function(hsb,hex,rgb,el,bySetColor) {
+                                                $('#rr').val(rgb.r);//.rgb.g.rgb.b
+                                                $('#gg').val(rgb.g);//.rgb.g.rgb.b
+                                                $('#bb').val(rgb.b);//.rgb.g.rgb.b
+                                            }
+                                        });
+                                        $( '#create-form-ok' ).click(function(){
+                                            if ( $( '[name="transparent-box"]' ).prop('checked') ) {//.prop('checked')
+                                                console.log('checked');
+                                                var opacity = true;
+                                            } else {
+                                                console.log('nop');
+                                                var opacity = false;
+                                            }
+                                            $.ajax({
+                                                type: 'POST',
+                                                url: 'php/blank.php',
+                                                data: { width: $( '#create-form-width' ).val(), height: $( '#create-form-height' ).val(), r:$( '#rr' ).val(), g:$( '#gg' ).val(), b:$( '#bb' ).val(), transparent: opacity  }, 
+                                                cache: false,
+                                                dataType: 'text',
+                                                success: function(data){
+                                                    //console.log(data);
+                                                    location.reload();
+                                                }
+                                            });
+                                        });
+                                        $( '#create-form-cancel' ).click(function(){
+                                            location.reload();
+                                        });
+                                    });
+                                </script>
                                 <li id="new-file">New file</li>
                                 <li id="load-file">Upload file</li>
                                 <script type="text/javascript">
@@ -203,12 +239,44 @@ foreach ($dir as $filename) {
                         </div>
                     </div>
                     <!-- Font Family -->
+                    <script type="text/javascript">
+                        $(function() {
+                            $('#form-fonts').change(function(e) {
+                                e.preventDefault();
+                                data = new FormData($('#form-fonts')[0]);
+                                console.log('Submitting');
+                                $.ajax({
+                                    type: 'POST',
+                                    url: 'php/upload_fonts.php',
+                                    data:  data,
+                                    cache: false,
+                                    success: function (data) {
+                                        $("#info").html(data);
+                                        location.reload();
+                                    },
+                                    contentType: false,
+                                    processData: false
+                                }).done(function(data) {
+                                    console.log(data);
+                                }).fail(function(jqXHR,status, errorThrown) {
+                                    console.log(errorThrown);
+                                    console.log(jqXHR.responseText);
+                                    console.log(jqXHR.status);
+                                    //$("#info").text('font upload fail');
+                                });
+                            });
+                            $( '#add-font' ).click(function(){
+                                $( '#files' ).click();
+                            });
+                        });
+                    </script>
                     <div id="tool-10" class="tools">
                         <div id="fonts" >
                             <p>My fonts:</p>
                             <select id="fontChangeMy" class="fontChange">
                                 <?php include_once('php/show_fonts.php'); ?>
                             </select><br />
+                            <input id="font-size-procent" class="text-position" type="text" />
                         </div>
                         <form id="form-fonts" method="POST" enctype="multipart/form-data">
                             <input id="files" name="files" type="file" />
@@ -235,15 +303,123 @@ foreach ($dir as $filename) {
                         });
                     </script>
                     <div id="tool-11" class="tools">
-                        <input id="font-size-procent" class="text-position" type="text" />
+                        <!--Color: <input id="fontColor" class="" type="text" /><br />-->
                     </div>
                     <!-- END -->
                 </div>
                 <!-- Image place -->
+                <script type="text/javascript">
+                $(document).ready(function() {
+                    $("img").load(function() {
+                        //alert($(this).height());
+                        //alert($(this).width());
+                    });
+                    //var img = document.getElementById("image");
+                    //alert("height:" + img.height + ", width: " + img.width);
+                    //alert("natural height:" + img.naturalHeight + ", natural width: " + img.naturalWidth);
+                    //alert("jquery height:" + $("#image").height() + ",jquery width: "+ $("#image").width());
+                });
+                </script>
                 <div id="middle-ph">
                     <div id="middle">
+                        <script type="text/javascript">
+                            $(function() {
+                                $('#form-pictures').change(function(e) {
+                                    e.preventDefault();
+                                    data = new FormData($('#form-pictures')[0]);
+                                    console.log('Submitting');
+                                    $.ajax({
+                                        type: 'POST',
+                                        url: 'php/upload_files.php',
+                                        data:  data,
+                                        cache: false,
+                                        success: function (data) {
+                                            $("#info").html(data);
+                                            location.reload();
+                                        },
+                                        contentType: false,
+                                        processData: false
+                                    }).done(function(data) {
+                                        console.log(data);
+                                    }).fail(function(jqXHR,status, errorThrown) {
+                                        console.log(errorThrown);
+                                        console.log(jqXHR.responseText);
+                                        console.log(jqXHR.status);
+                                        $("#info").text('Picture upload fail');
+                                    });
+                                });
+                                $( '#load-file' ).click(function(){
+                                    $( '#pictures' ).click();
+                                });
+                            });
+                        </script>
                         <img id="image" src="data/picture/<?php echo session_id();?>.<?php echo $ext; ?>" />
                     </div>
+                    <script type="text/javascript">
+                        $(function() {
+                            /**
+                            * Array with all parameters to create image in GD
+                            **/
+                            var passAndShow = function(){
+                                var arry = [];
+                                $( '.drag' ).each(function(){
+                                    var getId = $( this ).attr('id');
+                                    var top = $( this ).css('top');
+                                    var left = $( this ).css('left');
+                                    var size = $( this ).children('.toText').css('font-size');
+                                    var rotate = getRotationDegrees($(this));
+                                    var color = $( this ).children('.toText').css('color');
+                                    var opacity = $( this ).children('.toText').css('opacity');
+                                    var value = $( this ).children('.toText').text();
+                                    var family = $( this ).children('.toText').css('font-family');
+                                    var workH = $( '#image' ).height();
+                                    var workW = $( '#image' ).width();
+                                    arry.push({top:top, left:left, size:size, rotate:rotate, color:color, opacity:opacity, value:value, family:family, workH:workH, workW:workW});
+                                });
+                                dataObject = {arry};
+                                $.ajax({
+                                    type: 'POST',
+                                    url: 'php/show.php',
+                                    data: {data : dataObject }, 
+                                    cache: false,
+                                    dataType: 'text',
+                                    success: function(data){
+                                        $('#show').html(data);
+                                    }
+                                });
+                            };
+                            passAndShow();
+                            $(document).on( 'mouseup', 'body', function(e){
+                                if (e.target.id != 'create-form-ok') {
+                                    passAndShow();
+                                    $( '#preview-img' ).attr( 'src', $( '#preview-img' ).attr( 'src' )+"?timestamp=" + new Date().getTime());
+                                }
+                            });
+                            /**
+                            * Download click create new image to download
+                            **/
+                            $( '#download-files' ).click( function(e){
+                                passAndShow();
+                            });
+                            /**
+                            * function do display all localStorage data
+                            **/
+                            function loadMenu() {
+                                if (!localStorage.length < 1) {
+                                    for (var i = 0; i < localStorage.length; i++) {
+                                        var item = localStorage.getItem(localStorage.key(i));
+                                        //alert(item);
+                                        //$('#show-local').append(localStorage.key(i));
+                                        //$('#show-local').append(item);
+                                        //$('#show-local').append('<br />');
+                                    };
+                                } else {
+                                    alert('no item');
+                                };
+                            };
+                            loadMenu();
+                        }); 
+                    </script>
                 </div>
                 <!--<div id="show2"></div>-->
                 <div id="show"></div>
@@ -272,6 +448,16 @@ foreach ($dir as $filename) {
                         <input id="create-form-cancel" class="create-btn" type="button" value="Cancel"/>
                     </div>
                 </div>
+                <script type="text/javascript">
+                    $(function() {
+                        $( '#about' ).click(function(){
+                            $( '#dimming-about' ).show();
+                        });
+                        $( '#close-about' ).click(function(){
+                            $( '#dimming-about' ).hide();
+                        });
+                    });
+                </script>
                 <div id="dimming-about">
                     <div id="create-form-ph-about">
                         <button id="close-about" type="button" >&times;</button>
