@@ -79,7 +79,7 @@ for ($i = 0; $i < $count; $i++) {
     /**
     * Rotate
     **/
-    $rotate = $data['arry'][$i]['rotate'];// here set rotate
+    $rotate = -$data['arry'][$i]['rotate'];// here set rotate
     /**
     * Top position
     * Top + font size = Top in GD
