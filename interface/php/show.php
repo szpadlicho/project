@@ -1,4 +1,5 @@
 <?php
+//ini_set('display_errors',0);
 $name = $_COOKIE['PHPSESSID'];
 $dir = glob('../data/picture/'.$name.'.*');
 //var_dump($dir);
