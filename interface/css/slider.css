@@ -76,7 +76,6 @@ ui-corner-all
     margin:1em 0.5em 1em 0.5em;
     display:inline-block;
     height:70%;
-    #transform: rotate(180deg);
 }
 .slider-left {
     margin:0.5em 1em 0.5em 1em;

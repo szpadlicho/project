@@ -2,7 +2,6 @@
 session_start();
 $name = $_COOKIE['PHPSESSID'];
 $dir = glob('data/picture/'.$name.'.*');
-//var_dump($dir);
 //$ext = pathinfo($dir[0], PATHINFO_EXTENSION);
 foreach ($dir as $filename) {
     $ext = pathinfo($filename, PATHINFO_EXTENSION);
@@ -35,7 +34,6 @@ foreach ($dir as $filename) {
         -->
         <script type="text/javascript" src="js/jquery-1.9.1.min.js"></script>
         <script type="text/javascript" src="js/jquery-ui.min-1.11.2.js"></script>
-        <!--<script type="text/javascript" src="js/jquery.cookie.js"></script>-->
         <script type="text/javascript" src="js/show.js"></script>
         <script type="text/javascript" src="js/draggable.js"></script>
         <script type="text/javascript" src="js/colpick.js"></script>
@@ -44,7 +42,6 @@ foreach ($dir as $filename) {
         <script type="text/javascript" src="js/new.js"></script>
         <script type="text/javascript" src="js/upload.js"></script>
         <script type="text/javascript" src="js/preview.js"></script>
-        <script type="text/javascript" src="js/indexx.js"></script>
         <script type="text/javascript" src="js/preview.js"></script>
 
         <script type="text/javascript">
@@ -57,9 +54,6 @@ foreach ($dir as $filename) {
             // setup
             $( '#relative-holder' ).css({'width':wtt+'px','height':htt+'px'});
             $( '#show' ).css({'width':wtt+'px','height':htt+'px'});
-            // var iw = $( '#image' ).width();
-            // var iw = iw - 118;
-            // $( '#preview-img' ).css('width', iw+'px');
         };
         $(document).ready(both);
         $(document).load(both);
@@ -232,6 +226,8 @@ foreach ($dir as $filename) {
                                 var er = funProcent(val2, value2);
                                 $( '#font-size-procent' ).val(er+'%');
                             });
+                            console.log($( '#image' ).width());
+                            console.log($( '#preview-img' ).width());
                         });
                     </script>
                     <div id="tool-11" class="tools">
@@ -242,7 +238,7 @@ foreach ($dir as $filename) {
                 <!-- Image place -->
                 <div id="middle-ph">
                     <div id="middle">
-                        <img id="image" src="data/picture/<?php echo session_id();?>.<?php echo $ext; ?>" />
+                        <img id="image" alt='Aby zacząć edycje prześlij obraz' src="data/picture/<?php echo session_id();?>.<?php echo $ext; ?>" />
                     </div>
                 </div>
                 <!--<div id="show2"></div>-->
@@ -287,6 +283,5 @@ foreach ($dir as $filename) {
         <?php //var_dump($_FILES); ?>
         <?php //var_dump($_POST); ?>
         <?php //var_dump($_COOKIE); ?>
-        <?php?>
     </body>
 </html>

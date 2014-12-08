@@ -3,12 +3,8 @@
 ?>
 <?php
 $files = glob('../data/fonts/*.*');
-//$files = glob('data/fonts/*.*');
-//$time  = time();
 foreach ($files as $file) {
     if (is_file($file)) {
-        //echo $file
-        //echo basename($file);
         $ext3 = pathinfo($file, PATHINFO_EXTENSION);
         ?>
 @font-face {

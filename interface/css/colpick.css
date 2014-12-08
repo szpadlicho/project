@@ -7,14 +7,11 @@ colpick Color Picker / colpick.com
 	position: absolute;
 	width: 18.875em;
 	height: 9.875em;
-	#overflow: hidden;
+	overflow: hidden;
 	display: none;
 	font-family: Arial, Helvetica, sans-serif;
 	background:#000;
 	border: 1px solid #000;
-	#-webkit-border-radius: 5px;
-	#-moz-border-radius: 5px;
-	#border-radius: 5px;
 	/*Prevents selecting text when dragging the selectors*/
 	-webkit-user-select: none;
 	-moz-user-select: none;
@@ -25,15 +22,11 @@ colpick Color Picker / colpick.com
 /*Color selection box with gradients*/
 .colpick_color {
 	position: absolute;
-	#left: 7px;
-	#top: 7px;
 	width: 9.75em;
 	height: 9.75em;
 	overflow: hidden;
-	#outline: 1px solid #aaa;
 	cursor: crosshair;
     border: 1px solid #999;
-    #display:none;
 }
 .colpick_color_overlay1 {
 	position: absolute;
@@ -85,11 +78,9 @@ colpick Color Picker / colpick.com
 /*Vertical hue bar*/
 .colpick_hue {
 	position: absolute;
-	#top: 6px;
 	left: 11.5625em;
 	width: 1.1875em;
 	height: 9.75em;
-	#border: 1px solid #aaa;
 	cursor: n-resize;
 }
 /*Hue bar sliding indicator*/
@@ -120,9 +111,7 @@ colpick Color Picker / colpick.com
 /*New color box*/
 .colpick_new_color {
 	position: absolute;
-	#left: 12.9375em;
     left: 14.4375em;
-	#top: 0.5em;
 	width: 4.25em;
 	height: 1.6875em;
 	background: #000;
@@ -138,7 +127,6 @@ colpick Color Picker / colpick.com
 	color:#ffffff;
 	border:1px solid #999;
     left: 14.4375em;
-    #font-size: 0.75em;
 }
 .colpick_rgb_r {
 	top: 2.375em;
