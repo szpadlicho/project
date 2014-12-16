@@ -25,6 +25,7 @@ $(function() {
             data: {data : dataObject }, 
             cache: false,
             dataType: 'text',
+            async: false,
             success: function(data){
                 //$('#show').html(data);
                 setTimeout(function(){ 
