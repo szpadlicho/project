@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>TagCanvas - Cloud Carousel</title>
+        <meta charset="UTF-8"/>
+        
+        <meta name="keywords" content="" />
+        <meta name="description" content="" />
+        <meta name="author" content=""/>
+        <meta name="dcterms.created" content="fri 12 sep 2014 9:00:00" />
+        <meta name="dcterms.modified" content="thu 30 oct 2014 13:22:00" />
+        <META NAME="ROBOTS" CONTENT="index, follow">
+        <!-- The StyleSheets -->
+        <!--<link type="text/css" rel="stylesheet" href="css/style.css" />-->
+        <!-- The JavaScript -->
+        <script type="text/javascript" src="https://code.jquery.com/jquery-1.9.1.min.js"></script>
+        <script src="jquery.tagcanvas.js" type="text/javascript"></script>
+        <!--<script type="text/javascript" src="tagcanvas.js"></script>-->
+        <script type="text/javascript">
+         //https://www.meble24h.com.pl/data/include/cms/Skaje/Ayala/js/jquery.tagcanvas.js
+            window.onload = function() {
+                try {
+                    TagCanvas.Start('myCanvas', 'tags',{
+                        textColour: '#ff0000',
+                        outlineColour: '#ff0000',
+                        reverse: true,
+                        depth: 0.1,
+                        maxSpeed: 0.05,
+                        dragControl: false,
+                        frontSelect: false,
+                        imageScale: 0.2,
+                        maxBrightness: 	0.8,
+                        minBrightness: 	0.1
+                    });
+                } catch(e) {
+                    // something went wrong, hide the canvas container
+                    document.getElementById('myCanvasContainer').style.display = 'none';
+                    document.getElementById('tags').style.display = 'none';
+                }
+            };
+         </script>
+ <script type="text/javascript">
+
+ </script>
+    </head>
+    <body>
+        <div id="myCanvasContainer">
+            <canvas width="500" height="500" id="myCanvas">
+                <p>Anything in here will be replaced on browsers that support the canvas element</p>
+            </canvas>
+        </div>
+        
+        <div id="tags">
+            <ul>
+                <li><a href="http://www.meble24h.com.pl/product-pol-4572-Kran-i-sluchawka-do-myjni-fryzjerskiej-zestaw-Ayala.html"><img src="http://www.meble24h.com.pl/pol_pl_Kran-i-sluchawka-do-myjni-fryzjerskiej-zestaw-Ayala-4572_1.jpg" /></a></li>
+                <li><a href="http://www.meble24h.com.pl/product-pol-4571-Silikonowa-nakladka-pod-kark-do-myjni-Ayala.html"><img src="http://www.meble24h.com.pl/pol_pl_Silikonowa-nakladka-pod-kark-do-myjni-Ayala-4571_1.jpg" /></a></li>
+                <li><a href="http://www.meble24h.com.pl/product-pol-4573-Sluchawka-do-myjni-Ayala.html"><img src="http://www.meble24h.com.pl/pol_pl_Sluchawka-do-myjni-Ayala-4573_1.jpg" /></a></li>
+                <li><a href="http://www.meble24h.com.pl/product-pol-4574-Gniazdo-mocujace-sluchawke-Ayala.html"><img src="http://www.meble24h.com.pl/pol_pl_Gniazdo-mocujace-sluchawke-Ayala-4574_1.jpg" /></a></li>
+                <li><a href="http://www.meble24h.com.pl/product-pol-4575-Waz-do-sluchawki-Ayala.html"><img src="http://www.meble24h.com.pl/pol_pl_Waz-do-sluchawki-Ayala-4575_1.jpg" /></a></li>
+                <li><a href="http://www.meble24h.com.pl/product-pol-4576-Odplyw-do-myjni-Ayala.html"><img src="http://www.meble24h.com.pl/pol_pl_Odplyw-do-myjni-Ayala-4576_1.jpg" /></a></li>
+                <li><a href="http://www.meble24h.com.pl/product-pol-4577-Sitko-do-myjni-duze-Cosmo-Europe-Ayala.html"><img src="http://www.meble24h.com.pl/pol_pl_Sitko-do-myjni-duze-Cosmo-Europe-Ayala-4577_1.jpg" /></a></li>
+                <li><a href="http://www.meble24h.com.pl/product-pol-4578-Sitko-do-myjni-male-Young-Ayala.html"><img src="http://www.meble24h.com.pl/pol_pl_Sitko-do-myjni-male-Young-Ayala-4578_2.jpg" /></a></li>
+                <li><a href="http://www.meble24h.com.pl/product-pol-4579-Wahacz-do-myjni-Ayala.html"><img src="http://www.meble24h.com.pl/pol_pl_Wahacz-do-myjni-Ayala-4579_1.jpg" /></a></li>
+                <li><a href="http://www.meble24h.com.pl/product-pol-4580-Oslona-wachacza-do-myjni-Ayala.html"><img src="http://www.meble24h.com.pl/pol_pl_Oslona-wachacza-do-myjni-Ayala-4580_1.jpg" /></a></li>
+                <li><a href="http://www.meble24h.com.pl/product-pol-1967-Ayala-misa-Young.html"><img src="http://www.meble24h.com.pl/pol_pl_Ayala-misa-Young-1967_2.jpg" /></a></li>
+                <li><a href="http://www.meble24h.com.pl/product-pol-1968-Ayala-misa-Cosmo.html"><img src="http://www.meble24h.com.pl/pol_pl_Ayala-misa-Cosmo-1968_2.jpg" /></a></li>
+                <li><a href="http://www.meble24h.com.pl/product-pol-1969-Ayala-misa-Europe.html"><img src="http://www.meble24h.com.pl/pol_pl_Ayala-misa-Europe-1969_2.jpg" /></a></li>
+            </ul>
+        </div>
+        
+        <div id="tagss">
+            <ul>
+                <li><a href="http://www.meble24h.com.pl/product-pol-4581-Baza-Dysk-do-fotela-fryzjerskiego-Ayala.html"><img src="http://www.meble24h.com.pl/pol_pl_Baza-Dysk-do-fotela-fryzjerskiego-Ayala-4581_1.jpg" /></a></li>
+                <li><a href="http://www.meble24h.com.pl/product-pol-4582-Baza-Kwadrat-do-fotela-fryzjerskiego-Ayala.html"><img src="http://www.meble24h.com.pl/pol_pl_Baza-Kwadrat-do-fotela-fryzjerskiego-Ayala-4582_1.jpg" /></a></li>
+                <li><a href="http://www.meble24h.com.pl/product-pol-4583-Baza-Pajak-piecionog-chrom-do-fotela-fryzjerskiego-Ayala.html"><img src="http://www.meble24h.com.pl/pol_pl_Baza-Pajak-piecionog-chrom-do-fotela-fryzjerskiego-Ayala-4583_1.jpg" /></a></li>
+                <li><a href="http://www.meble24h.com.pl/product-pol-4584-Baza-Pajak-piecionog-czarna-do-fotela-fryzjerskiego-Ayala.html"><img src="http://www.meble24h.com.pl/pol_pl_Baza-Pajak-piecionog-czarna-do-fotela-fryzjerskiego-Ayala-4584_1.jpg" /></a></li>
+                <li><a href="http://www.meble24h.com.pl/product-pol-4585-Pompa-Hydrauliczna-do-fotela-fryzjerskiego-Ayala.html"><img src="http://www.meble24h.com.pl/pol_pl_Pompa-Hydrauliczna-do-fotela-fryzjerskiego-Ayala-4585_1.jpg" /></a></li>
+                <li><a href="http://www.meble24h.com.pl/product-pol-4586-Pompa-Gazowa-do-fotela-fryzjerskiego-hokerow-taboretow-Ayala.html"><img src="http://www.meble24h.com.pl/pol_pl_Pompa-Gazowa-do-fotela-fryzjerskiego-hokerow-taboretow-Ayala-4586_1.jpg" /></a></li>
+                <li><a href="http://www.meble24h.com.pl/product-pol-4587-Stopki-Chrom-do-fotela-fryzjerskiego-Ayala.html"><img src="http://www.meble24h.com.pl/pol_pl_Stopki-Chrom-do-fotela-fryzjerskiego-Ayala-4587_1.jpg" /></a></li>
+                <li><a href="http://www.meble24h.com.pl/product-pol-4588-Stopki-Czarne-do-fotela-fryzjerskiego-Ayala.html"><img src="http://www.meble24h.com.pl/pol_pl_Stopki-Czarne-do-fotela-fryzjerskiego-Ayala-4588_1.jpg" /></a></li>
+                <li><a href="http://www.meble24h.com.pl/product-pol-4590-Kolka-Czarne-do-fotela-fryzjerskiego-Ayala.html"><img src="http://www.meble24h.com.pl/pol_pl_Kolka-Czarne-do-fotela-fryzjerskiego-Ayala-4590_1.jpg" /></a></li>
+            </ul>
+        </div>
+    </body>
+</html>
+
