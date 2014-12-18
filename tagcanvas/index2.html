@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>List</title>
+        <meta charset="UTF-8"/></p>
+        <script type="text/javascript" src="https://code.jquery.com/jquery-1.9.1.min.js"></script>
+        <script type="text/javascript">
+        $(function(){
+            var tooltips = document.querySelectorAll('.a_img_list ul li p');
+            window.onmousemove = function (e) {
+                var x = (e.clientX - 4) + 'px',
+                    y = (e.clientY + 20) + 'px';
+                for (var i = 0; i < tooltips.length; i++) {
+                    tooltips[i].style.top = y;
+                    tooltips[i].style.left = x;
+                }
+            };
+        });
+        </script>
+        <style>
+        .a_img_list{
+            width:50%;
+            margin: 0 auto;
+            text-align: left;
+        }
+        .a_img_list ul li{
+            list-style-type: none !important;
+            position: relative;
+        }
+        .a_img_list ul li a{
+            text-decoration: none;
+        }
+        .a_img_list ul li a:hover{
+            text-decoration: underline;
+        }
+        .a_img_list ul li p{
+            visibility: hidden;
+            position: fixed;
+            z-index: 2;
+            border: 1px solid #D71920;
+            background: white;
+            padding-right: 0.2em;
+            width:22em;
+            float:left;
+            margin-left: 0.2em;
+        }
+        .a_img_list ul li:hover p{
+            visibility: visible;
+        }
+        .a_img_list ul li p:before{
+            content:'';
+            display: block;
+            position:absolute;
+            top:-10px;
+            left:-1px;
+            width: 0;
+            height: 0;
+            border-style: solid;
+            border-width: 0 10px 10px 10px;
+            border-color: transparent transparent #D71920 transparent;
+        }
+        .a_img_list ul li p img{
+            width: 5em;
+            vertical-align: top;
+            float:left;
+            margin-right: 0.2em;
+        }
+        </style>
+    </head>
+    <body>
+<div class="a_img_list">
+    <ul>
+        <li>
+            <a href="http://www.meble24h.com.pl/product-pol-4572-Kran-i-sluchawka-do-myjni-fryzjerskiej-zestaw-Ayala.html">Zestaw kran z słuchawka do myjni Ayala</a>
+            <p><img src="http://www.meble24h.com.pl/pol_pl_Kran-i-sluchawka-do-myjni-fryzjerskiej-zestaw-Ayala-4572_1.jpg" />Standardowa bateria do myjni z słuchawką w komplecie: mieszalnik, słuchawka, węże, odpływ.</p>
+        </li>
+        <li>
+            <a href="http://www.meble24h.com.pl/product-pol-4571-Silikonowa-nakladka-pod-kark-do-myjni-Ayala.html">Silikonowa nakładka pod kark do myjni Ayala</a>
+            <p><img src="http://www.meble24h.com.pl/pol_pl_Silikonowa-nakladka-pod-kark-do-myjni-Ayala-4571_1.jpg" />Nakładka pod kark klienta mocowana do myjni. Zwiększa jego komfort i chroni przed zasinieniami.</p>
+        </li>
+        <li>
+            <a href="http://www.meble24h.com.pl/product-pol-4573-Sluchawka-do-myjni-Ayala.html">Słuchawka do myjni Ayala</a>
+            <p><img src="http://www.meble24h.com.pl/pol_pl_Sluchawka-do-myjni-Ayala-4573_1.jpg" />Standardowa słuchawka do myjni.</p>
+        </li>
+        <li>
+            <a href="http://www.meble24h.com.pl/product-pol-1969-Ayala-misa-Europe.html">Umywalka Europe</a>
+            <p><img src="http://www.meble24h.com.pl/pol_pl_Ayala-misa-Europe-1969_2.jpg" />Umywalka do myjni dostępna w dwóch kolorach czarnym oraz białym.</p>
+        </li>
+        <li>
+            <a href="http://www.meble24h.com.pl/product-pol-4575-Waz-do-sluchawki-Ayala.html">Wąż do słuchawki</a>
+            <p><img src="http://www.meble24h.com.pl/pol_pl_Waz-do-sluchawki-Ayala-4575_1.jpg" />Standardowy wąż do słuchawki.</p>
+        </li>
+        <li>
+            <a href="http://www.meble24h.com.pl/product-pol-4576-Odplyw-do-myjni-Ayala.html">Odpływ do myjni</a>
+            <p><img src="http://www.meble24h.com.pl/pol_pl_Odplyw-do-myjni-Ayala-4576_1.jpg" />Standardowy odpływ do myjni.</p>
+        </li>
+        <li>
+            <a href="http://www.meble24h.com.pl/product-pol-1967-Ayala-misa-Young.html">Umywalka Young</a>
+            <p><img src="http://www.meble24h.com.pl/pol_pl_Ayala-misa-Young-1967_2.jpg" />Umywalka do myjni dostępna w dwóch kolorach czarnym oraz białym.</p>
+        </li>
+        <li>
+            <a href="http://www.meble24h.com.pl/product-pol-4578-Sitko-do-myjni-male-Young-Ayala.html">Sitko do umywalki Young małe</a>
+            <p><img src="http://www.meble24h.com.pl/pol_pl_Sitko-do-myjni-male-Young-Ayala-4578_2.jpg" />Małe sitko pasujące do umywalki z serii Young</p>
+        </li>
+        <li>
+            <a href="http://www.meble24h.com.pl/product-pol-4579-Wahacz-do-myjni-Ayala.html">Wahacz do myjni Ayala</a>
+            <p><img src="http://www.meble24h.com.pl/pol_pl_Wahacz-do-myjni-Ayala-4579_1.jpg" />Wahacz do myjni.</p>
+        </li>
+        <li>
+            <a href="http://www.meble24h.com.pl/product-pol-4580-Oslona-wachacza-do-myjni-Ayala.html">Osłona wahacza do myjni Ayala</a>
+            <p><img src="http://www.meble24h.com.pl/pol_pl_Oslona-wachacza-do-myjni-Ayala-4580_1.jpg" />Osłona wahacza do myjni.</p>
+        </li>
+        <li>
+            <a href="http://www.meble24h.com.pl/product-pol-4577-Sitko-do-myjni-duze-Cosmo-Europe-Ayala.html">Sitko do umywalki Cosomo / Europe duże</a>
+            <p><img src="http://www.meble24h.com.pl/pol_pl_Sitko-do-myjni-duze-Cosmo-Europe-Ayala-4577_1.jpg" />Duże sitko pasujące do umywalek z serii Cosmo i Erupo.</p>
+        </li>
+        <li>
+            <a href="http://www.meble24h.com.pl/product-pol-1968-Ayala-misa-Cosmo.html">Umywalka Cosmo</a>
+            <p><img src="http://www.meble24h.com.pl/pol_pl_Ayala-misa-Cosmo-1968_2.jpg" />Umywalka do myjni dostępna w dwóch kolorach czarnym oraz białym.</p>
+        </li>
+        <li>
+            <a href="http://www.meble24h.com.pl/product-pol-4574-Gniazdo-mocujace-sluchawke-Ayala.html">Gniazdo mocujące słuchawkę</a>
+            <p><img src="http://www.meble24h.com.pl/pol_pl_Gniazdo-mocujace-sluchawke-Ayala-4574_1.jpg" />Gniazdo do mocowania słuchawki w myjni.</p>
+        </li>
+    </ul>
+</div>
