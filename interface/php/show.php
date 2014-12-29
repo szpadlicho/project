@@ -4,8 +4,12 @@ $name = $_COOKIE['PHPSESSID'];
 $dir = glob('../data/picture/'.$name.'.*');
 //var_dump($dir);
 //$ext = pathinfo($dir[0], PATHINFO_EXTENSION);
-foreach ($dir as $filename) {
-    $ext = pathinfo($filename, PATHINFO_EXTENSION);
+if($dir){
+    foreach ($dir as $filename) {
+        $ext = pathinfo($filename, PATHINFO_EXTENSION);
+    }
+} else {
+    $ext = 'jpg';
 }
 //echo $ext;
 function __getProcentFromNumber($number_pices, $number_all)
@@ -30,101 +34,114 @@ if (file_exists('../data/picture/'.$_COOKIE['PHPSESSID'].'-preview.'.$ext)) {
     @unlink($picture = '../data/picture/'.$_COOKIE['PHPSESSID'].'-preview.'.$ext);
 };
 $picture = '../data/picture/'.$_COOKIE['PHPSESSID'].'.'.$ext;
-list($width, $height, $type, $attr) = getimagesize($picture); // get file size and type to array
+//var_dump($picture);
+if (file_exists($picture)) {
+    list($width, $height, $type, $attr) = getimagesize($picture); // get file size and type to array
 
-$data = $_POST['data'];
-$count = count($data['arry']);
-for ($i = 0; $i < $count; $i++) {
-    if (file_exists('../data/picture/'.$_COOKIE['PHPSESSID'].'-preview.'.$ext)) {
-        $picture = '../data/picture/'.$_COOKIE['PHPSESSID'].'-preview.'.$ext;
-    };
-    /**
-    * Color
-    **/
-    $color = $data['arry'][$i]['color'];// here color set
-    $color = str_replace(array('rgb(', ')', ' '), '', $color);
-    $rgb = explode(',', $color);
-    $r = $rgb[0];
-    $g = $rgb[1];
-    $b = $rgb[2];
-    /**
-    * Opacity
-    **/
-    $opacity = $data['arry'][$i]['opacity'];// here opacity set
-    $j = __getProcentFromNumber($opacity, 1);
-    $m = __getNumberFromProcent($j, 127);
-    $alpha = 127-$m;// 0 to 127
-    /**
-    * Font-family
-    **/
-    $ffname = $data['arry'][$i]['family'];// here font family set
-    $dir = glob('../data/fonts/'.$ffname.'.*');
-    $ext4 = pathinfo($dir[0], PATHINFO_EXTENSION);
-    $font = '../data/fonts/'.$ffname.'.'.$ext4;
-    /**
-    * Font size
-    **/
-    $size = $data['arry'][$i]['size'];// here font size set
-    $int = intval($size);
-    $workH = $data['arry'][$i]['workH'];// here workH set
-    $workW = $data['arry'][$i]['workW'];// here workW set
-    $h = __getProcentFromNumber($int, $workH);
-    $rsize = __getNumberFromProcent($h, $height);
-    $psize = __getNumberFromProcent(24, $rsize);
-    $fsize = $rsize - $psize;
-    /**
-    * Text
-    **/
-    $inscription = $data['arry'][$i]['value'];// here set value
-    /**
-    * Rotate
-    **/
-    $rotate = -$data['arry'][$i]['rotate'];// here set rotate
-    /**
-    * Top position
-    * Top + font size = Top in GD
-    **/
-    $top = $data['arry'][$i]['top']+$size+8;// here set top
-    $th = __getProcentFromNumber($top, $workH);//check
-    $rx = __getNumberFromProcent($th, $height);//check
-    $px = __getNumberFromProcent(24, $rx);
-    $x = $rx;
-    /**
-    * Left position
-    **/
-    $left = $data['arry'][$i]['left'] - 2;// here set left
-    $lw = __getProcentFromNumber($left, $workW);
-    $y = __getNumberFromProcent($lw, $width);
-    //var_dump($lw);
-    /**
-    * Create picture
-    **/
-    if ($ext == 'jpg') {
-        $handle = imagecreatefromJPEG($picture);
-        $fcolor = imagecolorallocatealpha($handle, $r, $g, $b, $alpha);
-        imagettftext($handle, $fsize, $rotate, $y, $x, $fcolor, $font, $inscription);
-        imagejpeg($handle, '../data/picture/'.$_COOKIE['PHPSESSID'].'-preview.'.$ext);
-        imagedestroy($handle);
+    $data = $_POST['data'];
+    $count = count($data['arry']);
+    for ($i = 0; $i < $count; $i++) {
+        if (file_exists('../data/picture/'.$_COOKIE['PHPSESSID'].'-preview.'.$ext)) {
+            $picture = '../data/picture/'.$_COOKIE['PHPSESSID'].'-preview.'.$ext;
+        };
+        /**
+        * Color
+        **/
+        $color = $data['arry'][$i]['color'];// here color set
+        $color = str_replace(array('rgb(', ')', ' '), '', $color);
+        $rgb = explode(',', $color);
+        $r = $rgb[0];
+        $g = $rgb[1];
+        $b = $rgb[2];
+        /**
+        * Opacity
+        **/
+        $opacity = $data['arry'][$i]['opacity'];// here opacity set
+        $j = __getProcentFromNumber($opacity, 1);
+        $m = __getNumberFromProcent($j, 127);
+        $alpha = 127-$m;// 0 to 127
+        /**
+        * Font-family
+        **/
+        $ffname = $data['arry'][$i]['family'];// here font family set
+        $dir = glob('../data/fonts/'.$ffname.'.*');
+        $ext4 = pathinfo($dir[0], PATHINFO_EXTENSION);
+        $font = '../data/fonts/'.$ffname.'.'.$ext4;
+        /**
+        * Font size
+        **/
+        $size = $data['arry'][$i]['size'];// here font size set
+        $int = intval($size);
+        $workH = $data['arry'][$i]['workH'];// here workH set
+        $workW = $data['arry'][$i]['workW'];// here workW set
+        $h = __getProcentFromNumber($int, $workH);
+        $rsize = __getNumberFromProcent($h, $height);
+        $psize = __getNumberFromProcent(24, $rsize);
+        $fsize = $rsize - $psize;
+        /**
+        * Text
+        **/
+        $inscription = $data['arry'][$i]['value'];// here set value
+        /**
+        * Rotate
+        **/
+        $rotate = -$data['arry'][$i]['rotate'];// here set rotate
+        /**
+        * Top position
+        * Top + font size = Top in GD
+        **/
+        $top = $data['arry'][$i]['top']+$size+8;// here set top
+        $th = __getProcentFromNumber($top, $workH);//check
+        $rx = __getNumberFromProcent($th, $height);//check
+        $px = __getNumberFromProcent(24, $rx);
+        $x = $rx;
+        /**
+        * Left position
+        **/
+        $left = $data['arry'][$i]['left'] - 2;// here set left
+        $lw = __getProcentFromNumber($left, $workW);
+        $y = __getNumberFromProcent($lw, $width);
+        //var_dump($lw);
+        /**
+        * Create picture
+        **/
+        if ($ext == 'jpg') {
+            $handle = imagecreatefromJPEG($picture);
+            $fcolor = imagecolorallocatealpha($handle, $r, $g, $b, $alpha);
+            imagettftext($handle, $fsize, $rotate, $y, $x, $fcolor, $font, $inscription);
+            imagejpeg($handle, '../data/picture/'.$_COOKIE['PHPSESSID'].'-preview.'.$ext);
+            imagedestroy($handle);
+        }
+        if ($ext == 'png') {
+            $handle = imagecreatefromPNG($picture);
+            imagesavealpha($handle, true);
+            $fcolor = imagecolorallocatealpha($handle, $r, $g, $b, $alpha);
+            imagettftext($handle, $fsize, $rotate, $y, $x, $fcolor, $font, $inscription);
+            imagePNG($handle, '../data/picture/'.$_COOKIE['PHPSESSID'].'-preview.'.$ext);
+            imagedestroy($handle);
+        }
+        if ($ext == 'gif') {
+            $handle = imagecreatefromGIF($picture);
+            imagesavealpha($handle, true);
+            $fcolor = imagecolorallocatealpha($handle, $r, $g, $b, $alpha);
+            imagettftext($handle, $fsize, $rotate, $y, $x, $fcolor, $font, $inscription);
+            imageGIF($handle, '../data/picture/'.$_COOKIE['PHPSESSID'].'-preview.'.$ext);
+            imagedestroy($handle);
+        }
     }
-    if ($ext == 'png') {
-        $handle = imagecreatefromPNG($picture);
-        imagesavealpha($handle, true);
-        $fcolor = imagecolorallocatealpha($handle, $r, $g, $b, $alpha);
-        imagettftext($handle, $fsize, $rotate, $y, $x, $fcolor, $font, $inscription);
-        imagePNG($handle, '../data/picture/'.$_COOKIE['PHPSESSID'].'-preview.'.$ext);
-        imagedestroy($handle);
-    }
-    if ($ext == 'gif') {
-        $handle = imagecreatefromGIF($picture);
-        imagesavealpha($handle, true);
-        $fcolor = imagecolorallocatealpha($handle, $r, $g, $b, $alpha);
-        imagettftext($handle, $fsize, $rotate, $y, $x, $fcolor, $font, $inscription);
-        imageGIF($handle, '../data/picture/'.$_COOKIE['PHPSESSID'].'-preview.'.$ext);
-        imagedestroy($handle);
-    }
-}
-echo "<div id='preview-div'><img id='preview-img' width='".($workW - 18)."px' src=data/picture/".$_COOKIE['PHPSESSID']."-preview.".$ext."?mtime=".@filemtime($fileimg)." alt='Aby zacząć edycje prześlij obraz'/></div><br />\n";//@filemtime($fileimg) thanks this image is always refresh
-?>
+    echo "<div id='preview-div'><img id='preview-img' width='".($workW - 18)."px' src=data/picture/".$_COOKIE['PHPSESSID']."-preview.".$ext."?mtime=".@filemtime($fileimg)." alt='Aby zacząć edycje prześlij obraz'/></div><br />\n";//@filemtime($fileimg) thanks this image is always refresh
+} else { ?>
+    <script type="text/javascript">
+    $(function(){
+        var setStorageItem2 = function(){
+            var arr = [];
+            var jsonStr = JSON.stringify(arr);//converting array into json string   
+            localStorage.setItem('arr', jsonStr);//storing it in a cookie
+        };
+        setStorageItem2();
+    });
+    </script>
+<?php } ?>
 <?php
 // $data = $_POST['data'];
 // $count = count($data['arry']);

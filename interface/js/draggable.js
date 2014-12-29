@@ -134,7 +134,18 @@ $(document).ready(function(){
     });
     $( '#btnReset' ).click(function(){
         localStorage.clear();
-        location.reload();
+        $.ajax({
+            type: 'POST',
+            url: 'php/delete.php',
+            data: { reset: 'reset' }, 
+            cache: false,
+            dataType: 'text',
+            success: function(data){
+                //console.log(data);
+                location.reload();
+            }
+        });
+        //location.reload();
     });
     $(document).on('mousedown', '.drag', function () {
         $( '.drag' ).removeClass( 'curent' );

@@ -3,8 +3,13 @@ session_start();
 $name = $_COOKIE['PHPSESSID'];
 $dir = glob('data/picture/'.$name.'.*');
 //$ext = pathinfo($dir[0], PATHINFO_EXTENSION);
-foreach ($dir as $filename) {
-    $ext = pathinfo($filename, PATHINFO_EXTENSION);
+//var_dump($dir);
+if($dir){
+    foreach ($dir as $filename) {
+        $ext = pathinfo($filename, PATHINFO_EXTENSION);
+    }
+} else {
+    $ext = 'jpg';
 }
 ?>
 <!DOCTYPE HTML>
@@ -79,6 +84,7 @@ foreach ($dir as $filename) {
                                     });
                                 </script>
                                 <li id="download-files">Download file</li>
+                                <li id="btnReset">Reset</li>
                             </ul>
                         </li>
                         <li>Windows
@@ -90,7 +96,7 @@ foreach ($dir as $filename) {
                                 <li id="button-08">Position</li>
                                 <li id="button-09">Size</li>
                                 <li id="button-10">Fonts</li>
-                                <li id="button-11">Debugger</li>
+                                <!--<li id="button-11">Debugger</li>-->
                             </ul>
                         </li>
                         <li>Options
